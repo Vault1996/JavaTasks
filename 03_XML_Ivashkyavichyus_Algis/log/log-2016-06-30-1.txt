@@ -1,0 +1,30 @@
+01:03:23 [main] INFO  by.epam.card.main.Main - Validating file resources/OldCards.xml
+01:03:23 [main] INFO  by.epam.card.main.Main - Validation ended
+01:03:23 [main] INFO  by.epam.card.main.Main - Built set:
+01:03:23 [main] INFO  by.epam.card.main.Main - PostCard: {thema='Architecture', type='Usual', country='Belarus', year='1023', valuable='true', id='ID_123', author='None', message='Hello world!'}
+01:03:23 [main] INFO  by.epam.card.main.Main - PostCard: {thema='Architecture', type='Usual', country='Belarus', year='1023', valuable='true', id='ID_12333', author='None', message='Hello world!'}
+01:03:23 [main] INFO  by.epam.card.main.Main - SoundCard: {thema='Architecture', type='Celebration', country='Great Britain', year='2012', valuable='true', id='ID_9123', author='None', song='Hello', format='mp3'}
+01:03:23 [main] INFO  by.epam.card.main.Main - SoundCard: {thema='Architecture', type='Celebration', country='Great Britain', year='2012', valuable='true', id='ID_823', author='Liza', song='Hello', format='wav'}
+01:03:23 [main] INFO  by.epam.card.main.Main - PostCard: {thema='Landscape', type='Usual', country='Belarus', year='1023', valuable='true', id='ID_323', author='Arthur', message='Hello world!'}
+01:03:23 [main] INFO  by.epam.card.main.Main - SoundCard: {thema='Nature', type='Celebration', country='Great Britain', year='2012', valuable='true', id='ID_231', author='None', song='Hello', format='wav'}
+01:03:23 [main] INFO  by.epam.card.main.Main - PostCard: {thema='Architecture', type='Usual', country='Belarus', year='1023', valuable='true', id='ID_18484', author='Arthur', message='Hello world!'}
+01:03:23 [main] INFO  by.epam.card.main.Main - SoundCard: {thema='Architecture', type='Celebration', country='Great Britain', year='1456', valuable='true', id='ID_9991', author='None', song='Hello', format='mp3'}
+01:03:23 [main] INFO  by.epam.card.main.Main - SoundCard: {thema='Architecture', type='Celebration', country='Great Britain', year='2012', valuable='true', id='ID_8800', author='Liza', song='Hello', format='mp3'}
+01:03:23 [main] INFO  by.epam.card.main.Main - PostCard: {thema='Architecture', type='Usual', country='Belarus', year='1023', valuable='true', id='ID_523', author='Arthur', message='Hello world!'}
+01:03:23 [main] INFO  by.epam.card.main.Main - SoundCard: {thema='Architecture', type='Celebration', country='Great Britain', year='2012', valuable='true', id='ID_715', author='None', song='Hello', format='mp3'}
+01:03:23 [main] INFO  by.epam.card.main.Main - PostCard: {thema='Sport', type='Usual', country='Ukraine', year='1023', valuable='true', id='ID_13213', author='Arthur', message='Hello world!'}
+01:03:23 [main] INFO  by.epam.card.main.Main - SoundCard: {thema='People', type='Celebration', country='Russia', year='2012', valuable='true', id='ID_251', author='Liza', song='Hello', format='mp3'}
+01:03:23 [main] INFO  by.epam.card.main.Main - PostCard: {thema='Religion', type='Adv', country='Belarus', year='1023', valuable='true', id='ID_1124', author='None', message='Hello world!'}
+01:03:23 [main] INFO  by.epam.card.main.Main - SoundCard: {thema='Architecture', type='Celebration', country='Great Britain', year='2012', valuable='true', id='ID_345', author='Liza', song='Hello', format='mp3'}
+01:03:23 [main] INFO  by.epam.card.main.Main - PostCard: {thema='Architecture', type='Usual', country='Belarus', year='1023', valuable='true', id='ID_123143', author='None', message='Hello world!'}
+10:01:10 [main] INFO  by.epam.card.main.Main - Validating file resources/OldCards.xml
+10:01:11 [main] INFO  by.epam.card.main.Main - Validation ended
+10:01:11 [main] INFO  by.epam.card.main.Main - Built set:
+10:01:11 [main] INFO  by.epam.card.main.Main - SoundCard: {thema='Architecture', type='Celebration', country='Great Britain', year='2012', valuable='true', id='ID_345', author='Liza', song='Hello', format='mp3'}
+10:01:11 [main] INFO  by.epam.card.main.Main - PostCard: {thema='Architecture', type='Usual', country='Belarus', year='1023', valuable='true', id='ID_523', author='Arthur', message='Hello world!'}
+10:01:11 [main] INFO  by.epam.card.main.Main - SoundCard: {thema='Architecture', type='Celebration', country='Great Britain', year='2012', valuable='true', id='ID_823', author='Liza', song='Hello', format='wav'}
+10:01:11 [main] INFO  by.epam.card.main.Main - SoundCard: {thema='Nature', type='Celebration', country='Great Britain', year='2012', valuable='true', id='ID_231', author='None', song='Hello', format='wav'}
+10:01:11 [main] INFO  by.epam.card.main.Main - PostCard: {thema='Architecture', type='Usual', country='Belarus', year='1023', valuable='true', id='ID_123', author='None', message='Hello world!'}
+10:01:11 [main] INFO  by.epam.card.main.Main - PostCard: {thema='Architecture', type='Usual', country='Belarus', year='1023', valuable='true', id='ID_123143', author='None', message='Hello world!'}
+10:01:11 [main] INFO  by.epam.card.main.Main - PostCard: {thema='Landscape', type='Usual', country='Belarus', year='1023', valuable='true', id='ID_323', author='Arthur', message='Hello world!'}
+10:01:11 [main] INFO  by.epam.card.main.Main - SoundCard: {thema='Architecture', type='Celebration', country='Great Britain', year='2012', valuable='true', id='ID_8800', author='Liza', song='Hello', format='mp3'}

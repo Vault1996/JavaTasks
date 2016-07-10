@@ -1,0 +1,53 @@
+16:49:33 [main] INFO  by.epam.composite.entity.Soldier - Soldier with 61 healthPoints take 9 damage.
+16:49:33 [main] INFO  by.epam.composite.entity.Army - Step 5:
+16:49:33 [main] INFO  by.epam.composite.entity.ArmyUnitComposite - Army hits Army with 61 damage.
+16:49:33 [main] INFO  by.epam.composite.entity.ArmyUnitComposite - Army consists of 1 units.
+16:49:33 [main] INFO  by.epam.composite.entity.ArmyUnitComposite - Regiment consists of 1 units.
+16:49:33 [main] INFO  by.epam.composite.entity.ArmyUnitComposite - Troop consists of 5 units.
+16:49:33 [main] INFO  by.epam.composite.entity.Soldier - Soldier with 52 healthPoints take 12 damage.
+16:49:33 [main] INFO  by.epam.composite.entity.Soldier - Soldier with 56 healthPoints take 12 damage.
+16:49:33 [main] INFO  by.epam.composite.entity.Soldier - Soldier with 55 healthPoints take 12 damage.
+16:49:33 [main] INFO  by.epam.composite.entity.Soldier - Soldier with 44 healthPoints take 12 damage.
+16:49:33 [main] INFO  by.epam.composite.entity.Soldier - Soldier with 55 healthPoints take 12 damage.
+16:49:33 [main] INFO  by.epam.composite.entity.ArmyUnitComposite - Army hits Army with 56 damage.
+16:49:33 [main] INFO  by.epam.composite.entity.ArmyUnitComposite - Army consists of 1 units.
+16:49:33 [main] INFO  by.epam.composite.entity.ArmyUnitComposite - Regiment consists of 1 units.
+16:49:33 [main] INFO  by.epam.composite.entity.ArmyUnitComposite - Troop consists of 5 units.
+16:49:33 [main] INFO  by.epam.composite.entity.Soldier - Soldier with 46 healthPoints take 11 damage.
+16:49:33 [main] INFO  by.epam.composite.entity.Soldier - Soldier with 38 healthPoints take 11 damage.
+16:49:33 [main] INFO  by.epam.composite.entity.Soldier - Soldier with 57 healthPoints take 11 damage.
+16:49:33 [main] INFO  by.epam.composite.entity.Soldier - Soldier with 51 healthPoints take 11 damage.
+16:49:33 [main] INFO  by.epam.composite.entity.Soldier - Soldier with 52 healthPoints take 11 damage.
+16:49:33 [main] INFO  by.epam.composite.entity.Army - Step 6:
+16:49:33 [main] INFO  by.epam.composite.entity.ArmyUnitComposite - Army hits Army with 51 damage.
+16:49:33 [main] INFO  by.epam.composite.entity.ArmyUnitComposite - Army consists of 1 units.
+16:49:33 [main] INFO  by.epam.composite.entity.ArmyUnitComposite - Regiment consists of 1 units.
+16:49:33 [main] INFO  by.epam.composite.entity.ArmyUnitComposite - Troop consists of 5 units.
+16:49:33 [main] INFO  by.epam.composite.entity.Soldier - Soldier with 40 healthPoints take 10 damage.
+16:49:33 [main] INFO  by.epam.composite.entity.Soldier - Soldier with 44 healthPoints take 10 damage.
+16:49:33 [main] INFO  by.epam.composite.entity.Soldier - Soldier with 43 healthPoints take 10 damage.
+16:49:33 [main] INFO  by.epam.composite.entity.Soldier - Soldier with 32 healthPoints take 10 damage.
+16:49:33 [main] INFO  by.epam.composite.entity.Soldier - Soldier with 43 healthPoints take 10 damage.
+16:49:33 [main] INFO  by.epam.composite.entity.ArmyUnitComposite - Army hits Army with 61 damage.
+16:49:33 [main] INFO  by.epam.composite.entity.ArmyUnitComposite - Army consists of 1 units.
+16:49:33 [main] INFO  by.epam.composite.entity.ArmyUnitComposite - Regiment consists of 1 units.
+16:49:33 [main] INFO  by.epam.composite.entity.ArmyUnitComposite - Troop consists of 5 units.
+16:49:33 [main] INFO  by.epam.composite.entity.Soldier - Soldier with 35 healthPoints take 12 damage.
+16:49:33 [main] INFO  by.epam.composite.entity.Soldier - Soldier with 27 healthPoints take 12 damage.
+16:49:33 [main] INFO  by.epam.composite.entity.Soldier - Soldier with 46 healthPoints take 12 damage.
+16:49:33 [main] INFO  by.epam.composite.entity.Soldier - Soldier with 40 healthPoints take 12 damage.
+16:49:33 [main] INFO  by.epam.composite.entity.Soldier - Soldier with 41 healthPoints take 12 damage.
+16:49:33 [main] INFO  by.epam.composite.entity.Army - Step 7:
+16:49:33 [main] INFO  by.epam.composite.entity.ArmyUnitComposite - Army hits Army with 62 damage.
+16:49:33 [main] INFO  by.epam.composite.entity.ArmyUnitComposite - Army consists of 1 units.
+16:49:33 [main] INFO  by.epam.composite.entity.ArmyUnitComposite - Regiment consists of 1 units.
+16:49:33 [main] INFO  by.epam.composite.entity.ArmyUnitComposite - Troop consists of 5 units.
+16:49:33 [main] INFO  by.epam.composite.entity.Soldier - Soldier with 30 healthPoints take 12 damage.
+16:49:33 [main] INFO  by.epam.composite.entity.Soldier - Soldier with 34 healthPoints take 12 damage.
+16:49:33 [main] INFO  by.epam.composite.entity.Soldier - Soldier with 33 healthPoints take 12 damage.
+16:49:33 [main] INFO  by.epam.composite.entity.Soldier - Soldier with 22 healthPoints take 12 damage.
+16:49:33 [main] INFO  by.epam.composite.entity.Soldier - Soldier with 33 healthPoints take 12 damage.
+16:49:33 [main] INFO  by.epam.composite.entity.ArmyUnitComposite - Army hits Army with 63 damage.
+16:49:33 [main] INFO  by.epam.composite.entity.ArmyUnitComposite - Army consists of 1 units.
+16:49:33 [main] INFO  by.epam.composite.entity.ArmyUnitComposite - Regiment consists of 1 units.
+16:49:33 [main] INFO  by.epam.composite.entity.ArmyUnitComposite - Troop consists of 5 units.

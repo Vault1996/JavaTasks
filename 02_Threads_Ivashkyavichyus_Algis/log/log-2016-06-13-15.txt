@@ -1,0 +1,38 @@
+23:07:32 [Thread-334] WARN  by.epam.cashbox.entity.Customer - Timeout in changing queues with client №334
+23:07:32 [Thread-117] INFO  by.epam.cashbox.entity.Customer - Клиент № 117 обслужен.
+23:07:32 [Thread-339] INFO  by.epam.cashbox.entity.Customer - Client #339 is trying to change queue with another client.
+23:07:32 [Thread-213] INFO  by.epam.cashbox.entity.Customer - Клиент №213 пытается поменяться очередью с другим клиентом.
+23:07:32 [Thread-213] INFO  by.epam.cashbox.entity.Customer - Клиент №213 поменялся очередью с другим клиентом.
+23:07:32 [Thread-339] INFO  by.epam.cashbox.entity.Customer - Client #339 changed queue with another client.
+23:07:32 [Thread-45] INFO  by.epam.cashbox.entity.Customer - Клиент № 45 обслуживается.
+23:07:32 [Thread-405] INFO  by.epam.cashbox.entity.Customer - Клиент №405 пытается поменяться очередью с другим клиентом.
+23:07:32 [Thread-73] INFO  by.epam.cashbox.entity.Customer - Клиент №73 пытается поменяться очередью с другим клиентом.
+23:07:32 [Thread-73] INFO  by.epam.cashbox.entity.Customer - Клиент №73 поменялся очередью с другим клиентом.
+23:07:32 [Thread-405] INFO  by.epam.cashbox.entity.Customer - Клиент №405 поменялся очередью с другим клиентом.
+23:07:32 [Thread-405] INFO  by.epam.cashbox.entity.Customer - Клиент №405 пытается поменяться очередью с другим клиентом.
+23:07:32 [Thread-418] INFO  by.epam.cashbox.entity.Customer - Client # 418 is getting service.
+23:07:32 [Thread-182] INFO  by.epam.cashbox.entity.Customer - Client #182 is trying to change queue with another client.
+23:07:32 [Thread-182] INFO  by.epam.cashbox.entity.Customer - Client #182 changed queue with another client.
+23:07:32 [Thread-405] INFO  by.epam.cashbox.entity.Customer - Клиент №405 поменялся очередью с другим клиентом.
+23:07:32 [Thread-421] INFO  by.epam.cashbox.entity.Customer - Client #421 is trying to change queue with another client.
+23:07:32 [Thread-334] INFO  by.epam.cashbox.entity.Customer - Client # 334 is getting service.
+23:07:32 [Thread-249] INFO  by.epam.cashbox.entity.Customer - Клиент №249 пытается поменяться очередью с другим клиентом.
+23:07:32 [Thread-249] INFO  by.epam.cashbox.entity.Customer - Клиент №249 поменялся очередью с другим клиентом.
+23:07:32 [Thread-421] INFO  by.epam.cashbox.entity.Customer - Client #421 changed queue with another client.
+23:07:32 [Thread-421] INFO  by.epam.cashbox.entity.Customer - Client #421 is trying to change queue with another client.
+23:07:32 [Thread-213] INFO  by.epam.cashbox.entity.Customer - Клиент №213 пытается поменяться очередью с другим клиентом.
+23:07:32 [Thread-213] INFO  by.epam.cashbox.entity.Customer - Клиент №213 поменялся очередью с другим клиентом.
+23:07:32 [Thread-421] INFO  by.epam.cashbox.entity.Customer - Client #421 changed queue with another client.
+23:07:32 [Thread-421] INFO  by.epam.cashbox.entity.Customer - Client #421 is trying to change queue with another client.
+23:07:32 [Thread-405] INFO  by.epam.cashbox.entity.Customer - Клиент №405 пытается поменяться очередью с другим клиентом.
+23:07:32 [Thread-421] WARN  by.epam.cashbox.entity.Customer - Timeout in changing queues with client №421
+23:07:32 [Thread-182] INFO  by.epam.cashbox.entity.Customer - Client # 182 is getting service.
+23:07:32 [Thread-405] WARN  by.epam.cashbox.entity.Customer - Timeout in changing queues with client №405
+23:07:32 [Thread-258] INFO  by.epam.cashbox.entity.Customer - Клиент №258 пытается поменяться очередью с другим клиентом.
+23:07:32 [Thread-179] INFO  by.epam.cashbox.entity.Customer - Клиент №179 пытается поменяться очередью с другим клиентом.
+23:07:32 [Thread-213] INFO  by.epam.cashbox.entity.Customer - Клиент №213 пытается поменяться очередью с другим клиентом.
+23:07:32 [Thread-179] INFO  by.epam.cashbox.entity.Customer - Клиент №179 поменялся очередью с другим клиентом.
+23:07:32 [Thread-258] INFO  by.epam.cashbox.entity.Customer - Клиент №258 поменялся очередью с другим клиентом.
+23:07:32 [Thread-421] INFO  by.epam.cashbox.entity.Customer - Client #421 is trying to change queue with another client.
+23:07:32 [Thread-421] INFO  by.epam.cashbox.entity.Customer - Client #421 changed queue with another client.
+23:07:32 [Thread-213] INFO  by.epam.cashbox.entity.Customer - Клиент №213 поменялся очередью с другим клиентом.

@@ -1,0 +1,18 @@
+23:46:01 [main] ERROR by.epam.parsing.action.TextReader - File not found
+15:24:57 [main] ERROR by.epam.parsing.entity.composite.Composite - No such type of unit.
+10:09:53 [main] ERROR by.epam.parsing.main.Main - Can't interpret
+10:13:07 [main] ERROR by.epam.parsing.main.Main - Can't interpret
+10:41:39 [main] WARN  by.epam.parsing.entity.composite.Leaf - Can't interpret expression 3+5-
+23:39:03 [main] WARN  by.epam.parsing.entity.composite.Leaf - Can't interpret expression 3+5-
+23:41:16 [main] WARN  by.epam.parsing.entity.composite.Leaf - Can't interpret expression 3+5-
+13:20:50 [main] WARN  by.epam.parsing.entity.composite.Leaf - Can't interpret expression 3+5-
+13:22:34 [main] WARN  by.epam.parsing.entity.composite.Leaf - Can't interpret expression 3+5-
+13:22:48 [main] WARN  by.epam.parsing.entity.composite.Leaf - Can't interpret expression 3+5-
+13:22:52 [main] WARN  by.epam.parsing.entity.composite.Leaf - Can't interpret expression 3+5-
+13:25:53 [main] WARN  by.epam.parsing.entity.composite.Leaf - Can't interpret expression 3+5-
+13:39:59 [main] WARN  by.epam.parsing.entity.composite.Leaf - Can't interpret expression 3+5-
+14:13:02 [main] WARN  by.epam.parsing.entity.composite.Leaf - Can't interpret expression 3+5-
+14:52:19 [main] WARN  by.epam.parsing.entity.composite.Leaf - Can't interpret expression 3+5-
+14:55:56 [main] WARN  by.epam.parsing.entity.composite.Leaf - Can't interpret expression 3+5-
+14:59:20 [main] WARN  by.epam.parsing.entity.composite.Leaf - Can't interpret expression 3+5-
+15:03:08 [main] WARN  by.epam.parsing.entity.composite.Leaf - Can't interpret expression 3+5-

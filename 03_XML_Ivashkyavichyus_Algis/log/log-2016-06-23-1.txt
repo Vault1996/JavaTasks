@@ -1,0 +1,38 @@
+12:13:13 [main] ERROR by.epam.card.handler.CardErrorHandler - 11 : 14 - cvc-complex-type.2.4.a: Invalid content was found starting with element 'Yer'. One of '{"http://www.example.com/OldCards":Year}' is expected.
+12:13:13 [main] INFO  by.epam.card.main.Main - Validation ended
+12:14:12 [main] INFO  by.epam.card.main.Main - Validating file resources/OldCards.xml
+12:14:12 [main] ERROR by.epam.card.handler.CardErrorHandler - 11 : 14 - cvc-complex-type.2.4.a: Invalid content was found starting with element 'Yer'. One of '{"http://www.example.com/OldCards":Year}' is expected.
+12:14:12 [main] INFO  by.epam.card.main.Main - Validation ended
+12:18:25 [main] INFO  by.epam.card.main.Main - Validating file resources/OldCards.xml
+12:18:25 [main] ERROR by.epam.card.handler.CardErrorHandler - 11 : 14 - cvc-complex-type.2.4.a: Invalid content was found starting with element 'Yer'. One of '{"http://www.example.com/OldCards":Year}' is expected.
+12:18:25 [main] INFO  by.epam.card.validation.ValidatorSAX - resources/OldCards.xml is valid
+12:21:19 [main] INFO  by.epam.card.main.Main - Validating file resources/OldCards.xml
+12:21:19 [main] ERROR by.epam.card.handler.CardErrorHandler - 11 : 14 - cvc-complex-type.2.4.a: Invalid content was found starting with element 'Yer'. One of '{"http://www.example.com/OldCards":Year}' is expected.
+12:21:42 [main] INFO  by.epam.card.main.Main - Validating file resources/OldCards.xml
+12:21:42 [main] ERROR by.epam.card.handler.CardErrorHandler - 11 : 14 - cvc-complex-type.2.4.a: Invalid content was found starting with element 'Yer'. One of '{"http://www.example.com/OldCards":Year}' is expected.
+12:21:42 [main] INFO  by.epam.card.main.Main - Validation ended
+11:05:03 [main] INFO  by.epam.card.main.Main - Validating file resources/OldCards.xml
+11:05:03 [main] ERROR by.epam.card.handler.CardErrorHandler - 8 : 17 - cvc-complex-type.2.4.a: Invalid content was found starting with element 'Thenma'. One of '{"http://www.example.com/OldCards":Thema}' is expected.
+11:05:03 [main] INFO  by.epam.card.main.Main - Validation ended
+00:04:46 [main] INFO  by.epam.card.main.Main - Validating file resources/OldCards.xml
+00:04:46 [main] ERROR by.epam.card.handler.CardErrorHandler - 8 : 17 - cvc-complex-type.2.4.a: Invalid content was found starting with element 'Thenma'. One of '{"http://www.example.com/OldCards":Thema}' is expected.
+00:04:46 [main] INFO  by.epam.card.main.Main - Validation ended
+00:09:08 [main] INFO  by.epam.card.main.Main - Validating file resources/OldCards.xml
+00:09:08 [main] ERROR by.epam.card.handler.CardErrorHandler - 8 : 17 - cvc-complex-type.2.4.a: Invalid content was found starting with element 'Thenma'. One of '{"http://www.example.com/OldCards":Thema}' is expected.
+00:09:08 [main] INFO  by.epam.card.main.Main - Validation ended
+00:09:08 [main] ERROR by.epam.card.handler.CardHandler - Can't resolve element Thenma
+00:09:08 [main] INFO  by.epam.card.main.Main - Built set:
+00:09:08 [main] INFO  by.epam.card.main.Main - SoundCard: {thema='Architecture', enumeration='Celebration', country='Great Britain', year='2012', valuable='true', id='ID_251', author='Liza', song='Hello', format='mp3'}
+00:09:08 [main] INFO  by.epam.card.main.Main - PostCard: {thema='null', enumeration='Usual', country='Belarus', year='1023', valuable='true', id='ID_123', author='None', message='Hello world!'}
+00:09:08 [main] INFO  by.epam.card.main.Main - PostCard: {thema='Architecture', enumeration='Usual', country='Belarus', year='1023', valuable='true', id='Arthur', author='ID_323', message='Hello world!'}
+00:09:08 [main] INFO  by.epam.card.main.Main - SoundCard: {thema='Architecture', enumeration='Celebration', country='Great Britain', year='2012', valuable='true', id='ID_231', author='None', song='Hello', format='mp3'}
+00:10:39 [main] INFO  by.epam.card.main.Main - Validating file resources/OldCards.xml
+00:10:39 [main] ERROR by.epam.card.handler.CardErrorHandler - 7 : 28 - cvc-complex-type.2.4.a: Invalid content was found starting with element 'posctCard'. One of '{"http://www.example.com/OldCards":oldCard}' is expected.
+00:10:39 [main] INFO  by.epam.card.main.Main - Validation ended
+00:10:39 [main] ERROR by.epam.card.handler.CardHandler - Can't resolve element posctCard
+00:10:39 [main] INFO  by.epam.card.main.Main - Built set:
+00:10:39 [main] INFO  by.epam.card.main.Main - PostCard: {thema='Architecture', enumeration='Usual', country='Belarus', year='1023', valuable='true', id='Arthur', author='ID_323', message='Hello world!'}
+00:10:39 [main] INFO  by.epam.card.main.Main - SoundCard: {thema='Architecture', enumeration='Celebration', country='Great Britain', year='2012', valuable='true', id='ID_231', author='None', song='Hello', format='mp3'}
+00:10:39 [main] INFO  by.epam.card.main.Main - SoundCard: {thema='Architecture', enumeration='Celebration', country='Great Britain', year='2012', valuable='true', id='ID_251', author='Liza', song='Hello', format='mp3'}
+00:12:14 [main] INFO  by.epam.card.main.Main - Validating file resources/OldCards.xml
+00:12:15 [main] ERROR by.epam.card.handler.CardErrorHandler - 7 : 28 - cvc-complex-type.2.4.a: Invalid content was found starting with element 'posctCard'. One of '{"http://www.example.com/OldCards":oldCard}' is expected.

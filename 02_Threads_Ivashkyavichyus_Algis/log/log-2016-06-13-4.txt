@@ -1,0 +1,35 @@
+23:07:31 [Thread-449] INFO  by.epam.cashbox.entity.Customer - Клиент №449 пытается поменяться очередью с другим клиентом.
+23:07:31 [Thread-405] INFO  by.epam.cashbox.entity.Customer - Клиент №405 пытается поменяться очередью с другим клиентом.
+23:07:31 [Thread-481] INFO  by.epam.cashbox.entity.Customer - Client #481 changed queue with another client.
+23:07:31 [Thread-449] INFO  by.epam.cashbox.entity.Customer - Клиент №449 поменялся очередью с другим клиентом.
+23:07:31 [Thread-258] INFO  by.epam.cashbox.entity.Customer - Клиент №258 пытается поменяться очередью с другим клиентом.
+23:07:31 [Thread-249] INFO  by.epam.cashbox.entity.Customer - Клиент №249 пытается поменяться очередью с другим клиентом.
+23:07:31 [Thread-258] INFO  by.epam.cashbox.entity.Customer - Клиент №258 поменялся очередью с другим клиентом.
+23:07:31 [Thread-405] INFO  by.epam.cashbox.entity.Customer - Клиент №405 поменялся очередью с другим клиентом.
+23:07:31 [Thread-303] INFO  by.epam.cashbox.entity.Customer - Client #303 is trying to change queue with another client.
+23:07:31 [Thread-258] INFO  by.epam.cashbox.entity.Customer - Клиент №258 пытается поменяться очередью с другим клиентом.
+23:07:31 [Thread-249] INFO  by.epam.cashbox.entity.Customer - Клиент №249 поменялся очередью с другим клиентом.
+23:07:31 [Thread-303] INFO  by.epam.cashbox.entity.Customer - Client #303 changed queue with another client.
+23:07:31 [Thread-249] INFO  by.epam.cashbox.entity.Customer - Клиент №249 пытается поменяться очередью с другим клиентом.
+23:07:31 [Thread-249] INFO  by.epam.cashbox.entity.Customer - Клиент №249 поменялся очередью с другим клиентом.
+23:07:31 [Thread-258] INFO  by.epam.cashbox.entity.Customer - Клиент №258 поменялся очередью с другим клиентом.
+23:07:31 [Thread-258] INFO  by.epam.cashbox.entity.Customer - Клиент №258 пытается поменяться очередью с другим клиентом.
+23:07:31 [Thread-303] INFO  by.epam.cashbox.entity.Customer - Client #303 is trying to change queue with another client.
+23:07:31 [Thread-303] INFO  by.epam.cashbox.entity.Customer - Client #303 changed queue with another client.
+23:07:31 [Thread-258] INFO  by.epam.cashbox.entity.Customer - Клиент №258 поменялся очередью с другим клиентом.
+23:07:31 [Thread-258] INFO  by.epam.cashbox.entity.Customer - Клиент №258 пытается поменяться очередью с другим клиентом.
+23:07:31 [Thread-249] INFO  by.epam.cashbox.entity.Customer - Клиент №249 пытается поменяться очередью с другим клиентом.
+23:07:31 [Thread-303] INFO  by.epam.cashbox.entity.Customer - Client #303 is trying to change queue with another client.
+23:07:31 [Thread-258] INFO  by.epam.cashbox.entity.Customer - Клиент №258 поменялся очередью с другим клиентом.
+23:07:31 [Thread-303] INFO  by.epam.cashbox.entity.Customer - Client #303 changed queue with another client.
+23:07:31 [Thread-303] INFO  by.epam.cashbox.entity.Customer - Client #303 is trying to change queue with another client.
+23:07:31 [Thread-258] INFO  by.epam.cashbox.entity.Customer - Клиент №258 пытается поменяться очередью с другим клиентом.
+23:07:31 [Thread-303] INFO  by.epam.cashbox.entity.Customer - Client #303 changed queue with another client.
+23:07:31 [Thread-249] INFO  by.epam.cashbox.entity.Customer - Клиент №249 поменялся очередью с другим клиентом.
+23:07:31 [Thread-249] INFO  by.epam.cashbox.entity.Customer - Клиент №249 пытается поменяться очередью с другим клиентом.
+23:07:31 [Thread-249] INFO  by.epam.cashbox.entity.Customer - Клиент №249 поменялся очередью с другим клиентом.
+23:07:31 [Thread-258] INFO  by.epam.cashbox.entity.Customer - Клиент №258 поменялся очередью с другим клиентом.
+23:07:31 [Thread-258] INFO  by.epam.cashbox.entity.Customer - Клиент №258 пытается поменяться очередью с другим клиентом.
+23:07:31 [Thread-481] INFO  by.epam.cashbox.entity.Customer - Client #481 is trying to change queue with another client.
+23:07:31 [Thread-481] INFO  by.epam.cashbox.entity.Customer - Client #481 changed queue with another client.
+23:07:31 [Thread-258] INFO  by.epam.cashbox.entity.Customer - Клиент №258 поменялся очередью с другим клиентом.

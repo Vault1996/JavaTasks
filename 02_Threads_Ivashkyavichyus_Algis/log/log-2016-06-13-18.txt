@@ -1,0 +1,35 @@
+23:07:32 [Thread-421] INFO  by.epam.cashbox.entity.Customer - Client #421 changed queue with another client.
+23:07:32 [Thread-249] INFO  by.epam.cashbox.entity.Customer - Клиент №249 пытается поменяться очередью с другим клиентом.
+23:07:32 [Thread-73] INFO  by.epam.cashbox.entity.Customer - Клиент №73 пытается поменяться очередью с другим клиентом.
+23:07:32 [Thread-249] INFO  by.epam.cashbox.entity.Customer - Клиент №249 поменялся очередью с другим клиентом.
+23:07:32 [Thread-73] INFO  by.epam.cashbox.entity.Customer - Клиент №73 поменялся очередью с другим клиентом.
+23:07:32 [Thread-249] INFO  by.epam.cashbox.entity.Customer - Клиент №249 пытается поменяться очередью с другим клиентом.
+23:07:32 [Thread-179] INFO  by.epam.cashbox.entity.Customer - Клиент №179 пытается поменяться очередью с другим клиентом.
+23:07:32 [Thread-179] INFO  by.epam.cashbox.entity.Customer - Клиент №179 поменялся очередью с другим клиентом.
+23:07:32 [Thread-249] INFO  by.epam.cashbox.entity.Customer - Клиент №249 поменялся очередью с другим клиентом.
+23:07:32 [Thread-249] INFO  by.epam.cashbox.entity.Customer - Клиент №249 пытается поменяться очередью с другим клиентом.
+23:07:32 [Thread-249] WARN  by.epam.cashbox.entity.Customer - Timeout in changing queues with client №249
+23:07:32 [Thread-339] INFO  by.epam.cashbox.entity.Customer - Client #339 is trying to change queue with another client.
+23:07:33 [Thread-73] INFO  by.epam.cashbox.entity.Customer - Клиент №73 пытается поменяться очередью с другим клиентом.
+23:07:33 [Thread-73] INFO  by.epam.cashbox.entity.Customer - Клиент №73 поменялся очередью с другим клиентом.
+23:07:33 [Thread-339] INFO  by.epam.cashbox.entity.Customer - Client #339 changed queue with another client.
+23:07:33 [Thread-421] INFO  by.epam.cashbox.entity.Customer - Client #421 is trying to change queue with another client.
+23:07:33 [Thread-179] INFO  by.epam.cashbox.entity.Customer - Клиент №179 пытается поменяться очередью с другим клиентом.
+23:07:33 [Thread-179] INFO  by.epam.cashbox.entity.Customer - Клиент №179 поменялся очередью с другим клиентом.
+23:07:33 [Thread-421] INFO  by.epam.cashbox.entity.Customer - Client #421 changed queue with another client.
+23:07:33 [Thread-179] INFO  by.epam.cashbox.entity.Customer - Клиент №179 пытается поменяться очередью с другим клиентом.
+23:07:33 [Thread-13] INFO  by.epam.cashbox.entity.Customer - Клиент №13 пытается поменяться очередью с другим клиентом.
+23:07:33 [Thread-13] INFO  by.epam.cashbox.entity.Customer - Клиент №13 поменялся очередью с другим клиентом.
+23:07:33 [Thread-179] INFO  by.epam.cashbox.entity.Customer - Клиент №179 поменялся очередью с другим клиентом.
+23:07:33 [Thread-179] INFO  by.epam.cashbox.entity.Customer - Клиент №179 пытается поменяться очередью с другим клиентом.
+23:07:33 [Thread-179] WARN  by.epam.cashbox.entity.Customer - Timeout in changing queues with client №179
+23:07:33 [Thread-249] INFO  by.epam.cashbox.entity.Customer - Клиент №249 пытается поменяться очередью с другим клиентом.
+23:07:33 [Thread-13] INFO  by.epam.cashbox.entity.Customer - Клиент №13 пытается поменяться очередью с другим клиентом.
+23:07:33 [Thread-306] INFO  by.epam.cashbox.entity.Customer - Client #306 is trying to change queue with another client.
+23:07:33 [Thread-249] INFO  by.epam.cashbox.entity.Customer - Клиент №249 поменялся очередью с другим клиентом.
+23:07:33 [Thread-13] INFO  by.epam.cashbox.entity.Customer - Клиент №13 поменялся очередью с другим клиентом.
+23:07:33 [Thread-339] INFO  by.epam.cashbox.entity.Customer - Client #339 is trying to change queue with another client.
+23:07:33 [Thread-73] INFO  by.epam.cashbox.entity.Customer - Клиент №73 пытается поменяться очередью с другим клиентом.
+23:07:33 [Thread-249] INFO  by.epam.cashbox.entity.Customer - Клиент №249 пытается поменяться очередью с другим клиентом.
+23:07:33 [Thread-306] INFO  by.epam.cashbox.entity.Customer - Client #306 changed queue with another client.
+23:07:33 [Thread-249] INFO  by.epam.cashbox.entity.Customer - Клиент №249 поменялся очередью с другим клиентом.

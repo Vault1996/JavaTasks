@@ -1,0 +1,15 @@
+23:07:33 [Thread-249] INFO  by.epam.cashbox.entity.Customer - Клиент №249 пытается поменяться очередью с другим клиентом.
+23:07:33 [Thread-249] INFO  by.epam.cashbox.entity.Customer - Клиент №249 поменялся очередью с другим клиентом.
+23:07:33 [Thread-73] INFO  by.epam.cashbox.entity.Customer - Клиент №73 поменялся очередью с другим клиентом.
+23:07:33 [Thread-249] INFO  by.epam.cashbox.entity.Customer - Клиент №249 пытается поменяться очередью с другим клиентом.
+23:07:33 [Thread-13] INFO  by.epam.cashbox.entity.Customer - Клиент № 13 обслужен.
+23:07:33 [Thread-249] WARN  by.epam.cashbox.entity.Customer - Timeout in changing queues with client №249
+23:07:33 [Thread-249] INFO  by.epam.cashbox.entity.Customer - Клиент № 249 обслуживается.
+23:07:34 [Thread-73] INFO  by.epam.cashbox.entity.Customer - Клиент №73 пытается поменяться очередью с другим клиентом.
+23:07:34 [Thread-339] INFO  by.epam.cashbox.entity.Customer - Client # 339 is served.
+23:07:34 [Thread-421] INFO  by.epam.cashbox.entity.Customer - Client # 421 is served.
+23:07:34 [Thread-306] INFO  by.epam.cashbox.entity.Customer - Client # 306 is served.
+23:07:34 [Thread-73] WARN  by.epam.cashbox.entity.Customer - Timeout in changing queues with client №73
+23:07:34 [Thread-73] INFO  by.epam.cashbox.entity.Customer - Клиент № 73 обслуживается.
+23:07:34 [Thread-249] INFO  by.epam.cashbox.entity.Customer - Клиент № 249 обслужен.
+23:07:34 [Thread-73] INFO  by.epam.cashbox.entity.Customer - Клиент № 73 обслужен.

@@ -1,0 +1,71 @@
+03:01:00 [main] INFO  Main by.epam.library.main.Main - Starting program.
+03:09:46 [main] INFO  by.epam.library.main.Main - Starting program.
+03:09:46 [main] INFO  by.epam.library.main.Main - Creating new library from the file.
+03:09:46 [main] INFO  by.epam.library.main.Main - Result
+Library:
+Book{pages=18, year=1900, title='harry potter', publisher='dfsdfsfds', author='roling', part=3, genre='dsfsdf'}
+Newsletter{pages=100, year=1990, title='zvazda', publisher='rosmen', purpose='termination'}
+Newspaper{pages=12, year=2005, title='pravda', publisher='beldruk', periodicity=2}
+
+03:09:46 [main] INFO  by.epam.library.main.Main - Sorting existing library.
+03:09:46 [main] INFO  by.epam.library.main.Main - Result
+Library:
+Newspaper{pages=12, year=2005, title='pravda', publisher='beldruk', periodicity=2}
+Book{pages=18, year=1900, title='harry potter', publisher='dfsdfsfds', author='roling', part=3, genre='dsfsdf'}
+Newsletter{pages=100, year=1990, title='zvazda', publisher='rosmen', purpose='termination'}
+
+03:09:46 [main] INFO  by.epam.library.main.Main - Finding publications in given range.
+03:09:46 [main] INFO  by.epam.library.main.Main - Result
+[Newspaper{pages=12, year=2005, title='pravda', publisher='beldruk', periodicity=2}, Newsletter{pages=100, year=1990, title='zvazda', publisher='rosmen', purpose='termination'}]
+03:09:46 [main] INFO  by.epam.library.main.Main - Finishing program.
+21:18:07 [main] INFO  by.epam.library.main.Main - Starting program.
+21:18:07 [main] INFO  by.epam.library.main.Main - Creating new library from the file.
+21:18:07 [main] INFO  by.epam.library.creator.LibraryCreator - Start creating new library.
+21:18:07 [main] INFO  by.epam.library.creator.LibraryCreator - Finish creating new library.
+21:18:07 [main] INFO  by.epam.library.parser.FileParser - Start parsing file: file\publication
+21:18:07 [main] INFO  by.epam.library.main.Main - Result:
+Library:
+Book{pages=18, year=1900, title='harry potter', publisher='dfsdfsfds', author='roling', part=3, genre='dsfsdf'}
+Newsletter{pages=100, year=1990, title='zvazda', publisher='rosmen', purpose='termination'}
+Newspaper{pages=12, year=2005, title='pravda', publisher='beldruk', periodicity=2}
+
+21:18:07 [main] INFO  by.epam.library.main.Main - Sorting existing library.
+21:18:07 [main] INFO  by.epam.library.action.PublicationFinder - Start sorting library by number of pages.
+21:18:07 [main] INFO  by.epam.library.action.PublicationFinder - Finish sorting.
+21:18:07 [main] INFO  by.epam.library.main.Main - Result:
+Library:
+Newspaper{pages=12, year=2005, title='pravda', publisher='beldruk', periodicity=2}
+Book{pages=18, year=1900, title='harry potter', publisher='dfsdfsfds', author='roling', part=3, genre='dsfsdf'}
+Newsletter{pages=100, year=1990, title='zvazda', publisher='rosmen', purpose='termination'}
+
+21:18:07 [main] INFO  by.epam.library.main.Main - Finding publications in given range.
+21:18:07 [main] INFO  by.epam.library.action.PublicationFinder - Finding by year.
+21:18:07 [main] INFO  by.epam.library.main.Main - Result:
+[Newspaper{pages=12, year=2005, title='pravda', publisher='beldruk', periodicity=2}, Newsletter{pages=100, year=1990, title='zvazda', publisher='rosmen', purpose='termination'}]
+21:18:07 [main] INFO  by.epam.library.main.Main - Finishing program.
+21:24:17 [main] INFO  by.epam.library.main.Main - Starting program.
+21:24:17 [main] INFO  by.epam.library.main.Main - Creating new library from the file.
+21:24:17 [main] INFO  by.epam.library.creator.LibraryCreator - Start creating new library.
+21:24:17 [main] INFO  by.epam.library.creator.LibraryCreator - Finish creating new library.
+21:24:17 [main] INFO  by.epam.library.parser.FileParser - Start parsing file: file\publication
+21:24:17 [main] ERROR by.epam.library.parser.FileParser - Can't find such field.
+21:24:17 [main] INFO  by.epam.library.main.Main - Result:
+Library:
+Book{pages=18, year=1900, title='harry potter', publisher='dfsdfsfds', author='roling', part=3, genre='dsfsdf'}
+Newsletter{pages=100, year=1990, title='zvazda', publisher='rosmen', purpose='termination'}
+
+21:24:17 [main] INFO  by.epam.library.main.Main - Sorting existing library.
+21:24:17 [main] INFO  by.epam.library.action.PublicationFinder - Start sorting library by number of pages.
+21:24:17 [main] INFO  by.epam.library.action.PublicationFinder - Finish sorting.
+21:24:17 [main] INFO  by.epam.library.main.Main - Result:
+Library:
+Book{pages=18, year=1900, title='harry potter', publisher='dfsdfsfds', author='roling', part=3, genre='dsfsdf'}
+Newsletter{pages=100, year=1990, title='zvazda', publisher='rosmen', purpose='termination'}
+
+21:24:17 [main] INFO  by.epam.library.main.Main - Finding publications in given range.
+21:24:17 [main] INFO  by.epam.library.action.PublicationFinder - Finding by year.
+21:24:17 [main] INFO  by.epam.library.main.Main - Result:
+[Newsletter{pages=100, year=1990, title='zvazda', publisher='rosmen', purpose='termination'}]
+21:24:17 [main] INFO  by.epam.library.main.Main - Finishing program.
+21:25:11 [main] INFO  by.epam.library.main.Main - Starting program.
+21:25:11 [main] INFO  by.epam.library.main.Main - Creating new library from the file.
