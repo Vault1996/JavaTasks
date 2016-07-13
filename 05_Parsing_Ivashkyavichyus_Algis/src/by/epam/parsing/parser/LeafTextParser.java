@@ -2,8 +2,8 @@ package by.epam.parsing.parser;
 
 import by.epam.parsing.entity.composite.Composite;
 import by.epam.parsing.entity.composite.Leaf;
-import by.epam.parsing.entity.composite.exception.NotLeafException;
-import by.epam.parsing.enumeration.TypeOfTextUnit;
+import by.epam.parsing.exception.NotLeafException;
+import by.epam.parsing.type.TypeOfTextUnit;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

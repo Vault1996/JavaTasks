@@ -1,6 +1,6 @@
 package by.epam.parsing.action.interpreter;
 
-import by.epam.parsing.action.interpreter.exception.CantInterpretException;
+import by.epam.parsing.exception.CantInterpretException;
 
 public class TerminalExpressionMinus extends AbstractMathExpression {
 	@Override

@@ -1,7 +1,7 @@
 package by.epam.parsing.parser;
 
 import by.epam.parsing.entity.composite.Composite;
-import by.epam.parsing.enumeration.TypeOfTextUnit;
+import by.epam.parsing.type.TypeOfTextUnit;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

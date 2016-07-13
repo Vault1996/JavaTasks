@@ -1,9 +1,7 @@
 package by.epam.parsing.entity.composite;
 
-import by.epam.parsing.action.interpreter.Interpreter;
-import by.epam.parsing.action.interpreter.exception.CantInterpretException;
-import by.epam.parsing.entity.composite.exception.NotLeafException;
-import by.epam.parsing.enumeration.TypeOfTextUnit;
+import by.epam.parsing.exception.NotLeafException;
+import by.epam.parsing.type.TypeOfTextUnit;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -18,7 +16,7 @@ public class Leaf implements Component {
 
     private final TypeOfTextUnit TYPE_OF_UNIT;
 
-    public Leaf(TypeOfTextUnit typeOfTextUnit) throws NotLeafException{
+    public Leaf(TypeOfTextUnit typeOfTextUnit) throws NotLeafException {
         EnumSet<TypeOfTextUnit> leafs = EnumSet.range(TypeOfTextUnit.WORD, TypeOfTextUnit.FORMULA);
         if (leafs.contains(typeOfTextUnit)) {
             TYPE_OF_UNIT = typeOfTextUnit;
@@ -35,7 +33,12 @@ public class Leaf implements Component {
 
     }
 
-    public Object getChild(int index) {
+    @Override
+    public int size() {
+        return 0;
+    }
+
+    public Component getChild(int index) {
         throw new UnsupportedOperationException();
     }
 
@@ -48,27 +51,6 @@ public class Leaf implements Component {
         }
     }
 
-    @Override
-    public void calculateFormula() {
-        if (TYPE_OF_UNIT == TypeOfTextUnit.FORMULA) {
-            try {
-                Interpreter interpreter = new Interpreter(text);
-                text = interpreter.calculate().toString();
-            } catch (CantInterpretException e) {
-                LOGGER.warn("Can't interpret expression " + text);
-            }
-        }
-    }
-
-    @Override
-    public void changeLetter() {
-
-    }
-
-    @Override
-    public void removeLexeme(int length, char startLetter) {
-
-    }
 
     public TypeOfTextUnit getType() {
         return TYPE_OF_UNIT;

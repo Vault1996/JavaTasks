@@ -1,6 +1,6 @@
 package by.epam.parsing.action.interpreter;
 
-import by.epam.parsing.action.interpreter.exception.CantInterpretException;
+import by.epam.parsing.exception.CantInterpretException;
 import by.epam.parsing.main.Main;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -45,6 +45,7 @@ public class Interpreter {
 			}
 		}
 	}
+
 	private int priority(String ch){
 		switch (ch){
 			case "(":
@@ -59,10 +60,7 @@ public class Interpreter {
 		return 0;
 	}
 
-	private String toPolishForm(String expression){
-		String result = "";
-		ArrayDeque<String> operators = new ArrayDeque<>();
-//*********************************
+	private String incAndDec(String expression){
 		if (expression.contains("++")) {
 			int index = expression.indexOf("++");
 			if (index < expression.length() - 2 && expression.charAt(index + 2) <= '9' &&
@@ -83,8 +81,11 @@ public class Interpreter {
 					expression.charAt(index - 1) >= '0') {
 				expression = expression.replace("--", "-1");
 			}
-
 		}
+		return expression;
+	}
+
+	private String unaryOp(String expression) {
 		if(!expression.isEmpty()){
 			if (expression.charAt(0) == '+' || expression.charAt(0) == '-') {
 				expression = "0" + expression;
@@ -96,7 +97,15 @@ public class Interpreter {
 				expression = buff1.substring(0, i + 1) + "0" + buff2.substring(i + 1, expression.length());
 			}
 		}
-		//*****************
+		return expression;
+	}
+
+	private String toPolishForm(String expression){
+		String result = "";
+		ArrayDeque<String> operators = new ArrayDeque<>();
+
+		expression = incAndDec(expression);
+		expression = unaryOp(expression);
 
 		StringTokenizer stringTokenizer = new StringTokenizer(expression, "/+*-()", true);
 		while (stringTokenizer.hasMoreTokens()) {
@@ -163,9 +172,9 @@ public class Interpreter {
 		}
 		return result;
 	}
-	public Number calculate() throws CantInterpretException{
+
+	public Number calculate() throws CantInterpretException {
 		Context context = new Context();
-// выполнение простых задач и сборка результата
 		for (AbstractMathExpression terminal : listExpression) {
 			terminal.interpret(context);
 		}

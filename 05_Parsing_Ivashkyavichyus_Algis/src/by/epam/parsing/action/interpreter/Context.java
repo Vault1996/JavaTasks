@@ -1,11 +1,11 @@
 package by.epam.parsing.action.interpreter;
 
-import by.epam.parsing.action.interpreter.exception.CantInterpretException;
+import by.epam.parsing.exception.CantInterpretException;
 
 import java.util.ArrayDeque;
 public class Context {
 	private ArrayDeque<Integer> contextValues = new ArrayDeque<>();
-	public Integer popValue() throws CantInterpretException{
+	public Integer popValue() throws CantInterpretException {
 		if(contextValues.isEmpty()){
 			throw new CantInterpretException();
 		}

@@ -1,16 +1,14 @@
 package by.epam.parsing.entity.composite;
 
-import by.epam.parsing.enumeration.TypeOfTextUnit;
+import by.epam.parsing.type.TypeOfTextUnit;
 
 import java.io.FileWriter;
 
 public interface Component {
     void add(Component c);
     void remove(Component c);
+    int size();
     TypeOfTextUnit getType();
-    Object getChild(int index);
+    Component getChild(int index);
     void print(FileWriter fileWriter);
-    void calculateFormula();
-    void changeLetter();
-    void removeLexeme(int length, char startLetter);
 }

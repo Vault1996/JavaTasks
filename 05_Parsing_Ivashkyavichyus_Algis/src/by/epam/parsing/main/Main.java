@@ -2,7 +2,7 @@ package by.epam.parsing.main;
 
 import by.epam.parsing.action.*;
 import by.epam.parsing.entity.composite.Composite;
-import by.epam.parsing.enumeration.TypeOfTextUnit;
+import by.epam.parsing.type.TypeOfTextUnit;
 import by.epam.parsing.parser.LeafTextParser;
 import by.epam.parsing.parser.LexemeParser;
 import by.epam.parsing.parser.ParagraphParser;
@@ -35,10 +35,10 @@ public class Main {
         expressionCalculator.calculate(textComposite);
         //*********************
         LetterChanger letterChanger = new LetterChanger();
-        letterChanger.changeLetter(textComposite);
+        letterChanger.changeLetters(textComposite);
         //*********************
         LexemeRemover lexemeRemover = new LexemeRemover();
-        lexemeRemover.removeLexeme(textComposite, 7, 'u');
+        lexemeRemover.removeLexeme(textComposite, 5, 'e');
         //*********************
         TextWriter textWriter = new TextWriter();
         textWriter.printToFile(OUTPUT_FILE_PATH, textComposite);
