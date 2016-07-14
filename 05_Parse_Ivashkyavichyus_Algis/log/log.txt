@@ -1,0 +1,7 @@
+20:38:15 [main] INFO  by.epam.parsing.main.Main - Reading from file.
+20:38:16 [main] INFO  by.epam.parsing.main.Main - Creating composite.
+20:38:16 [main] INFO  by.epam.parsing.main.Main - Interpreting expressions in text.
+20:38:16 [main] WARN  by.epam.parsing.action.ExpressionCalculator - Can't interpret expression 3+5-
+20:38:16 [main] INFO  by.epam.parsing.main.Main - Removing every entry of first letter in lexemes.
+20:38:16 [main] INFO  by.epam.parsing.main.Main - Removing lexemes with concrete length and concrete first letter.
+20:38:16 [main] INFO  by.epam.parsing.main.Main - Printing in file.
