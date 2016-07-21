@@ -34,7 +34,7 @@ public class CardHandler extends DefaultHandler {
             currentType = CardEnum.POST_CARD.getValue();
             postCard = new PostCard();
             if (attrs.getLength() == 2) {
-                if (CardEnum.ID.getValue().equals(attrs.getType(0))) {
+                if (CardEnum.ID.getValue().equals(attrs.getLocalName(0))) {
                     postCard.setId(attrs.getValue(0));
                     postCard.setAuthor(attrs.getValue(1));
                 } else {
@@ -48,7 +48,7 @@ public class CardHandler extends DefaultHandler {
             currentType = CardEnum.SOUND_CARD.getValue();
             soundCard = new SoundCard();
             if (attrs.getLength() == 2) {
-                if (CardEnum.ID.getValue().equals(attrs.getType(0))) {
+                if (CardEnum.ID.getValue().equals(attrs.getLocalName(0))) {
                     soundCard.setId(attrs.getValue(0));
                     soundCard.setAuthor(attrs.getValue(1));
                 } else {

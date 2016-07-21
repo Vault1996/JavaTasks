@@ -82,7 +82,7 @@ public class CardsStAXBuilder extends AbstractCardsBuilder{
                                     st.setThema(Thema.fromValue(getXMLText(reader)));
                                     break;
                                 case TYPE:
-                                    st.setType(Type.fromValue(name));
+                                    st.setType(Type.fromValue(getXMLText(reader)));
                                     break;
                                 case COUNTRY:
                                     st.setCountry(Country.fromValue(getXMLText(reader)));
@@ -137,7 +137,7 @@ public class CardsStAXBuilder extends AbstractCardsBuilder{
                                     st.setThema(Thema.fromValue(getXMLText(reader)));
                                     break;
                                 case TYPE:
-                                    st.setType(Type.fromValue(name));
+                                    st.setType(Type.fromValue(getXMLText(reader)));
                                     break;
                                 case COUNTRY:
                                     st.setCountry(Country.fromValue(getXMLText(reader)));
