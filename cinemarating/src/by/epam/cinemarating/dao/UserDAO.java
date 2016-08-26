@@ -1,0 +1,277 @@
+package by.epam.cinemarating.dao;
+
+import by.epam.cinemarating.database.WrapperConnection;
+import by.epam.cinemarating.entity.Role;
+import by.epam.cinemarating.entity.User;
+
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+public class UserDAO extends AbstractDAO<User> {
+	private static final String USER_ID = "user_id";
+	private static final String ROLE = "role";
+	private static final String LOGIN = "login";
+	private static final String PASSWORD = "password";
+	private static final String EMAIL = "email";
+	private static final String CREATE_DATE = "create_date";
+	private static final String NAME = "name";
+	private static final String SURNAME = "surname";
+	private static final String STATUS = "status";
+	private static final String PHOTO = "photo";
+
+	private static final String FIND_ALL_USERS = "SELECT (user_id,role,login,`password`,email,create_date,`name`," +
+			"surname,`status`,photo) FROM `user`";
+	private static final String FIND_USER_BY_ID = "SELECT (user_id,role,login,`password`,email,create_date,`name`," +
+			"surname,`status`,photo) FROM `user` WHERE user_id=?";
+	private static final String FIND_USER_BY_NAME_AND_SURNAME = "SELECT (user_id,role,login,`password`,email,create_date,`name`," +
+			"surname,`status`,photo) FROM `user` WHERE `name`=? AND surname=?";
+	private static final String FIND_USER_BY_LOGIN = "SELECT user_id,role,login,`password`,email,create_date,`name`," +
+			"surname,`status`,photo FROM `user` WHERE login=?";
+	private static final String FIND_USER_BY_EMAIL = "SELECT user_id,role,login,`password`,email,create_date,`name`," +
+			"surname,`status`,photo FROM `user` WHERE email=?";
+	private static final String FIND_USER_BY_LOGIN_AND_PASSWORD = "SELECT user_id,role,login,`password`,email,create_date,`name`,\" +\n" +
+			"\t\t\t\"surname,`status`,photo FROM `user` WHERE login=? AND `password`=?";
+
+	private static final String INSERT_USER = "INSERT INTO `user`(role,login,`password`,email,create_date,`name`," +
+			"surname,`status`,photo) VALUES(?,?,?,?,CURDATE(),?,?,?,?)";
+	private static final String UPDATE_USER_BY_ID = "UPDATE `user` SET role=?,login=?,`password`=?,email=?," +
+			"create_date=?,`name`=?,surname=?,`status`=?,photo=? WHERE user_id=?";
+	private static final String DELETE_USER_BY_ID = "DELETE FROM `user` WHERE user_id=?";
+
+
+
+	public UserDAO(WrapperConnection connection) {
+		super(connection);
+	}
+
+	@Override
+	public List<User> findAll() throws DAOException {
+		List<User> users = new ArrayList<>();
+		/*
+		ConnectionPool connectionPool = ConnectionPool.getInstance();
+		WrapperConnection connection = connectionPool.takeConnection().orElseThrow(DAOException::new);
+		*/
+		try (
+				Statement statement = connection.createStatement();
+		) {
+			ResultSet resultSet = statement.executeQuery(FIND_ALL_USERS);
+			while (resultSet.next()) {
+				long userId = resultSet.getLong(USER_ID);
+				String role = resultSet.getString(ROLE);
+				String login = resultSet.getString(LOGIN);
+				String password = resultSet.getString(PASSWORD);
+				String email = resultSet.getString(EMAIL);
+				Date createDate = resultSet.getDate(CREATE_DATE);
+				String name = resultSet.getString(NAME);
+				String surname = resultSet.getString(SURNAME);
+				int status = resultSet.getInt(STATUS);
+				String photo = resultSet.getString(PHOTO);
+				users.add(new User(userId, Role.valueOf(role.toUpperCase()), login, password,
+						email, createDate, name, surname, status, photo));
+			}
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		}
+		return users;
+	}
+
+	@Override
+	public Optional<User> findEntityById(long id) throws DAOException {
+		User user = null;
+		try (
+				PreparedStatement statement = connection.prepareStatement(FIND_USER_BY_ID)
+		) {
+			statement.setLong(1, id);
+			ResultSet resultSet = statement.executeQuery();
+			if (resultSet.next()) {
+				String  role = resultSet.getString(ROLE);
+				String login = resultSet.getString(LOGIN);
+				String password = resultSet.getString(PASSWORD);
+				String email = resultSet.getString(EMAIL);
+				Date createDate = resultSet.getDate(CREATE_DATE);
+				String name = resultSet.getString(NAME);
+				String surname = resultSet.getString(SURNAME);
+				int status = resultSet.getInt(STATUS);
+				String photo = resultSet.getString(PHOTO);
+				user = new User(id, Role.valueOf(role.toUpperCase()), login, password,
+						email, createDate, name, surname, status, photo);
+			}
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		}
+		return Optional.ofNullable(user);
+	}
+
+	public Optional<User> findUserByNameAndSurname(String name, String surname) throws DAOException {
+		User user = null;
+		try (
+				PreparedStatement statement = connection.prepareStatement(FIND_USER_BY_NAME_AND_SURNAME)
+		) {
+			statement.setString(1, name);
+			statement.setString(2, surname);
+
+			ResultSet resultSet = statement.executeQuery();
+			if (resultSet.next()) {
+				long userId = resultSet.getLong(USER_ID);
+				String role = resultSet.getString(ROLE);
+				Date createDate = resultSet.getDate(CREATE_DATE);
+				String nameField = resultSet.getString(NAME);
+				String surnameField = resultSet.getString(SURNAME);
+				int status = resultSet.getInt(STATUS);
+				String login = resultSet.getString(LOGIN);
+				String password = resultSet.getString(PASSWORD);
+				String email = resultSet.getString(EMAIL);
+				String photo = resultSet.getString(PHOTO);
+				user = new User(userId, Role.valueOf(role.toUpperCase()), login, password,
+						email, createDate, nameField, surnameField, status, photo);
+			}
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		}
+		return Optional.ofNullable(user);
+	}
+
+	public Optional<User> findUserByLogin(String login) throws DAOException {
+		User user = null;
+		try (
+				PreparedStatement statement = connection.prepareStatement(FIND_USER_BY_LOGIN)
+		) {
+			statement.setString(1, login);
+			ResultSet resultSet = statement.executeQuery();
+			if (resultSet.next()) {
+				long id = resultSet.getLong(USER_ID);
+				String role = resultSet.getString(ROLE);
+				Date createDate = resultSet.getDate(CREATE_DATE);
+				String name = resultSet.getString(NAME);
+				String surname = resultSet.getString(SURNAME);
+				String loginField = resultSet.getString(LOGIN);
+				String password = resultSet.getString(PASSWORD);
+				String email = resultSet.getString(EMAIL);
+				int status = resultSet.getInt(STATUS);
+				String photo = resultSet.getString(PHOTO);
+				user = new User(id, Role.valueOf(role.toUpperCase()), loginField, password,
+						email, createDate, name, surname, status, photo);
+			}
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		}
+		return Optional.ofNullable(user);
+	}
+
+	public Optional<User> findUserByEmail(String email) throws DAOException {
+		User user = null;
+		try (
+				PreparedStatement statement = connection.prepareStatement(FIND_USER_BY_EMAIL)
+		) {
+			statement.setString(1, email);
+			ResultSet resultSet = statement.executeQuery();
+			if (resultSet.next()) {
+				long id = resultSet.getLong(USER_ID);
+				Date createDate = resultSet.getDate(CREATE_DATE);
+				String password = resultSet.getString(PASSWORD);
+				String emailField = resultSet.getString(EMAIL);
+				int status = resultSet.getInt(STATUS);
+				String name = resultSet.getString(NAME);
+				String surname = resultSet.getString(SURNAME);
+				String loginField = resultSet.getString(LOGIN);
+				String role = resultSet.getString(ROLE);
+				String photo = resultSet.getString(PHOTO);
+				user = new User(id, Role.valueOf(role.toUpperCase()), loginField, password,
+						emailField, createDate, name, surname, status, photo);
+			}
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		}
+		return Optional.ofNullable(user);
+	}
+
+	public Optional<User> findUserByLoginAndPassword(String login, String password) throws DAOException {
+		User user = null;
+		try (
+				PreparedStatement statement = connection.prepareStatement(FIND_USER_BY_LOGIN_AND_PASSWORD)
+		) {
+			statement.setString(1, login);
+			statement.setString(2, password);
+			ResultSet resultSet = statement.executeQuery();
+			if (resultSet.next()) {
+				long id = resultSet.getLong(USER_ID);
+				String role = resultSet.getString(ROLE);
+				String loginField = resultSet.getString(LOGIN);
+				String passwordField = resultSet.getString(PASSWORD);
+				String email = resultSet.getString(EMAIL);
+				Date createDate = resultSet.getDate(CREATE_DATE);
+				String name = resultSet.getString(NAME);
+				String surname = resultSet.getString(SURNAME);
+				int status = resultSet.getInt(STATUS);
+				String photo = resultSet.getString(PHOTO);
+				user = new User(id, Role.valueOf(role.toUpperCase()), loginField, passwordField,
+						email, createDate, name, surname, status, photo);
+			}
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		}
+		return Optional.ofNullable(user);
+	}
+
+	@Override
+	public boolean insert(User entity) throws DAOException {
+		int result;
+		try(
+				PreparedStatement statement = connection.prepareStatement(INSERT_USER);
+		) {
+			statement.setString(1, entity.getRole().toString());
+			statement.setString(2, entity.getLogin());
+			statement.setString(3, entity.getPassword());
+			statement.setString(4, entity.getEmail());
+			statement.setString(5, entity.getName());
+			statement.setString(6, entity.getSurname());
+			statement.setInt(7, entity.getStatus());
+			statement.setString(8, entity.getPhoto());
+			result = statement.executeUpdate();
+		} catch (SQLException e) {
+			throw new DAOException();
+		}
+		return result > 0;
+	}
+
+	@Override
+	public boolean delete(long id) throws DAOException {
+		int result;
+		try(
+				PreparedStatement statement = connection.prepareStatement(DELETE_USER_BY_ID);
+		) {
+			statement.setLong(1, id);
+			result = statement.executeUpdate();
+		} catch (SQLException e) {
+			throw new DAOException();
+		}
+		return result > 0;
+	}
+
+	@Override
+	public boolean update(User entity) throws DAOException {
+		int result;
+		try(
+				PreparedStatement statement = connection.prepareStatement(UPDATE_USER_BY_ID);
+		) {
+			statement.setString(1, entity.getRole().toString());
+			statement.setString(2, entity.getLogin());
+			statement.setString(3, entity.getPassword());
+			statement.setString(4, entity.getEmail());
+			statement.setDate(5, entity.getCreateDate());
+			statement.setString(6, entity.getName());
+			statement.setString(7, entity.getSurname());
+			statement.setInt(8, entity.getStatus());
+			statement.setString(9, entity.getPhoto());
+			statement.setLong(10, entity.getUserId());
+			result = statement.executeUpdate();
+		} catch (SQLException e) {
+			throw new DAOException();
+		}
+		return result > 0;
+	}
+
+
+}

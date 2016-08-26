@@ -1,0 +1,2 @@
+1) Проверка размера пула. Он может дополнятся, когда всё возвратится;
+2) HOW TO USE CONSTANT FOR INITIALIZING; MESSAGE MANAGER;
