@@ -48,7 +48,7 @@
                     <label for="login" class="control-label compulsory">
                         <fmt:message key="label.login" bundle="${ rb }" />
                     </label>
-                    <input id="login" type="text" name="login" class="form-control" required
+                    <input id="login" type="text" name="login" value="${login}" class="form-control" required
                            minlength="1" maxlength="30" placeholder=<fmt:message key="label.login" bundle="${ rb }" /> />
                 </div>
                 <%-- TODO: NAME AND SURNAME NOT REQUIRED --%>
@@ -56,14 +56,14 @@
                     <label for="name" class="control-label compulsory">
                         <fmt:message key="label.name" bundle="${ rb }" />
                     </label>
-                    <input id="name" type="text" name="name" class="form-control" required
+                    <input id="name" type="text" name="name" value="${name}" class="form-control" required
                            minlength="1" maxlength="30" placeholder=<fmt:message key="label.name" bundle="${ rb }" /> />
                 </div>
                 <div class="form-group">
                     <label for="surname" class="control-label compulsory">
                         <fmt:message key="label.surname" bundle="${ rb }" />
                     </label>
-                    <input id="surname" type="text" name="surname" class="form-control" required
+                    <input id="surname" type="text" name="surname" value="${surname}" class="form-control" required
                            minlength="1" maxlength="30" placeholder=<fmt:message key="label.surname" bundle="${ rb }" /> />
                 </div>
                 <%-- ************************* --%>
@@ -71,14 +71,14 @@
                     <label for="email" class="control-label compulsory">
                         <fmt:message key="label.email" bundle="${ rb }" />
                     </label>
-                    <input type="email" name="email" class="form-control" id="email" required
+                    <input type="email" name="email" value="${email}" class="form-control" id="email" required
                            placeholder=<fmt:message key="label.email" bundle="${ rb }" /> />
                 </div>
                 <div class="form-group">
                     <label for="password" class="control-label compulsory">
                         <fmt:message key="label.password" bundle="${ rb }" />
                     </label>
-                    <input id="password" type="password" name="password" class="form-control" required
+                    <input id="password" type="password" name="password" value="${password}" class="form-control" required
                            minlength="4" maxlength="20" placeholder=<fmt:message key="label.password" bundle="${ rb }" /> />
                 </div>
                 <input class="btn btn-primary btn-block" type="submit" value=<fmt:message key="button.register" bundle="${ rb }" /> />
@@ -88,7 +88,7 @@
                 </span>
                 <hr>
                 <ul class="pagination">
-                    <li><a href="${pageContext.request.contextPath}/jsp/login.jsp"><fmt:message key="button.login" bundle="${ rb }" /></a></li>
+                    <li><a href="${pageContext.request.contextPath}/controller?command=redirect&next=path.page.login"><fmt:message key="button.login" bundle="${ rb }" /></a></li>
                     <li class = "active"><a href="#"><fmt:message key="button.registration" bundle="${ rb }" /></a></li>
                 </ul>
             </form>

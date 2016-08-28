@@ -7,8 +7,6 @@ import by.epam.cinemarating.resource.ConfigurationManager;
 import by.epam.cinemarating.resource.MessageManager;
 import by.epam.cinemarating.validation.AuthenticationValidator;
 import javafx.util.Pair;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -19,11 +17,9 @@ public class LoginCommand implements ActionCommand {
 	private static final String LANGUAGE = "language";
 	private static final String RUSSIAN_LANGUAGE = "ru_ru";
 
-	private static final Logger LOGGER = LogManager.getLogger(LoginCommand.class);
-
 
 	@Override
-	public String execute(HttpServletRequest request) {
+	public String execute(HttpServletRequest request) throws CommandException{
 		String login = request.getParameter(LOGIN);
 		String password = request.getParameter(PASSWORD);
 		AuthenticationValidator validator = new AuthenticationValidator();
@@ -37,6 +33,8 @@ public class LoginCommand implements ActionCommand {
 		//
 		if (!validator.validate(login, password)) {
 			request.setAttribute("errorLoginPassMessage", messageManager.getProperty("message.errorPasswordOrLogin"));
+			request.setAttribute(LOGIN, login);
+			request.setAttribute(PASSWORD, password);
 			return ConfigurationManager.getProperty("path.page.login");
 		}
 		LoginLogic loginLogic = new LoginLogic();
@@ -48,13 +46,13 @@ public class LoginCommand implements ActionCommand {
 				request.getSession().setAttribute(ROLE, result.getValue().toString());
 				return ConfigurationManager.getProperty("path.page.main");
 			} else {
+				request.setAttribute(LOGIN, login);
+				request.setAttribute(PASSWORD, password);
 				request.setAttribute("errorLoginPassMessage", messageManager.getProperty("message.errorPassword"));
 				return ConfigurationManager.getProperty("path.page.login");
 			}
 		} catch (LogicException e) {
-			LOGGER.error(e);
-			//			throw new CommandException();
+			throw new CommandException(e);
 		}
-		return "";
 	}
 }

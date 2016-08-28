@@ -2,7 +2,7 @@
     box-shadow: 0 0 10px gray;
     border-radius: 5px;
     display: block;
-    width: 250px;
+    width: 280px;
     padding: 20px 40px;
     margin: 0 auto;
     transform: translateY(10%);
@@ -34,6 +34,14 @@ body {
 * {
     margin: 0;
     padding: 0;
+}
+img.mini {
+    width: 100%;
+    margin: 5px;
+}
+.pagination {
+    margin: auto;
+    padding: auto;
 }
 html,
 body {

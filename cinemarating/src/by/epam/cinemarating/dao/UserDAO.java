@@ -21,8 +21,8 @@ public class UserDAO extends AbstractDAO<User> {
 	private static final String STATUS = "status";
 	private static final String PHOTO = "photo";
 
-	private static final String FIND_ALL_USERS = "SELECT (user_id,role,login,`password`,email,create_date,`name`," +
-			"surname,`status`,photo) FROM `user`";
+	private static final String FIND_ALL_USERS = "SELECT user_id,role,login,`password`,email,create_date,`name`," +
+			"surname,`status`,photo FROM `user`";
 	private static final String FIND_USER_BY_ID = "SELECT (user_id,role,login,`password`,email,create_date,`name`," +
 			"surname,`status`,photo) FROM `user` WHERE user_id=?";
 	private static final String FIND_USER_BY_NAME_AND_SURNAME = "SELECT (user_id,role,login,`password`,email,create_date,`name`," +

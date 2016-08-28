@@ -21,7 +21,7 @@ public class MovieDAO extends AbstractDAO<Movie> {
 	private static final String RATING = "rating";
 	private static final String POSTER = "poster";
 
-	private static final String FIND_ALL_MOVIES = "SELECT (movie_id,`name`,`year`,description,country,rating,poster) " +
+	private static final String FIND_ALL_MOVIES = "SELECT movie_id,`name`,`year`,description,country,rating,poster " +
 			"FROM movie";
 	private static final String FIND_MOVIE_BY_ID = "SELECT (movie_id,`name`,`year`,description,country,rating,poster) " +
 			"FROM movie WHERE movie_id=?";

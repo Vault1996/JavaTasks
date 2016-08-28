@@ -2,6 +2,7 @@ package by.epam.cinemarating.servlet;
 
 import by.epam.cinemarating.command.ActionCommand;
 import by.epam.cinemarating.command.ActionFactory;
+import by.epam.cinemarating.command.CommandException;
 import by.epam.cinemarating.command.UnsupportedCommandException;
 import by.epam.cinemarating.database.ConnectionPool;
 import org.apache.logging.log4j.LogManager;
@@ -17,6 +18,7 @@ import java.io.IOException;
 @WebServlet("/controller")
 public class Controller extends HttpServlet {
 	private static final String COMMAND = "command";
+	private static final String MEMENTO = "memento";
 
 	private static final Logger LOGGER = LogManager.getLogger(Controller.class);
 
@@ -42,18 +44,28 @@ public class Controller extends HttpServlet {
 			throws ServletException, IOException {
 
 		//TODO: ЗАЩИТА ОТ F5; session.lastCommand
-
-		String command = request.getParameter(COMMAND);
-		String page = "";
 		try {
+			String command = request.getParameter(COMMAND);
 			ActionCommand actionCommand = ActionFactory.defineCommand(command);
-			page = actionCommand.execute(request);
+			String page = actionCommand.execute(request);
+/*
+			MementoRequestAttributes memento = (MementoRequestAttributes) request.getSession().getAttribute(MEMENTO);
+			if (memento == null) {
+				memento = new MementoRequestAttributes();
+			}
+			Caretaker caretaker = new Caretaker(memento);
+			if (ActionType.valueOf(command.toUpperCase()) != ActionType.CHANGE_LANGUAGE) {
+				caretaker.extractToMemento(request);
+				request.getSession().setAttribute(MEMENTO, memento);
+			} else {
+				caretaker.fillRequest(request);
+			}*/
 			request.getRequestDispatcher(page).forward(request, response);
-		} catch (UnsupportedCommandException e) {
+		} catch (UnsupportedCommandException | CommandException e) {
 			// TODO: НЕ РАБОТАЕТ
 			LOGGER.error(e);
 			request.getSession().setAttribute("exception", e.getMessage());
-			response.sendError(500, "Unsupported command.\n" + e.getMessage());
+			response.sendError(500, e.getMessage());
 		}
 	}
 

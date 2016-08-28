@@ -14,7 +14,7 @@ public class ReviewDAO extends AbstractDAO<Review> {
 	private static final String REVIEW = "review";
 	private static final String TIME = "time";
 
-	private static final String FIND_ALL_REVIEWS = "SELECT (movie_id,user_id,review,`time`) " +
+	private static final String FIND_ALL_REVIEWS = "SELECT movie_id,user_id,review,`time` " +
 			"FROM review";
 	private static final String FIND_REVIEW_BY_MOVIE_ID = "SELECT (movie_id,user_id,review,`time`) " +
 			"FROM review WHERE movie_id=?";

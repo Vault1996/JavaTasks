@@ -14,7 +14,7 @@ public class RatingDAO extends AbstractDAO<Rating> {
 	private static final String RATING = "rating";
 	private static final String TIME = "time";
 
-	private static final String FIND_ALL_RATINGS = "SELECT (movie_id,user_id,rating,`time`) " +
+	private static final String FIND_ALL_RATINGS = "SELECT movie_id,user_id,rating,`time` " +
 			"FROM rating";
 	private static final String FIND_RATING_BY_MOVIE_ID = "SELECT (movie_id,user_id,rating,`time`) " +
 			"FROM rating WHERE movie_id=?";

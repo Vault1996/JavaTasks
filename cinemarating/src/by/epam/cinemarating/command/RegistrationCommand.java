@@ -5,8 +5,6 @@ import by.epam.cinemarating.logic.RegistrationLogic;
 import by.epam.cinemarating.resource.ConfigurationManager;
 import by.epam.cinemarating.resource.MessageManager;
 import by.epam.cinemarating.validation.RegistrationValidator;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -19,10 +17,8 @@ public class RegistrationCommand implements ActionCommand {
 	private static final String LANGUAGE = "language";
 	private static final String RUSSIAN_LANGUAGE = "ru_ru";
 
-	private static final Logger LOGGER = LogManager.getLogger(LoginCommand.class);
-
 	@Override
-	public String execute(HttpServletRequest request) {
+	public String execute(HttpServletRequest request) throws CommandException {
 		String login = request.getParameter(LOGIN);
 		String email = request.getParameter(EMAIL);
 		String name = request.getParameter(NAME);
@@ -38,6 +34,11 @@ public class RegistrationCommand implements ActionCommand {
 		}
 		//
 		if (!validator.validate(login, email, password)) {
+			request.setAttribute(LOGIN, login);
+			request.setAttribute(PASSWORD, password);
+			request.setAttribute(NAME, name);
+			request.setAttribute(SURNAME, surname);
+			request.setAttribute(EMAIL, email);
 			request.setAttribute("errorRegistrationMessage", messageManager.getProperty("message.registrationError"));
 			return ConfigurationManager.getProperty("path.page.registration");
 		}
@@ -45,16 +46,21 @@ public class RegistrationCommand implements ActionCommand {
 		try {
 			boolean flag = registrationLogic.logic(login, name, surname, email, password);
 			if (flag) {
+				request.setAttribute(LOGIN, login);
+				request.setAttribute(PASSWORD, password);
 				request.setAttribute("registrationStatus", messageManager.getProperty("message.registrationSuccessful"));
 				return ConfigurationManager.getProperty("path.page.login");
 			} else {
+				request.setAttribute(LOGIN, login);
+				request.setAttribute(PASSWORD, password);
+				request.setAttribute(NAME, name);
+				request.setAttribute(SURNAME, surname);
+				request.setAttribute(EMAIL, email);
 				request.setAttribute("errorRegistrationMessage", messageManager.getProperty("message.userOrEmailExists"));
 				return ConfigurationManager.getProperty("path.page.registration");
 			}
 		} catch (LogicException e) {
-			LOGGER.error(e);
-			// throw new CommandException();
+			throw new CommandException(e);
 		}
-		return "";
 	}
 }

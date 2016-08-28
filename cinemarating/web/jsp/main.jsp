@@ -6,7 +6,13 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="ctg" uri="/WEB-INF/tld/custom.tld" %>
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
+<fmt:setLocale value="${language}"/>
+<fmt:setBundle basename="lang" var="rb"/>
+
 <html>
     <head>
         <title>Home</title>
@@ -18,6 +24,7 @@
     <body>
         <c:set var="page" value="/jsp/main.jsp" scope="session"/>
         <%@include file="jspf/navigationBar.jspf"%>
+
         <div class="container-fluid text-center">
             <div class="row content">
                 <div class="col-sm-2 sidenav">
