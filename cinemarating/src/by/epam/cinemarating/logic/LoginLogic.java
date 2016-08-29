@@ -4,29 +4,30 @@ import by.epam.cinemarating.dao.DAOException;
 import by.epam.cinemarating.dao.UserDAO;
 import by.epam.cinemarating.database.ConnectionPool;
 import by.epam.cinemarating.database.WrapperConnection;
-import by.epam.cinemarating.entity.Role;
 import by.epam.cinemarating.entity.User;
 import by.epam.cinemarating.hash.Hasher;
 import by.epam.cinemarating.hash.MD5Hash;
-import javafx.util.Pair;
 
 import java.util.Optional;
 
 public class LoginLogic {
-	public Pair<Boolean, Role> logic(String login, String password) throws LogicException {
+	public boolean logic(String login, String password, User user) throws LogicException {
 		ConnectionPool connectionPool = ConnectionPool.getInstance();
 		WrapperConnection connection = connectionPool.takeConnection().orElseThrow(LogicException::new);
 		UserDAO userDAO = new UserDAO(connection);
 		Hasher hasher = new MD5Hash();
-		Pair<Boolean, Role> result;
 		try {
 			Optional<User> optional = userDAO.findUserByLoginAndPassword(login, hasher.hexHash(password));
 			if (optional.isPresent()) {
-				result = new Pair<>(true, optional.get().getRole());
-			} else {
-				result = new Pair<>(false, null);
+				User currentUser = optional.get();
+				user.setCreateDate(currentUser.getCreateDate());
+				user.setLogin(currentUser.getLogin());
+				user.setName(currentUser.getName());
+				user.setRole(currentUser.getRole());
+				user.setUserId(currentUser.getUserId());
+				user.setSurname(currentUser.getSurname());
 			}
-			return result;
+			return optional.isPresent();
 		} catch (DAOException e) {
 			throw new LogicException(e);
 		} finally {

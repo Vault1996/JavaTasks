@@ -1,3 +1,5 @@
 1) Проверка размера пула. Он может дополнятся, когда всё возвратится;
 2) HOW TO USE CONSTANT FOR INITIALIZING; MESSAGE MANAGER;
 3) Оставление полей при смене языка
+4) ReviewLogic. Пользование одним connection
+5) Нужно ли думать, что при запросе show_user может быть не тот id?

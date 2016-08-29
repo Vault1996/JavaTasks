@@ -16,12 +16,12 @@ public class ReviewDAO extends AbstractDAO<Review> {
 
 	private static final String FIND_ALL_REVIEWS = "SELECT movie_id,user_id,review,`time` " +
 			"FROM review";
-	private static final String FIND_REVIEW_BY_MOVIE_ID = "SELECT (movie_id,user_id,review,`time`) " +
+	private static final String FIND_REVIEW_BY_MOVIE_ID = "SELECT movie_id,user_id,review,`time` " +
 			"FROM review WHERE movie_id=?";
-	private static final String FIND_REVIEW_BY_USER_ID = "SELECT (movie_id,user_id,review,`time`) " +
+	private static final String FIND_REVIEW_BY_USER_ID = "SELECT movie_id,user_id,review,`time` " +
 			"FROM review WHERE user_id=?";
-	private static final String FIND_REVIEW = "SELECT (movie_id,user_id,review,`time`) " +
-			"FROM review WHERE movie_id=?,user_id=?";
+	private static final String FIND_REVIEW = "SELECT movie_id,user_id,review,`time` " +
+			"FROM review WHERE movie_id=? AND user_id=?";
 
 	private static final String INSERT_REVIEW = "INSERT INTO review(movie_id,user_id,review,`time`) " +
 			"VALUES(?,?,?,?)";
@@ -65,47 +65,47 @@ public class ReviewDAO extends AbstractDAO<Review> {
 		return Optional.empty();
 	}
 
-	public Optional<Review> findRatingByMovieId(long movieId) throws DAOException {
-		Review review = null;
+	public List<Review> findReviewsByMovieId(long movieId) throws DAOException {
+		List<Review> reviews = new ArrayList<>();
 		try (
 				PreparedStatement statement = connection.prepareStatement(FIND_REVIEW_BY_MOVIE_ID)
 		) {
 			statement.setLong(1, movieId);
 			ResultSet resultSet = statement.executeQuery();
-			if (resultSet.next()) {
+			while (resultSet.next()) {
 				long movieIdField = resultSet.getLong(MOVIE_ID);
 				long userId = resultSet.getLong(USER_ID);
 				String reviewField = resultSet.getString(REVIEW);
 				Timestamp time = resultSet.getTimestamp(TIME);
-				review = new Review(movieIdField, userId, reviewField, time);
+				reviews.add(new Review(movieIdField, userId, reviewField, time));
 			}
 		} catch (SQLException e) {
 			throw new DAOException();
 		}
-		return Optional.ofNullable(review);
+		return reviews;
 	}
 
-	public Optional<Review> findRatingByUserId(long userId) throws DAOException {
-		Review review = null;
+	public List<Review> findReviewsByUserId(long userId) throws DAOException {
+		List<Review> reviews = new ArrayList<>();
 		try (
 				PreparedStatement statement = connection.prepareStatement(FIND_REVIEW_BY_USER_ID)
 		) {
 			statement.setLong(1, userId);
 			ResultSet resultSet = statement.executeQuery();
-			if (resultSet.next()) {
+			while (resultSet.next()) {
 				long userIdField = resultSet.getLong(USER_ID);
 				long movieId = resultSet.getLong(MOVIE_ID);
 				String reviewField = resultSet.getString(REVIEW);
 				Timestamp time = resultSet.getTimestamp(TIME);
-				review = new Review(movieId, userIdField, reviewField, time);
+				reviews.add(new Review(movieId, userIdField, reviewField, time));
 			}
 		} catch (SQLException e) {
 			throw new DAOException();
 		}
-		return Optional.ofNullable(review);
+		return reviews;
 	}
 
-	public Optional<Review> findRating(long movieId, long userId) throws DAOException {
+	public Optional<Review> findReview(long movieId, long userId) throws DAOException {
 		Review review = null;
 		try (
 				PreparedStatement statement = connection.prepareStatement(FIND_REVIEW)
@@ -148,7 +148,7 @@ public class ReviewDAO extends AbstractDAO<Review> {
 		return false;
 	}
 
-	public boolean deleteReviewByMovieId(long movieId) throws DAOException {
+	public boolean deleteReviewsByMovieId(long movieId) throws DAOException {
 		int result;
 		try(
 				PreparedStatement statement = connection.prepareStatement(DELETE_REVIEW_BY_MOVIE_ID);
@@ -161,7 +161,7 @@ public class ReviewDAO extends AbstractDAO<Review> {
 		return result > 0;
 	}
 
-	public boolean deleteReviewByUserId(long userId) throws DAOException {
+	public boolean deleteReviewsByUserId(long userId) throws DAOException {
 		int result;
 		try(
 				PreparedStatement statement = connection.prepareStatement(DELETE_REVIEW_BY_USER_ID);

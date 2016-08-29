@@ -1,10 +1,9 @@
 package by.epam.cinemarating.servlet;
 
-import by.epam.cinemarating.command.ActionCommand;
-import by.epam.cinemarating.command.ActionFactory;
-import by.epam.cinemarating.command.CommandException;
-import by.epam.cinemarating.command.UnsupportedCommandException;
+import by.epam.cinemarating.command.*;
 import by.epam.cinemarating.database.ConnectionPool;
+import by.epam.cinemarating.memento.Caretaker;
+import by.epam.cinemarating.memento.MementoRequestAttributes;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -48,7 +47,7 @@ public class Controller extends HttpServlet {
 			String command = request.getParameter(COMMAND);
 			ActionCommand actionCommand = ActionFactory.defineCommand(command);
 			String page = actionCommand.execute(request);
-/*
+
 			MementoRequestAttributes memento = (MementoRequestAttributes) request.getSession().getAttribute(MEMENTO);
 			if (memento == null) {
 				memento = new MementoRequestAttributes();
@@ -59,7 +58,7 @@ public class Controller extends HttpServlet {
 				request.getSession().setAttribute(MEMENTO, memento);
 			} else {
 				caretaker.fillRequest(request);
-			}*/
+			}
 			request.getRequestDispatcher(page).forward(request, response);
 		} catch (UnsupportedCommandException | CommandException e) {
 			// TODO: НЕ РАБОТАЕТ

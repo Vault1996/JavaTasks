@@ -13,7 +13,7 @@ import java.util.Optional;
 
 public class RegistrationLogic {
 	private static final int INITIAL_USER_STATUS = 100;
-	private static final String STANDARD_PHOTO = "/images/user/no-user-image.png";
+	private static final String STANDARD_PHOTO = "images/user/no-user-image.png";
 	// return value boolean: is registration passed
 	public boolean logic(String login, String name, String surname, String email, String password) throws LogicException {
 		ConnectionPool connectionPool = ConnectionPool.getInstance();

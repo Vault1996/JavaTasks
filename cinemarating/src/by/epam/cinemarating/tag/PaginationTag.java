@@ -6,8 +6,6 @@ import javax.servlet.jsp.tagext.TagSupport;
 import java.io.IOException;
 
 public class PaginationTag extends TagSupport{
-	private static final int NUMBER_OF_MOVIES_ON_PAGE = 3;
-
 	private static final String PAGINATION_START = "<ul class=\"pagination\">";
 	private static final String LIST_ITEM_START = "<li";
 	private static final String CLASS = " class=\"active\"";
@@ -20,10 +18,15 @@ public class PaginationTag extends TagSupport{
 
 	private static final String PAGE_NUMBER = "pageNumber";
 
-	private int numberOfMovies;
+	private int numberOfElements;
+	private int numberOfElementsOnPage;
 
-	public void setNumberOfMovies(int numberOfMovies) {
-		this.numberOfMovies = numberOfMovies;
+	public void setNumberOfElementsOnPage(int numberOfElementsOnPage) {
+		this.numberOfElementsOnPage = numberOfElementsOnPage;
+	}
+
+	public void setNumberOfElements(int numberOfElements) {
+		this.numberOfElements = numberOfElements;
 	}
 
 	@Override
@@ -32,7 +35,7 @@ public class PaginationTag extends TagSupport{
 		int pageNumber = Integer.parseInt(pageContext.getSession().getAttribute(PAGE_NUMBER).toString());
 		try {
 			out.write(PAGINATION_START);
-			for(int i = 0; i <= numberOfMovies / NUMBER_OF_MOVIES_ON_PAGE; i++) {
+			for(int i = 0; i <= numberOfElements / numberOfElementsOnPage; i++) {
 				out.write(LIST_ITEM_START);
 				if (i == pageNumber) {
 					out.write(CLASS);

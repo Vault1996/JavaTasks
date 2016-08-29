@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: User
-  Date: 27.08.2016
-  Time: 11:05
+  Date: 29.08.2016
+  Time: 10:23
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -22,48 +22,42 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css"/>
 </head>
 <body>
-<c:set var="page" value="/jsp/allMovies.jsp" scope="session"/>
+<c:set var="page" value="/jsp/allUsers.jsp" scope="session"/>
 <%@include file="jspf/navigationBar.jspf"%>
 
 <div class="container-fluid text-center">
     <div class="row content">
         <div class="col-sm-2 sidenav">
             <!-- EMPTY -->
-            <p><a href="#movies">Movies</a></p>
+            <p><a href="#users">Users</a></p>
         </div>
         <div class="col-sm-8 text-left">
             <ul class="breadcrumb">
                 <li><a href="${pageContext.request.contextPath}/controller?command=redirect&next=path.page.main">Home</a></li>
-                <li><a href="#">All Movies</a></li>
+                <li><a href="#">Users</a></li>
             </ul>
 
-            <c:if test="${sortBy eq 'name'}">
-                <h1><a name="movies"></a>All Movies</h1>
-            </c:if>
-            <c:if test="${sortBy eq 'rating'}">
-                <h1><a name="movies"></a>Top Movies</h1>
-            </c:if>
+            <h1><a name="users"></a>Users</h1>
 
             <c:set var="numberOfElementsOnPage" value="3" scope="page"/>
-
-            <c:forEach var="movie" items="${movies}" begin="${pageNumber * numberOfElementsOnPage}" end="${pageNumber * numberOfElementsOnPage + numberOfElementsOnPage - 1}">
+            <c:forEach var="user" items="${users}" begin="${pageNumber * numberOfElementsOnPage}" end="${pageNumber * numberOfElementsOnPage + numberOfElementsOnPage - 1}">
                 <div class="container-fluid">
-                    <div class="picture col-sm-4">
-                        <img src="${pageContext.request.contextPath}/${movie.poster}" class="img-rounded mini" alt="movie">
+                    <div class="picture col-sm-2 col-sm-offset-2">
+                        <img src="${pageContext.request.contextPath}/${user.photo}" class="img-rounded mini" alt="movie">
                     </div>
                     <div class="col-sm-6 text-container">
-                        <a href="${pageContext.request.contextPath}/controller?command=show_movie&movie_id=${movie.movieId}">
-                            <h2><c:out value="${movie.name}"/></h2>
+                        <a href="${pageContext.request.contextPath}/controller?command=show_user&user_id=${user.userId}">
+                            <h2><c:out value="${user.login}"/></h2>
                         </a>
+                        <div class="justify"><c:out value="${user.createDate}"/></div>
                         <h4 class="sub-text">
-                            <fmt:message key="label.rating" bundle="${rb}"/>: ${movie.rating}
+                            <fmt:message key="label.status" bundle="${rb}"/>: ${user.status}
                         </h4>
-                        <div class="justify"><c:out value="${movie.description}"/></div>
                     </div>
                 </div>
                 <hr>
             </c:forEach>
-            <ctg:pagination numberOfElements="${movies.size()}" numberOfElementsOnPage="${numberOfElementsOnPage}"/>
+            <ctg:pagination numberOfElements="${users.size()}" numberOfElementsOnPage="${numberOfElementsOnPage}"/>
         </div>
         <div class="col-sm-2 sidenav">
             <div class="well">

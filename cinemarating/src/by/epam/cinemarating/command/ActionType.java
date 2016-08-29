@@ -7,7 +7,10 @@ public enum ActionType {
 	CHANGE_LANGUAGE(new ChangeLanguageCommand()),
 	REDIRECT(new RedirectCommand()),
 	ALL_MOVIES(new AllMoviesCommand()),
-	CHANGE_PAGE(new ChangePageCommand());
+	CHANGE_PAGE(new ChangePageCommand()),
+	ALL_USERS(new AllUsersCommand()),
+	SHOW_MOVIE(new ShowMovieCommand()),
+	SHOW_USER(new ShowUserCommand());
 
 	private ActionCommand actionCommand;
 

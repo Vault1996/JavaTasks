@@ -75,7 +75,7 @@ textarea {
 }
 
 /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
-.row.content {height: 900px}
+.row.content {height: 100%}
 
 /* Set gray background color and 100% height */
 .sidenav {
@@ -89,7 +89,7 @@ footer {
     background-color: #555;
     color: white;
     padding: 15px;
-    margin: 15px;
+    margin-top: 10px;
     border-radius: 8px 8px 0 0;
 }
 

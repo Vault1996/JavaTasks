@@ -23,16 +23,16 @@ public class UserDAO extends AbstractDAO<User> {
 
 	private static final String FIND_ALL_USERS = "SELECT user_id,role,login,`password`,email,create_date,`name`," +
 			"surname,`status`,photo FROM `user`";
-	private static final String FIND_USER_BY_ID = "SELECT (user_id,role,login,`password`,email,create_date,`name`," +
-			"surname,`status`,photo) FROM `user` WHERE user_id=?";
-	private static final String FIND_USER_BY_NAME_AND_SURNAME = "SELECT (user_id,role,login,`password`,email,create_date,`name`," +
-			"surname,`status`,photo) FROM `user` WHERE `name`=? AND surname=?";
+	private static final String FIND_USER_BY_ID = "SELECT user_id,role,login,`password`,email,create_date,`name`," +
+			"surname,`status`,photo FROM `user` WHERE user_id=?";
+	private static final String FIND_USER_BY_NAME_AND_SURNAME = "SELECT user_id,role,login,`password`,email,create_date,`name`," +
+			"surname,`status`,photo FROM `user` WHERE `name`=? AND surname=?";
 	private static final String FIND_USER_BY_LOGIN = "SELECT user_id,role,login,`password`,email,create_date,`name`," +
 			"surname,`status`,photo FROM `user` WHERE login=?";
 	private static final String FIND_USER_BY_EMAIL = "SELECT user_id,role,login,`password`,email,create_date,`name`," +
 			"surname,`status`,photo FROM `user` WHERE email=?";
-	private static final String FIND_USER_BY_LOGIN_AND_PASSWORD = "SELECT user_id,role,login,`password`,email,create_date,`name`,\" +\n" +
-			"\t\t\t\"surname,`status`,photo FROM `user` WHERE login=? AND `password`=?";
+	private static final String FIND_USER_BY_LOGIN_AND_PASSWORD = "SELECT user_id,role,login,`password`,email,create_date,`name`," +
+			"surname,`status`,photo FROM `user` WHERE login=? AND `password`=?";
 
 	private static final String INSERT_USER = "INSERT INTO `user`(role,login,`password`,email,create_date,`name`," +
 			"surname,`status`,photo) VALUES(?,?,?,?,CURDATE(),?,?,?,?)";

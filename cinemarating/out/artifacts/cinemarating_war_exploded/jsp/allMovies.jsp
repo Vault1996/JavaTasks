@@ -29,7 +29,7 @@
     <div class="row content">
         <div class="col-sm-2 sidenav">
             <!-- EMPTY -->
-            <p><a href="#movies">Welcome</a></p>
+            <p><a href="#movies">Movies</a></p>
         </div>
         <div class="col-sm-8 text-left">
             <ul class="breadcrumb">
@@ -44,9 +44,11 @@
                 <h1><a name="movies"></a>Top Movies</h1>
             </c:if>
 
-            <c:forEach var="movie" items="${movies}" begin="${pageNumber * 3}" end="${pageNumber * 3 + 2}">
-                <div class="container content-container">
-                    <div class="picture col-sm-2 col-sm-offset-2">
+            <c:set var="numberOfElementsOnPage" value="3" scope="page"/>
+
+            <c:forEach var="movie" items="${movies}" begin="${pageNumber * numberOfElementsOnPage}" end="${pageNumber * numberOfElementsOnPage + numberOfElementsOnPage - 1}">
+                <div class="container-fluid">
+                    <div class="picture col-sm-4">
                         <img src="${pageContext.request.contextPath}/${movie.poster}" class="img-rounded mini" alt="movie">
                     </div>
                     <div class="col-sm-6 text-container">
@@ -59,8 +61,9 @@
                         <div class="justify"><c:out value="${movie.description}"/></div>
                     </div>
                 </div>
+                <hr>
             </c:forEach>
-            <ctg:pagination numberOfMovies="${movies.size()}"/>
+            <ctg:pagination numberOfElements="${movies.size()}" numberOfElementsOnPage="${numberOfElementsOnPage}"/>
         </div>
         <div class="col-sm-2 sidenav">
             <div class="well">

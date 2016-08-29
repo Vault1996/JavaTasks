@@ -7,17 +7,13 @@
     <short-name>ctg</short-name>
     <uri>customtags</uri>
     <tag>
-        <name>role-name</name>
-        <tag-class>by.epam.cinemarating.tag.RoleNameTag</tag-class>
+        <name>role-login</name>
+        <tag-class>by.epam.cinemarating.tag.RoleLoginTag</tag-class>
         <body-content>empty</body-content>
         <attribute>
-            <name>role</name>
+            <name>user</name>
             <required>true</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
-        <attribute>
-            <name>name</name>
-            <required>true</required>
+            <type>by.epam.cinemarating.entity.User</type>
             <rtexprvalue>true</rtexprvalue>
         </attribute>
     </tag>
@@ -26,7 +22,12 @@
         <tag-class>by.epam.cinemarating.tag.PaginationTag</tag-class>
         <body-content>empty</body-content>
         <attribute>
-            <name>numberOfMovies</name>
+            <name>numberOfElements</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>numberOfElementsOnPage</name>
             <required>true</required>
             <rtexprvalue>true</rtexprvalue>
         </attribute>

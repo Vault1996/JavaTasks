@@ -17,7 +17,7 @@ public class BanDAO extends AbstractDAO<Ban> {
 	private static final String REASON = "reason";
 
 	private static final String FIND_ALL_BANS = "SELECT ban_id,user_id,till,reason FROM ban";
-	private static final String FIND_BAN_BY_ID = "SELECT (ban_id,user_id,till,reason) FROM ban WHERE ban_id=?";
+	private static final String FIND_BAN_BY_ID = "SELECT ban_id,user_id,till,reason FROM ban WHERE ban_id=?";
 
 	private static final String INSERT_BAN = "INSERT INTO ban(user_id,till,reason) VALUES(?,?,?)";
 	private static final String UPDATE_BAN_BY_ID = "UPDATE ban SET user_id=?,till=?,reason=? WHERE ban_id=?";
