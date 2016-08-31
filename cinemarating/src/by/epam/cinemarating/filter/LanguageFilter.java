@@ -5,9 +5,12 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.annotation.WebInitParam;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
-@WebFilter(urlPatterns = { "/*" },
+@WebFilter(dispatcherTypes = {
+		DispatcherType.REQUEST,
+		DispatcherType.FORWARD},
+		urlPatterns = { "/*" },
 		initParams = {
-				@WebInitParam(name = "language", value = "en_en", description = "Language Param")
+				@WebInitParam(name = "language", value = "ru_RU", description = "Language Param")
 		})
 public class LanguageFilter implements Filter {
 	private static final String LANGUAGE = "language";
@@ -18,7 +21,6 @@ public class LanguageFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response,
 						 FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
-		String codeRequest = httpRequest.getCharacterEncoding();
 // установка языка из параметров фильтра, если не установлен
 		if (httpRequest.getSession().getAttribute(LANGUAGE) == null) {
 			httpRequest.getSession().setAttribute(LANGUAGE, language);

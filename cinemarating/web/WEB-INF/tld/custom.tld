@@ -32,4 +32,14 @@
             <rtexprvalue>true</rtexprvalue>
         </attribute>
     </tag>
+    <tag>
+        <name>not-guest</name>
+        <tag-class>by.epam.cinemarating.tag.NotGuestTag</tag-class>
+        <body-content>scriptless</body-content>
+    </tag>
+    <tag>
+        <name>admin</name>
+        <tag-class>by.epam.cinemarating.tag.AdminTag</tag-class>
+        <body-content>scriptless</body-content>
+    </tag>
 </taglib>

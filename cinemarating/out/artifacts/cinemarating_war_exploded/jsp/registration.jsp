@@ -26,7 +26,7 @@
         <nav class="navbar navbar-inverse">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="#">CinemaRating</a>
+                    <a class="navbar-brand" href="${pageContext.request.contextPath}/controller?command=redirect&next=path.page.main">CinemaRating</a>
                 </div>
 
                 <ul class="nav navbar-nav navbar-right">
@@ -51,7 +51,6 @@
                     <input id="login" type="text" name="login" value="${login}" class="form-control" required
                            minlength="1" maxlength="30" placeholder=<fmt:message key="label.login" bundle="${ rb }" /> />
                 </div>
-                <%-- TODO: NAME AND SURNAME NOT REQUIRED --%>
                 <div class="form-group">
                     <label for="name" class="control-label compulsory">
                         <fmt:message key="label.name" bundle="${ rb }" />

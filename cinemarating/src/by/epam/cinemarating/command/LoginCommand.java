@@ -1,6 +1,8 @@
 package by.epam.cinemarating.command;
 
+import by.epam.cinemarating.entity.Ban;
 import by.epam.cinemarating.entity.User;
+import by.epam.cinemarating.logic.BanLogic;
 import by.epam.cinemarating.logic.LogicException;
 import by.epam.cinemarating.logic.LoginLogic;
 import by.epam.cinemarating.resource.ConfigurationManager;
@@ -8,6 +10,7 @@ import by.epam.cinemarating.resource.MessageManager;
 import by.epam.cinemarating.validation.AuthenticationValidator;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Optional;
 
 public class LoginCommand implements ActionCommand {
 	private static final String LOGIN = "login";
@@ -41,8 +44,16 @@ public class LoginCommand implements ActionCommand {
 			User user = new User();
 			boolean flag = loginLogic.logic(login, password, user);
 			if (flag) {
-				request.getSession().setAttribute(ACTIVE_USER, user);
-				return ConfigurationManager.getProperty("path.page.main");
+				BanLogic logic = new BanLogic();
+				Optional<Ban> banOptional = logic.findBan(user.getUserId());
+				if (banOptional.isPresent()) {
+					Ban ban = banOptional.get();
+					request.setAttribute("ban", ban);
+					return ConfigurationManager.getProperty("path.page.login");
+				} else {
+					request.getSession().setAttribute(ACTIVE_USER, user);
+					return ConfigurationManager.getProperty("path.page.main");
+				}
 			} else {
 				request.setAttribute(LOGIN, login);
 				request.setAttribute(PASSWORD, password);

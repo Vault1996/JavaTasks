@@ -10,7 +10,8 @@ public enum ActionType {
 	CHANGE_PAGE(new ChangePageCommand()),
 	ALL_USERS(new AllUsersCommand()),
 	SHOW_MOVIE(new ShowMovieCommand()),
-	SHOW_USER(new ShowUserCommand());
+	SHOW_USER(new ShowUserCommand()),
+	EDIT_PROFILE(new EditProfileCommand());
 
 	private ActionCommand actionCommand;
 

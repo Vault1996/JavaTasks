@@ -28,11 +28,7 @@
 
 <div class="container-fluid text-center">
     <div class="row content">
-        <div class="col-sm-2 sidenav">
-            <p><a href="#discription">Description</a></p>
-            <p><a href="#review">Reviews</a></p>
-        </div>
-        <div class="col-sm-8 text-left">
+        <div class="col-sm-8 col-sm-offset-2 text-left">
             <ul class="breadcrumb">
                 <li><a href="${pageContext.request.contextPath}/jsp/main.jsp">Home</a></li>
                 <li><a href="#">${user.login}</a></li>
@@ -40,19 +36,14 @@
             <h1>${user.login}</h1>
             <hr>
             <div class="clearfix">
-                <img class = "main img-rounded" src = "${user.photo}" alt="${user.login}"/>
+                <img class = "main img-rounded img-thumbnail" src = "${user.photo}" alt="${user.login}"/>
+                <h3>Registration Date: <small><fmt:formatDate value="${user.createDate}" type="date"/> </small></h3>
                 <h3>Status: <small>${user.status}</small></h3>
                 <h3>Name: <small>${user.name}</small></h3>
                 <h3>Surname: <small>${user.surname}</small></h3>
             </div>
+
             <hr>
-        </div>
-        <div class="col-sm-2 sidenav">
-            <%--
-            <div class="well">
-                <a href="http://www.w3schools.com/bootstrap/default.asp"><img src = "../images/ads/bootstrap.jpg" width="100%" /></a>
-            </div>
-            --%>
         </div>
     </div>
 </div>

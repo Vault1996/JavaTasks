@@ -27,11 +27,7 @@
 
 <div class="container-fluid text-center">
     <div class="row content">
-        <div class="col-sm-2 sidenav">
-            <!-- EMPTY -->
-            <p><a href="#users">Users</a></p>
-        </div>
-        <div class="col-sm-8 text-left">
+        <div class="col-sm-8 col-sm-offset-2 text-left">
             <ul class="breadcrumb">
                 <li><a href="${pageContext.request.contextPath}/controller?command=redirect&next=path.page.main">Home</a></li>
                 <li><a href="#">Users</a></li>
@@ -43,7 +39,7 @@
             <c:forEach var="user" items="${users}" begin="${pageNumber * numberOfElementsOnPage}" end="${pageNumber * numberOfElementsOnPage + numberOfElementsOnPage - 1}">
                 <div class="container-fluid">
                     <div class="picture col-sm-2 col-sm-offset-2">
-                        <img src="${pageContext.request.contextPath}/${user.photo}" class="img-rounded mini" alt="movie">
+                        <img src="${pageContext.request.contextPath}/${user.photo}" class="img-rounded img-thumbnail mini" alt="movie">
                     </div>
                     <div class="col-sm-6 text-container">
                         <a href="${pageContext.request.contextPath}/controller?command=show_user&user_id=${user.userId}">
@@ -58,11 +54,6 @@
                 <hr>
             </c:forEach>
             <ctg:pagination numberOfElements="${users.size()}" numberOfElementsOnPage="${numberOfElementsOnPage}"/>
-        </div>
-        <div class="col-sm-2 sidenav">
-            <div class="well">
-                <a href="http://www.w3schools.com/bootstrap/default.asp"><img src = "${pageContext.request.contextPath}/images/ads/bootstrap.jpg" width="100%" alt="Adv"/></a>
-            </div>
         </div>
     </div>
 </div>

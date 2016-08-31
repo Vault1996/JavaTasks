@@ -26,7 +26,7 @@
         <nav class="navbar navbar-inverse">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="#">CinemaRating</a>
+                    <a class="navbar-brand" href="${pageContext.request.contextPath}/controller?command=redirect&next=path.page.main">CinemaRating</a>
                 </div>
 
                 <ul class="nav navbar-nav navbar-right">
@@ -65,6 +65,11 @@
             <span class="error">
                 <c:out value="${errorLoginPassMessage}"/>
             </span>
+            <c:if test="${not empty ban}">
+                <h5>Ban</h5>
+                <h5>Till: ${ban.till}</h5>
+                <h5>Reason: ${ban.reason}</h5>
+            </c:if>
             <hr>
             <ul class="pagination">
                 <li class = "active"><a href="#"><fmt:message key="button.login" bundle="${ rb }" /></a></li>

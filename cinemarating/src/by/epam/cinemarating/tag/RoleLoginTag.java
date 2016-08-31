@@ -1,5 +1,6 @@
 package by.epam.cinemarating.tag;
 
+import by.epam.cinemarating.entity.Role;
 import by.epam.cinemarating.entity.User;
 
 import javax.servlet.jsp.JspException;
@@ -18,8 +19,10 @@ public class RoleLoginTag extends TagSupport{
 	@Override
 	public int doStartTag() throws JspException {
 		try {
-			if (user != null) {
+			if (user != null && user.getRole() != Role.GUEST) {
 				pageContext.getOut().write(user.getRole() + SEPARATOR + user.getLogin());
+			} else {
+				pageContext.getOut().write(Role.GUEST.toString());
 			}
 		} catch (IOException e) {
 			throw new JspException(e.getMessage());

@@ -27,12 +27,14 @@
 
         <div class="container-fluid text-center">
             <div class="row content">
+                <%--
                 <div class="col-sm-2 sidenav">
                     <!-- EMPTY -->
                     <p><a href="#welcome">Welcome</a></p>
                     <p><a href="#top3">Top 3 Movies</a></p>
                 </div>
-                <div class="col-sm-8 text-left">
+                --%>
+                <div class="col-sm-8 col-sm-offset-2 text-left">
                     <ul class="breadcrumb">
                         <li><a href="#">Home</a></li>
                     </ul>
@@ -80,11 +82,13 @@
                         </a>
                     </div>
                 </div>
+                    <%--
                 <div class="col-sm-2 sidenav">
                     <div class="well">
                         <a href="http://www.w3schools.com/bootstrap/default.asp"><img src = "${pageContext.request.contextPath}/images/ads/bootstrap.jpg" width="100%" alt="Adv"/></a>
                     </div>
                 </div>
+                --%>
             </div>
         </div>
         <%@include file="jspf/footer.jspf"%>

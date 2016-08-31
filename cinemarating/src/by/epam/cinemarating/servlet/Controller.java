@@ -8,6 +8,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet("/controller")
+@MultipartConfig
 public class Controller extends HttpServlet {
 	private static final String COMMAND = "command";
 	private static final String MEMENTO = "memento";
@@ -53,7 +55,8 @@ public class Controller extends HttpServlet {
 				memento = new MementoRequestAttributes();
 			}
 			Caretaker caretaker = new Caretaker(memento);
-			if (ActionType.valueOf(command.toUpperCase()) != ActionType.CHANGE_LANGUAGE) {
+			if (ActionType.valueOf(command.toUpperCase()) != ActionType.CHANGE_LANGUAGE
+					&& ActionType.valueOf(command.toUpperCase()) != ActionType.REDIRECT ) {
 				caretaker.extractToMemento(request);
 				request.getSession().setAttribute(MEMENTO, memento);
 			} else {

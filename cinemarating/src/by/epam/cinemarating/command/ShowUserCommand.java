@@ -10,19 +10,28 @@ import javax.servlet.http.HttpServletRequest;
 public class ShowUserCommand implements ActionCommand {
 	private static final String USER_ID = "user_id";
 	private static final String USER = "user";
+	private static final String ACTIVE_USER = "activeUser";
 
 	private static final String PAGE_USER = "path.page.user";
+	private static final String PAGE_PROFILE = "path.page.profile";
 
 	@Override
 	public String execute(HttpServletRequest request) throws CommandException {
 		long userId = Integer.valueOf(request.getParameter(USER_ID));
+		User activeUser = (User) request.getSession().getAttribute(ACTIVE_USER);
 		UserLogic userLogic = new UserLogic();
+		String page;
 		try {
 			User user = userLogic.findUserById(userId);
 			request.setAttribute(USER, user);
+			if (user.getUserId() == activeUser.getUserId()) {
+				page = PAGE_PROFILE;
+			} else {
+				page = PAGE_USER;
+			}
 		} catch (LogicException e) {
 			throw new CommandException(e);
 		}
-		return ConfigurationManager.getProperty(PAGE_USER);
+		return ConfigurationManager.getProperty(page);
 	}
 }

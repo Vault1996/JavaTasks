@@ -8,7 +8,7 @@ public class RedirectCommand implements ActionCommand {
 	private static final String NEXT_PAGE = "next";
 	@Override
 	public String execute(HttpServletRequest request) {
-		String nextPage = ConfigurationManager.getProperty(request.getParameter(NEXT_PAGE));
-		return nextPage;
+		String nextPage = request.getParameter(NEXT_PAGE);
+		return ConfigurationManager.getProperty(nextPage);
 	}
 }

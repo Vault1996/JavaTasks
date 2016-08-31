@@ -27,11 +27,7 @@
 
         <div class="container-fluid text-center">
             <div class="row content">
-                <div class="col-sm-2 sidenav">
-                    <p><a href="#discription">Description</a></p>
-                    <p><a href="#review">Reviews</a></p>
-                </div>
-                <div class="col-sm-8 text-left">
+                <div class="col-sm-8 col-sm-offset-2 text-left">
                     <ul class="breadcrumb">
                         <li><a href="${pageContext.request.contextPath}/jsp/main.jsp">Home</a></li>
                         <li><a href="#">${movie.name}</a></li>
@@ -39,7 +35,7 @@
                     <h1>${movie.name}</h1>
                     <hr>
                     <div class="clearfix">
-                        <img class = "main img-rounded" src = "${movie.poster}" alt="${movie.name}"/>
+                        <img class = "main img-rounded img-thumbnail" src = "${movie.poster}" alt="${movie.name}"/>
                         <h3>Rating: <small>${movie.rating}</small></h3>
                         <h3>Country: <small>${movie.country}</small></h3>
                         <h3>Year: <small>${movie.year}</small></h3>
@@ -48,35 +44,38 @@
                     </div>
                     <hr>
                     <div>
-                        <div>
-                            <h3>Add Review</h3>
-                            <form method="GET" class="form-horizontal review">
-                                <div class="form-group">
-                                    <label class="control-label">Rating:</label>
-                                    <label class="radio-inline"><input type="radio" name="rating">1</label>
-                                    <label class="radio-inline"><input type="radio" name="rating">2</label>
-                                    <label class="radio-inline"><input type="radio" name="rating">3</label>
-                                    <label class="radio-inline"><input type="radio" name="rating">4</label>
-                                    <label class="radio-inline"><input type="radio" name="rating">5</label>
-                                    <label class="radio-inline"><input type="radio" name="rating" checked>6</label>
-                                    <label class="radio-inline"><input type="radio" name="rating">7</label>
-                                    <label class="radio-inline"><input type="radio" name="rating">8</label>
-                                    <label class="radio-inline"><input type="radio" name="rating">9</label>
-                                    <label class="radio-inline"><input type="radio" name="rating">10</label>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label" for="review">Review:</label>
-                                    <textarea class="form-control" name="review" rows="3" maxlength="512" id="review"></textarea>
-                                </div>
-                                <input class="btn btn-primary btn-block" type="submit" value="Leave Review" />
-                            </form>
-                        </div>
+                        <ctg:not-guest>
+                            <div>
+                                <h3>Add Review</h3>
+                                <form method="GET" class="form-horizontal review">
+                                    <div class="form-group">
+                                        <label class="control-label">Rating:</label>
+                                        <label class="radio-inline"><input type="radio" name="rating">1</label>
+                                        <label class="radio-inline"><input type="radio" name="rating">2</label>
+                                        <label class="radio-inline"><input type="radio" name="rating">3</label>
+                                        <label class="radio-inline"><input type="radio" name="rating">4</label>
+                                        <label class="radio-inline"><input type="radio" name="rating">5</label>
+                                        <label class="radio-inline"><input type="radio" name="rating" checked>6</label>
+                                        <label class="radio-inline"><input type="radio" name="rating">7</label>
+                                        <label class="radio-inline"><input type="radio" name="rating">8</label>
+                                        <label class="radio-inline"><input type="radio" name="rating">9</label>
+                                        <label class="radio-inline"><input type="radio" name="rating">10</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label" for="review">Review:</label>
+                                        <textarea class="form-control" name="review" rows="3" maxlength="512" id="review"></textarea>
+                                    </div>
+                                    <input class="btn btn-primary btn-block" type="submit" value="Leave Review" />
+                                </form>
+                                <hr>
+                            </div>
+                        </ctg:not-guest>
                         <div>
                             <h3>Reviews</h3>
                             <c:forEach var="review" items="${reviews}">
-                                <div class="container-fluid">
+                                <div class="container-fluid well">
                                     <div class="picture col-sm-3">
-                                        <img src="${pageContext.request.contextPath}/${review.user.photo}" class="img-rounded mini" alt="movie">
+                                        <img src="${pageContext.request.contextPath}/${review.user.photo}" class="img-rounded img-thumbnail mini" alt="movie">
                                     </div>
                                     <div class="col-sm-8 text-container">
                                         <a href="${pageContext.request.contextPath}/controller?command=show_user&user_id=${review.user.userId}">
@@ -84,8 +83,7 @@
                                         </a>
                                         <h3>
                                             <small>
-                                                <fmt:formatDate value="${review.review.time}" type="both"
-                                                                   timeStyle="long"/>
+                                                <fmt:formatDate value="${review.review.time}" type="both"/>
                                             </small>
                                         </h3>
                                         <h4 class="sub-text">
@@ -97,13 +95,6 @@
                             </c:forEach>
                         </div>
                     </div>
-                </div>
-                <div class="col-sm-2 sidenav">
-                    <%--
-                    <div class="well">
-                        <a href="http://www.w3schools.com/bootstrap/default.asp"><img src = "../images/ads/bootstrap.jpg" width="100%" /></a>
-                    </div>
-                    --%>
                 </div>
             </div>
         </div>
