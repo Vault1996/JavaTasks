@@ -20,6 +20,7 @@ import java.io.IOException;
 public class Controller extends HttpServlet {
 	private static final String COMMAND = "command";
 	private static final String MEMENTO = "memento";
+	private static final String EXCEPTION = "exception";
 
 	private static final Logger LOGGER = LogManager.getLogger(Controller.class);
 
@@ -50,6 +51,7 @@ public class Controller extends HttpServlet {
 			ActionCommand actionCommand = ActionFactory.defineCommand(command);
 			String page = actionCommand.execute(request);
 
+			//***Saving changes after every command***
 			MementoRequestAttributes memento = (MementoRequestAttributes) request.getSession().getAttribute(MEMENTO);
 			if (memento == null) {
 				memento = new MementoRequestAttributes();
@@ -62,11 +64,12 @@ public class Controller extends HttpServlet {
 			} else {
 				caretaker.fillRequest(request);
 			}
+			//*
 			request.getRequestDispatcher(page).forward(request, response);
 		} catch (UnsupportedCommandException | CommandException e) {
 			// TODO: НЕ РАБОТАЕТ
 			LOGGER.error(e);
-			request.getSession().setAttribute("exception", e.getMessage());
+			request.getSession().setAttribute(EXCEPTION, e.getMessage());
 			response.sendError(500, e.getMessage());
 		}
 	}

@@ -10,7 +10,7 @@ import java.io.IOException;
 		DispatcherType.FORWARD},
 		urlPatterns = { "/*" },
 		initParams = {
-				@WebInitParam(name = "language", value = "ru_RU", description = "Language Param")
+				@WebInitParam(name = "language", value = "en", description = "Language Param")
 		})
 public class LanguageFilter implements Filter {
 	private static final String LANGUAGE = "language";

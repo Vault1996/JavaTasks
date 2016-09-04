@@ -11,7 +11,6 @@ public class WrapperConnection{
 	private Connection connection;
 
 	WrapperConnection(Connection connection) { // только в пакете
-		//TODO: может изменить реализацию
 		if (connection != null) {
 			this.connection = connection;
 		}

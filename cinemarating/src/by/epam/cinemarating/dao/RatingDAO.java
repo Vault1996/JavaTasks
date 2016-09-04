@@ -24,12 +24,12 @@ public class RatingDAO extends AbstractDAO<Rating> {
 			"FROM rating WHERE movie_id=? AND user_id=?";
 
 	private static final String INSERT_RATING = "INSERT INTO rating(movie_id,user_id,rating,time) " +
-			"VALUES(?,?,?,?)";
-	private static final String UPDATE_RATING = "UPDATE movie SET rating=?,`time`=? " +
-			"WHERE movie_id=?,user_id=?";
+			"VALUES(?,?,?,NOW())";
+	private static final String UPDATE_RATING = "UPDATE rating SET rating=? " +
+			"WHERE movie_id=? AND user_id=?";
 	private static final String DELETE_RATING_BY_MOVIE_ID = "DELETE FROM rating WHERE movie_id=?";
 	private static final String DELETE_RATING_BY_USER_ID = "DELETE FROM rating WHERE user_id=?";
-	private static final String DELETE_RATING = "DELETE FROM rating WHERE movie_id=?,user_id=?";
+	private static final String DELETE_RATING = "DELETE FROM rating WHERE movie_id=? AND user_id=?";
 
 
 	public RatingDAO(WrapperConnection connection) {
@@ -65,28 +65,28 @@ public class RatingDAO extends AbstractDAO<Rating> {
 		return Optional.empty();
 	}
 
-	public Optional<Rating> findRatingByMovieId(long movieId) throws DAOException {
-		Rating rating = null;
+	public List<Rating> findRatingsByMovieId(long movieId) throws DAOException {
+		List<Rating> ratingList = new ArrayList<>();
 		try (
 				PreparedStatement statement = connection.prepareStatement(FIND_RATING_BY_MOVIE_ID)
 		) {
 			statement.setLong(1, movieId);
 			ResultSet resultSet = statement.executeQuery();
-			if (resultSet.next()) {
+			while (resultSet.next()) {
 				long movieIdField = resultSet.getLong(MOVIE_ID);
 				long userId = resultSet.getLong(USER_ID);
 				int ratingField = resultSet.getInt(RATING);
 				Timestamp time = resultSet.getTimestamp(TIME);
-				rating = new Rating(movieIdField, userId, ratingField, time);
+				ratingList.add(new Rating(movieIdField, userId, ratingField, time));
 			}
 		} catch (SQLException e) {
 			throw new DAOException();
 		}
-		return Optional.ofNullable(rating);
+		return ratingList;
 	}
 
-	public Optional<Rating> findRatingByUserId(long userId) throws DAOException {
-		Rating rating = null;
+	public List<Rating> findRatingsByUserId(long userId) throws DAOException {
+		List<Rating> ratingList = new ArrayList<>();
 		try (
 				PreparedStatement statement = connection.prepareStatement(FIND_RATING_BY_USER_ID)
 		) {
@@ -97,12 +97,12 @@ public class RatingDAO extends AbstractDAO<Rating> {
 				long movieId = resultSet.getLong(MOVIE_ID);
 				int ratingField = resultSet.getInt(RATING);
 				Timestamp time = resultSet.getTimestamp(TIME);
-				rating = new Rating(movieId, userIdField, ratingField, time);
+				ratingList.add(new Rating(movieId, userIdField, ratingField, time));
 			}
 		} catch (SQLException e) {
 			throw new DAOException();
 		}
-		return Optional.ofNullable(rating);
+		return ratingList;
 	}
 
 	public Optional<Rating> findRating(long movieId, long userId) throws DAOException {
@@ -135,7 +135,6 @@ public class RatingDAO extends AbstractDAO<Rating> {
 			statement.setLong(1, entity.getMovieId());
 			statement.setLong(2, entity.getUserId());
 			statement.setInt(3, entity.getRating());
-			statement.setTimestamp(4, entity.getTime());
 			result = statement.executeUpdate();
 		} catch (SQLException e) {
 			throw new DAOException();
@@ -195,9 +194,8 @@ public class RatingDAO extends AbstractDAO<Rating> {
 				PreparedStatement statement = connection.prepareStatement(UPDATE_RATING);
 		) {
 			statement.setInt(1, entity.getRating());
-			statement.setTimestamp(2, entity.getTime());
-			statement.setLong(3, entity.getMovieId());
-			statement.setLong(4, entity.getUserId());
+			statement.setLong(2, entity.getMovieId());
+			statement.setLong(3, entity.getUserId());
 			result = statement.executeUpdate();
 		} catch (SQLException e) {
 			throw new DAOException();

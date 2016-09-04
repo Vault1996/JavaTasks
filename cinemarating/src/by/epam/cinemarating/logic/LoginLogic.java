@@ -11,6 +11,8 @@ import by.epam.cinemarating.hash.MD5Hash;
 import java.util.Optional;
 
 public class LoginLogic {
+	private static final String ERROR_MESSAGE = "Problem in Login Logic";
+
 	public boolean logic(String login, String password, User user) throws LogicException {
 		ConnectionPool connectionPool = ConnectionPool.getInstance();
 		WrapperConnection connection = connectionPool.takeConnection().orElseThrow(LogicException::new);
@@ -26,10 +28,12 @@ public class LoginLogic {
 				user.setRole(currentUser.getRole());
 				user.setUserId(currentUser.getUserId());
 				user.setSurname(currentUser.getSurname());
+				user.setPhoto(currentUser.getPhoto());
+				user.setStatus(currentUser.getStatus());
 			}
 			return optional.isPresent();
 		} catch (DAOException e) {
-			throw new LogicException(e);
+			throw new LogicException(ERROR_MESSAGE, e);
 		} finally {
 			if (connection != null) {
 				connectionPool.returnConnection(connection);

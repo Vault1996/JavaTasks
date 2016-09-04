@@ -8,7 +8,7 @@ public class EditProfileValidator {
 	private static final int MIN_NAME_LENGTH = 1;
 	private static final int MIN_SURNAME_LENGTH = 1;
 
-	public boolean validate(String name, String surname, String password) {
+	public boolean validate(String name, String surname, String newPassword, String repeatPassword) {
 		boolean isValid = true;
 		if (name != null && !name.isEmpty()) {
 			if (name.length() > MAX_NAME_LENGTH || name.length() < MIN_NAME_LENGTH) {
@@ -20,9 +20,9 @@ public class EditProfileValidator {
 				isValid = false;
 			}
 		}
-		if (password != null && !password.isEmpty()) {
-			if (password.length() < MIN_PASSWORD_LENGTH ||
-					password.length() > MAX_PASSWORD_LENGTH) {
+		if (newPassword != null && !newPassword.isEmpty()) {
+			if (!newPassword.equals(repeatPassword) || newPassword.length() < MIN_PASSWORD_LENGTH ||
+					newPassword.length() > MAX_PASSWORD_LENGTH) {
 				isValid = false;
 			}
 		}

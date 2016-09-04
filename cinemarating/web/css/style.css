@@ -63,7 +63,7 @@ body {
 img.main {
     float: left;
     margin:0 10px 20px 0;
-    height: 450px;
+    width: 300px;
 }
 textarea {
     resize: none;

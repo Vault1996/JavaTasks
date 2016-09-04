@@ -24,12 +24,12 @@ public class ReviewDAO extends AbstractDAO<Review> {
 			"FROM review WHERE movie_id=? AND user_id=?";
 
 	private static final String INSERT_REVIEW = "INSERT INTO review(movie_id,user_id,review,`time`) " +
-			"VALUES(?,?,?,?)";
-	private static final String UPDATE_REVIEW = "UPDATE movie SET review=?,`time`=? " +
-			"WHERE movie_id=?,user_id=?";
+			"VALUES(?,?,?,NOW())";
+	private static final String UPDATE_REVIEW = "UPDATE review SET review=? " +
+			"WHERE movie_id=? AND user_id=?";
 	private static final String DELETE_REVIEW_BY_MOVIE_ID = "DELETE FROM review WHERE movie_id=?";
 	private static final String DELETE_REVIEW_BY_USER_ID = "DELETE FROM review WHERE user_id=?";
-	private static final String DELETE_REVIEW = "DELETE FROM review WHERE movie_id=?,user_id=?";
+	private static final String DELETE_REVIEW = "DELETE FROM review WHERE movie_id=? AND user_id=?";
 
 
 	public ReviewDAO(WrapperConnection connection) {
@@ -39,10 +39,6 @@ public class ReviewDAO extends AbstractDAO<Review> {
 	@Override
 	public List<Review> findAll() throws DAOException {
 		List<Review> reviews = new ArrayList<>();
-		/*
-		ConnectionPool connectionPool = ConnectionPool.getInstance();
-		WrapperConnection connection = connectionPool.takeConnection().orElseThrow(DAOException::new);
-		*/
 		try (
 				Statement statement = connection.createStatement();
 		) {
@@ -135,7 +131,6 @@ public class ReviewDAO extends AbstractDAO<Review> {
 			statement.setLong(1, entity.getMovieId());
 			statement.setLong(2, entity.getUserId());
 			statement.setString(3, entity.getReview());
-			statement.setTimestamp(4, entity.getTime());
 			result = statement.executeUpdate();
 		} catch (SQLException e) {
 			throw new DAOException();
@@ -195,14 +190,12 @@ public class ReviewDAO extends AbstractDAO<Review> {
 				PreparedStatement statement = connection.prepareStatement(UPDATE_REVIEW);
 		) {
 			statement.setString(1, entity.getReview());
-			statement.setTimestamp(2, entity.getTime());
-			statement.setLong(3, entity.getMovieId());
-			statement.setLong(4, entity.getUserId());
+			statement.setLong(2, entity.getMovieId());
+			statement.setLong(3, entity.getUserId());
 			result = statement.executeUpdate();
 		} catch (SQLException e) {
 			throw new DAOException();
 		}
 		return result > 0;
 	}
-
 }

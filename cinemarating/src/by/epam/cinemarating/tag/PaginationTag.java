@@ -6,7 +6,7 @@ import javax.servlet.jsp.tagext.TagSupport;
 import java.io.IOException;
 
 public class PaginationTag extends TagSupport{
-	private static final String PAGINATION_START = "<ul class=\"pagination\">";
+	private static final String PAGINATION_START = "<div class=\"text-center\"><ul class=\"pagination\">";
 	private static final String LIST_ITEM_START = "<li";
 	private static final String CLASS = " class=\"active\"";
 	private static final String LIST_ITEM_END = ">";
@@ -14,7 +14,7 @@ public class PaginationTag extends TagSupport{
 	private static final String REFERENCE_END = "\">";
 	private static final String END_OF_REFERENCE = "</a>";
 	private static final String END_Of_LIST_ITEM = "</li>";
-	private static final String PAGINATION_END = "</ul>";
+	private static final String PAGINATION_END = "</ul></div>";
 
 	private static final String PAGE_NUMBER = "pageNumber";
 

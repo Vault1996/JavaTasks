@@ -26,7 +26,7 @@
         <nav class="navbar navbar-inverse">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="${pageContext.request.contextPath}/controller?command=redirect&next=path.page.main">CinemaRating</a>
+                    <a class="navbar-brand" href="${pageContext.request.contextPath}/controller?command=show_main_page">CinemaRating</a>
                 </div>
 
                 <ul class="nav navbar-nav navbar-right">
@@ -47,7 +47,7 @@
                 <label for="login" class="control-label compulsory">
                     <fmt:message key="label.login" bundle="${ rb }" />
                 </label>
-                <input id="login" type="text" name="login" value="${login}" class="form-control" required
+                <input id="login" type="text" name="login" value="${login}" class="form-control" autofocus required
                        minLength="1" maxLength="30" placeholder=<fmt:message key="label.login" bundle="${ rb }" /> />
             </div>
             <div class="form-group">
@@ -57,24 +57,33 @@
                 <input id="password" type="password" name="password" value="${password}" class="form-control" required
                        minLength="4" maxLength="20" placeholder=<fmt:message key="label.password" bundle="${ rb }" /> />
             </div>
-            <input class="btn btn-primary btn-block" type="submit" value=<fmt:message key="button.login" bundle="${ rb }" /> />
+            <input class="btn btn-primary btn-block" type="submit" value="<fmt:message key="button.login" bundle="${ rb }" />" />
             <br/>
-            <span class="status">
-                <c:out value="${registrationStatus}"/>
-            </span>
-            <span class="error">
-                <c:out value="${errorLoginPassMessage}"/>
-            </span>
-            <c:if test="${not empty ban}">
-                <h5>Ban</h5>
-                <h5>Till: ${ban.till}</h5>
-                <h5>Reason: ${ban.reason}</h5>
+            <c:if test="${registrationStatus == true}">
+                <div class="alert alert-success">
+                    <span class="close" data-dismiss="alert">&times;</span>
+                    <fmt:message key="message.registrationSuccessful" bundle="${ rb }" />
+                </div>
+            </c:if>
+            <c:if test="${errorLoginValidation == true}">
+                <div class="alert alert-danger">
+                    <span class="close" data-dismiss="alert">&times;</span>
+                    <fmt:message key="message.errorPasswordOrLogin" bundle="${ rb }" />
+                </div>
+            </c:if>
+            <c:if test="${errorLoginPassword == true}">
+                <div class="alert alert-danger">
+                    <span class="close" data-dismiss="alert">&times;</span>
+                    <fmt:message key="message.errorPassword" bundle="${ rb }" />
+                </div>
             </c:if>
             <hr>
-            <ul class="pagination">
-                <li class = "active"><a href="#"><fmt:message key="button.login" bundle="${ rb }" /></a></li>
-                <li><a href="${pageContext.request.contextPath}/controller?command=redirect&next=path.page.registration"><fmt:message key="button.registration" bundle="${ rb }" /></a></li>
-            </ul>
+            <div class="text-center">
+                <ul class="pagination">
+                    <li class = "active"><a href="#"><fmt:message key="button.login" bundle="${ rb }" /></a></li>
+                    <li><a href="${pageContext.request.contextPath}/controller?command=redirect&next=path.page.registration"><fmt:message key="button.registration" bundle="${ rb }" /></a></li>
+                </ul>
+            </div>
         </form>
     </body>
 </html>

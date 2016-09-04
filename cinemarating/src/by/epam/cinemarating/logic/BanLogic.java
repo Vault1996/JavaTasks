@@ -10,6 +10,8 @@ import java.sql.Timestamp;
 import java.util.Optional;
 
 public class BanLogic {
+	private static final String ERROR_MESSAGE = "Problem in Ban Logic";
+
 	public Optional<Ban> findBan(long userId) throws LogicException {
 		ConnectionPool connectionPool = ConnectionPool.getInstance();
 		WrapperConnection connection = connectionPool.takeConnection().orElseThrow(LogicException::new);
@@ -20,14 +22,14 @@ public class BanLogic {
 			if (banOptional.isPresent()) {
 				Ban ban = banOptional.get();
 				// if ban passed
-				if (ban.getTill().compareTo(new Timestamp(System.currentTimeMillis())) > 0) {
+				if (ban.getTill().before(new Timestamp(System.currentTimeMillis()))) {
 					banDAO.delete(ban.getBanId());
 					return Optional.empty();
 				}
 			}
 			return banOptional;
 		} catch (DAOException e) {
-			throw new LogicException(e);
+			throw new LogicException(ERROR_MESSAGE, e);
 		} finally {
 			if (connection != null) {
 				connectionPool.returnConnection(connection);

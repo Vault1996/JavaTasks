@@ -15,68 +15,79 @@
 <fmt:setBundle basename="lang" var="rb"/>
 
 <html>
-<head>
-    <title>Movie</title>
+    <head>
+        <title>Movie</title>
 
-    <%@include file="jspf/bootstrap.jspf"%>
+        <%@include file="jspf/bootstrap.jspf"%>
 
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css"/>
-</head>
-<body>
-<c:set var="page" value="/jsp/editProfile.jsp" scope="session"/>
-<%@include file="jspf/navigationBar.jspf"%>
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css"/>
+    </head>
+    <body>
+        <c:set var="page" value="/jsp/editProfile.jsp" scope="session"/>
+        <%@include file="jspf/navigationBar.jspf"%>
 
-<div class="container-fluid text-center">
-    <div class="row content">
-        <div class="col-sm-8 col-sm-offset-2 text-left">
-            <ul class="breadcrumb">
-                <li><a href="${pageContext.request.contextPath}/jsp/main.jsp">Home</a></li>
-                <li><a href="#">Edit Profile</a></li>
-            </ul>
-            <h1>${activeUser.login}</h1>
-            <hr>
-            <form method="POST" class="form-horizontal login-form" enctype="multipart/form-data" action="${pageContext.request.contextPath}/controller">
-                <input type="hidden" name="command" value="edit_profile">
-                <div class="form-group">
-                    <label for="photo" class="control-label compulsory">
-                        <fmt:message key="label.photo" bundle="${ rb }" />
-                    </label>
-                    <input type="file" name="photo" class="form-control" id="photo" accept="image/png,image/jpeg"
-                           placeholder=<fmt:message key="label.photo" bundle="${ rb }" /> />
+        <div class="container-fluid text-center">
+            <div class="row content">
+                <div class="col-sm-8 col-sm-offset-2 text-left">
+                    <ul class="breadcrumb">
+                        <li><a href="${pageContext.request.contextPath}/controller?command=show_main_page">Home</a></li>
+                        <li><a href="#">Edit Profile</a></li>
+                    </ul>
+                    <h1>${userEdited.login}</h1>
+                    <hr>
+                    <form method="POST" class="form-horizontal login-form" enctype="multipart/form-data" action="${pageContext.request.contextPath}/controller">
+                        <input type="hidden" name="command" value="edit_profile"/>
+                        <input type="hidden" name="user_id" value="${userEdited.userId}"/>
+                        <div class="form-group">
+                            <label for="photo" class="control-label compulsory">
+                                <fmt:message key="label.photo" bundle="${ rb }" />
+                            </label>
+                            <input type="file" name="photo" class="form-control" id="photo" accept="image/png,image/jpeg"
+                                   placeholder=<fmt:message key="label.photo" bundle="${ rb }" /> />
+                        </div>
+                        <div class="form-group">
+                            <label for="name" class="control-label compulsory">
+                                <fmt:message key="label.name" bundle="${ rb }" />
+                            </label>
+                            <input id="name" type="text" name="name" value="${userEdited.name}" class="form-control" autofocus
+                                    maxlength="30" placeholder=<fmt:message key="label.name" bundle="${ rb }" /> />
+                        </div>
+                        <div class="form-group">
+                            <label for="surname" class="control-label compulsory">
+                                <fmt:message key="label.surname" bundle="${ rb }" />
+                            </label>
+                            <input id="surname" type="text" name="surname" value="${userEdited.surname}" class="form-control"
+                                    maxlength="30" placeholder=<fmt:message key="label.surname" bundle="${ rb }" /> />
+                        </div>
+                        <div class="form-group">
+                            <label for="newPassword" class="control-label compulsory">
+                                <fmt:message key="label.newPassword" bundle="${ rb }" />
+                            </label>
+                            <input id="newPassword" type="password" name="newPassword" class="form-control"
+                                   minlength="4" maxlength="20" placeholder=<fmt:message key="label.newPassword" bundle="${ rb }" /> />
+                        </div>
+                        <div class="form-group">
+                            <label for="repeatPassword" class="control-label compulsory">
+                                <fmt:message key="label.repeatPassword" bundle="${ rb }" />
+                            </label>
+                            <input id="repeatPassword" type="password" name="repeatPassword" class="form-control"
+                                   minlength="4" maxlength="20" placeholder=<fmt:message key="label.repeatPassword" bundle="${ rb }" /> />
+                        </div>
+                        <input class="btn btn-primary btn-block" type="submit" value="<fmt:message key="button.submit" bundle="${ rb }" />" />
+                        <br/>
+                        <c:if test="${invalidDataMessage == true}">
+                            <div class="alert alert-danger">
+                                <span class="close" data-dismiss="alert">&times;</span>
+                                <fmt:message key="message.invalidData" bundle="${ rb }" />
+                            </div>
+                        </c:if>
+                    </form>
                 </div>
-                <div class="form-group">
-                    <label for="name" class="control-label compulsory">
-                        <fmt:message key="label.name" bundle="${ rb }" />
-                    </label>
-                    <input id="name" type="text" name="name" value="${activeUser.name}" class="form-control"
-                            maxlength="30" placeholder=<fmt:message key="label.name" bundle="${ rb }" /> />
-                </div>
-                <div class="form-group">
-                    <label for="surname" class="control-label compulsory">
-                        <fmt:message key="label.surname" bundle="${ rb }" />
-                    </label>
-                    <input id="surname" type="text" name="surname" value="${activeUser.surname}" class="form-control"
-                            maxlength="30" placeholder=<fmt:message key="label.surname" bundle="${ rb }" /> />
-                </div>
-                <div class="form-group">
-                    <label for="password" class="control-label compulsory">
-                        <fmt:message key="label.password" bundle="${ rb }" />
-                    </label>
-                    <input id="password" type="password" name="password" class="form-control"
-                           minlength="4" maxlength="20" placeholder=<fmt:message key="label.password" bundle="${ rb }" /> />
-                </div>
-                <input class="btn btn-primary btn-block" type="submit" value=<fmt:message key="button.submit" bundle="${ rb }" /> />
-                <br/>
-                <span class="error">
-                    <c:out value="${invalidDataMessage}"/>
-                </span>
-            </form>
+            </div>
         </div>
-    </div>
-</div>
 
-<%@include file="jspf/footer.jspf"%>
+        <%@include file="jspf/footer.jspf"%>
 
-</body>
+    </body>
 </html>
 

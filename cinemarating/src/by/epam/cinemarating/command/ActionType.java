@@ -11,7 +11,14 @@ public enum ActionType {
 	ALL_USERS(new AllUsersCommand()),
 	SHOW_MOVIE(new ShowMovieCommand()),
 	SHOW_USER(new ShowUserCommand()),
-	EDIT_PROFILE(new EditProfileCommand());
+	EDIT_PROFILE(new EditProfileCommand()),
+	LEAVE_REVIEW(new LeaveReviewCommand()),
+	SHOW_MAIN_PAGE(new ShowMainPageCommand()),
+	SHOW_BAN(new ShowBanCommand()),
+	EDIT_REVIEW(new EditReviewCommand()),
+	DELETE_REVIEW(new DeleteReviewCommand()),
+	SHOW_EDIT_REVIEW(new ShowEditReviewCommand()),
+	SHOW_EDIT_PROFILE(new ShowEditProfileCommand());
 
 	private ActionCommand actionCommand;
 

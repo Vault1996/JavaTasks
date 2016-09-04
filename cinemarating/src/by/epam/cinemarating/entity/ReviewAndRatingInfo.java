@@ -1,6 +1,6 @@
 package by.epam.cinemarating.entity;
 
-public class ReviewAndRatingInfo {
+public class ReviewAndRatingInfo extends Entity{
 	private User user;
 	private Review review;
 	private Rating rating;

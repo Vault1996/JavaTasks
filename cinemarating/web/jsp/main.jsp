@@ -36,39 +36,43 @@
                 --%>
                 <div class="col-sm-8 col-sm-offset-2 text-left">
                     <ul class="breadcrumb">
-                        <li><a href="#">Home</a></li>
+                        <li><a href="${pageContext.request.contextPath}/controller?command=show_main_page">Home</a></li>
                     </ul>
                     <h1><a name="welcome"></a>Welcome</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                    <p>Welcome to our website. Here you can see new movies, rate them and get status to be the best and cleverest reviewer ever.</p>
                     <hr>
                     <h3> <a name="top3"></a> Top 3 Movies</h3>
                     <div id="myCarousel" class="carousel slide" data-ride="carousel">
                         <!-- Indicators -->
                         <ol class="carousel-indicators">
-                            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                            <li data-target="#myCarousel" data-slide-to="1"></li>
-                            <li data-target="#myCarousel" data-slide-to="2"></li>
+                            <c:forEach items="${topMovies}" varStatus="status">
+                                <c:if test="${status.index == 0}">
+                                    <li data-target="#myCarousel" data-slide-to="${status.index}" class="active"></li>
+                                </c:if>
+                                <c:if test="${status.index != 0}">
+                                    <li data-target="#myCarousel" data-slide-to="${status.index}"></li>
+                                </c:if>
+                            </c:forEach>
                         </ol>
 
                         <!-- Wrapper for slides -->
                         <div class="carousel-inner" role="listbox">
-                            <div class="item active">
-                                <a href="${pageContext.request.contextPath}/jsp/movie.jsp">
-                                    <img src="${pageContext.request.contextPath}/images/movies/film1.jpg" alt="Film1">
-                                </a>
-                            </div>
-
-                            <div class="item">
-                                <img src="${pageContext.request.contextPath}/images/movies/film2.jpg" alt="Film2">
-                            </div>
-
-                            <div class="item">
-                                <img src="${pageContext.request.contextPath}/images/movies/film3.jpg" alt="Film3">
-                                <div class="carousel-caption">
-                                    <h3>Film3</h3>
-                                    <p>Purr-purr-purr</p>
-                                </div>
-                            </div>
+                            <c:forEach var="movie" items="${topMovies}" varStatus="status">
+                                <c:if test="${status.index == 0}" >
+                                    <div class="item active">
+                                        <a href="${pageContext.request.contextPath}/controller?command=show_movie&movie_id=${movie.movieId}">
+                                            <img src="${pageContext.request.contextPath}/${movie.poster}" alt="${movie.name}">
+                                        </a>
+                                    </div>
+                                </c:if>
+                                <c:if test="${status.index != 0}" >
+                                    <div class="item">
+                                        <a href="${pageContext.request.contextPath}/controller?command=show_movie&movie_id=${movie.movieId}">
+                                            <img src="${pageContext.request.contextPath}/${movie.poster}" alt="${movie.name}">
+                                        </a>
+                                    </div>
+                                </c:if>
+                            </c:forEach>
                         </div>
 
                         <!-- Left and right controls -->

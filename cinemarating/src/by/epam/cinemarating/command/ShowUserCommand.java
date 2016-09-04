@@ -14,6 +14,8 @@ public class ShowUserCommand implements ActionCommand {
 
 	private static final String PAGE_USER = "path.page.user";
 	private static final String PAGE_PROFILE = "path.page.profile";
+	private static final String MEMENTO = "memento";
+	private static final String ERROR_MESSAGE = "Problem in Show User Command";
 
 	@Override
 	public String execute(HttpServletRequest request) throws CommandException {
@@ -30,7 +32,7 @@ public class ShowUserCommand implements ActionCommand {
 				page = PAGE_USER;
 			}
 		} catch (LogicException e) {
-			throw new CommandException(e);
+			throw new CommandException(ERROR_MESSAGE, e);
 		}
 		return ConfigurationManager.getProperty(page);
 	}

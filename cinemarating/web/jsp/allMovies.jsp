@@ -29,8 +29,13 @@
     <div class="row content">
         <div class="col-sm-8 col-sm-offset-2 text-left">
             <ul class="breadcrumb">
-                <li><a href="${pageContext.request.contextPath}/controller?command=redirect&next=path.page.main">Home</a></li>
-                <li><a href="#">All Movies</a></li>
+                <li><a href="${pageContext.request.contextPath}/controller?command=show_main_page">Home</a></li>
+                <c:if test="${sortBy eq 'name'}">
+                    <li><a href="#">All Movies</a></li>
+                </c:if>
+                <c:if test="${sortBy eq 'rating'}">
+                    <li><a href="#">Top Movies</a></li>
+                </c:if>
             </ul>
 
             <c:if test="${sortBy eq 'name'}">

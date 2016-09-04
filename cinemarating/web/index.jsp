@@ -7,4 +7,4 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<jsp:forward page="${pageContext.request.contextPath}/controller?command=redirect&next=path.page.main"/>
+<jsp:forward page="${pageContext.request.contextPath}/controller?command=show_main_page"/>

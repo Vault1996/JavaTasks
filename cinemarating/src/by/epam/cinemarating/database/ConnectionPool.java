@@ -28,6 +28,8 @@ public class ConnectionPool {
 	private static final int MAX_RETRIES = 3;
 
 	private static final Logger LOGGER = LogManager.getLogger(ConnectionPool.class);
+	private static final String INTERRUPTED_ERROR = "Interrupted while waiting";
+	private static final String CLOSE_CONNECTION_ERROR = "Can't close connection";
 
 	private ArrayBlockingQueue<WrapperConnection> connectionQueue;
 
@@ -75,10 +77,6 @@ public class ConnectionPool {
 			LOGGER.fatal("Can't connect to database");
 			throw new RuntimeException();
 		}
-		// Initializing PoolSizeController
-		PoolSizeController poolSizeController = new PoolSizeController(this, url, properties, poolSize);
-		poolSizeController.setDaemon(true);
-		poolSizeController.start();
 	}
 
 	public static ConnectionPool getInstance() {
@@ -87,7 +85,7 @@ public class ConnectionPool {
 			try {
 				if (instance == null) {
 					instance = new ConnectionPool();
-					instanceCreated.set(true);
+					instanceCreated.getAndSet(true);
 				}
 			} finally {
 				lock.unlock(); // unblocking
@@ -118,9 +116,9 @@ public class ConnectionPool {
 				connectionQueue.take().close();
 			}
 		} catch (InterruptedException e) {
-			LOGGER.error("Interrupted while waiting.");
+			LOGGER.error(INTERRUPTED_ERROR, e);
 		} catch (SQLException e) {
-			LOGGER.error(e);
+			LOGGER.error(CLOSE_CONNECTION_ERROR, e);
 		}
 
 	}
