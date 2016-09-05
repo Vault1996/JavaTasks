@@ -16,6 +16,7 @@ public class ShowUserCommand implements ActionCommand {
 	private static final String PAGE_PROFILE = "path.page.profile";
 	private static final String MEMENTO = "memento";
 	private static final String ERROR_MESSAGE = "Problem in Show User Command";
+	private static final String SHOW_MAIN_PAGE_COMMAND = "/controller?command=show_main_page";
 
 	@Override
 	public String execute(HttpServletRequest request) throws CommandException {
@@ -25,11 +26,15 @@ public class ShowUserCommand implements ActionCommand {
 		String page;
 		try {
 			User user = userLogic.findUserById(userId);
-			request.setAttribute(USER, user);
-			if (user.getUserId() == activeUser.getUserId()) {
-				page = PAGE_PROFILE;
+			if (user != null) {
+				request.setAttribute(USER, user);
+				if (user.getUserId() == activeUser.getUserId()) {
+					page = PAGE_PROFILE;
+				} else {
+					page = PAGE_USER;
+				}
 			} else {
-				page = PAGE_USER;
+				page = SHOW_MAIN_PAGE_COMMAND;
 			}
 		} catch (LogicException e) {
 			throw new CommandException(ERROR_MESSAGE, e);

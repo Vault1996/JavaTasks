@@ -86,13 +86,13 @@
                         </a>
                     </div>
                 </div>
-                    <%--
-                <div class="col-sm-2 sidenav">
-                    <div class="well">
-                        <a href="http://www.w3schools.com/bootstrap/default.asp"><img src = "${pageContext.request.contextPath}/images/ads/bootstrap.jpg" width="100%" alt="Adv"/></a>
-                    </div>
-                </div>
-                --%>
+                    <ctg:admin>
+                        <div class="col-sm-2 sidenav">
+                            <div class="well">
+                                <a href="${pageContext.request.contextPath}/controller?command=show_ban_messages">Ban Messages</a>
+                            </div>
+                        </div>
+                    </ctg:admin>
             </div>
         </div>
         <%@include file="jspf/footer.jspf"%>

@@ -134,24 +134,43 @@
                         <div>
                             <h3>Reviews</h3>
                             <c:forEach var="review" items="${reviews}">
-                                <div class="container-fluid well">
-                                    <div class="picture col-sm-3">
-                                        <img src="${pageContext.request.contextPath}/${review.user.photo}" class="img-rounded img-thumbnail mini" alt="user">
+                                <div class="well">
+                                    <div class="container-fluid">
+                                        <div class="picture col-sm-3">
+                                            <img src="${pageContext.request.contextPath}/${review.user.photo}" class="img-rounded img-thumbnail mini" alt="user">
+                                        </div>
+                                        <div class="col-sm-8 text-container">
+                                            <a href="${pageContext.request.contextPath}/controller?command=show_user&user_id=${review.user.userId}">
+                                                <h2><c:out value="${review.user.login}"/></h2>
+                                            </a>
+                                            <h3>
+                                                <small>
+                                                    <fmt:formatDate value="${review.review.time}" type="both"/>
+                                                </small>
+                                            </h3>
+                                            <h4 class="sub-text">
+                                                <fmt:message key="label.rating" bundle="${rb}"/>: ${review.rating.rating}
+                                            </h4>
+                                            <div class="justify"><c:out value="${review.review.review}"/></div>
+                                        </div>
                                     </div>
-                                    <div class="col-sm-8 text-container">
-                                        <a href="${pageContext.request.contextPath}/controller?command=show_user&user_id=${review.user.userId}">
-                                            <h2><c:out value="${review.user.login}"/></h2>
-                                        </a>
-                                        <h3>
-                                            <small>
-                                                <fmt:formatDate value="${review.review.time}" type="both"/>
-                                            </small>
-                                        </h3>
-                                        <h4 class="sub-text">
-                                            <fmt:message key="label.rating" bundle="${rb}"/>: ${review.rating.rating}
-                                        </h4>
-                                        <div class="justify"><c:out value="${review.review.review}"/></div>
-                                    </div>
+                                    <hr>
+                                    <ctg:admin>
+                                        <div class="clearfix">
+                                            <form style="float: left;" method="POST" class="form-horizontal" action="${pageContext.request.contextPath}/controller">
+                                                <input type="hidden" name="command" value="show_edit_review"/>
+                                                <input type="hidden" name="movie_id" value="${movie.movieId}"/>
+                                                <input type="hidden" name="user_id" value="${review.user.userId}"/>
+                                                <input class="btn btn-primary" type="submit" value="<fmt:message key="button.editReview" bundle="${ rb }" />" />
+                                            </form>
+                                            <form style="float: right;" method="POST" class="form-horizontal" action="${pageContext.request.contextPath}/controller">
+                                                <input type="hidden" name="command" value="delete_review"/>
+                                                <input type="hidden" name="movie_id" value="${movie.movieId}"/>
+                                                <input type="hidden" name="user_id" value="${review.user.userId}"/>
+                                                <input class="btn btn-primary" type="submit" value="<fmt:message key="button.deleteReview" bundle="${ rb }" />" />
+                                            </form>
+                                        </div>
+                                    </ctg:admin>
                                 </div>
                             </c:forEach>
                         </div>

@@ -35,7 +35,7 @@
 
             <h1><a name="users"></a>Users</h1>
 
-            <c:set var="numberOfElementsOnPage" value="3" scope="page"/>
+            <c:set var="numberOfElementsOnPage" value="5" scope="page"/>
             <c:forEach var="user" items="${users}" begin="${pageNumber * numberOfElementsOnPage}" end="${pageNumber * numberOfElementsOnPage + numberOfElementsOnPage - 1}">
                 <div class="container-fluid">
                     <div class="picture col-sm-2 col-sm-offset-2">

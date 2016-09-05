@@ -44,23 +44,41 @@
                 </ul>
             </div>
         </nav>
-        <form method="GET" class="form-horizontal login-form" action="${pageContext.request.contextPath}/controller">
+        <c:if test="${banMessageAddedStatus == true}">
+            <div class="alert alert-info">
+                <span class="close" data-dismiss="alert">&times;</span>
+                <fmt:message key="message.banMessageAdded" bundle="${ rb }" />
+            </div>
+        </c:if>
+        <c:if test="${banMessageExistsStatus == true}">
+            <div class="alert alert-info">
+                <span class="close" data-dismiss="alert">&times;</span>
+                <fmt:message key="message.banMessageExists" bundle="${ rb }" />
+            </div>
+        </c:if>
+        <form method="POST" class="form-horizontal login-form" action="${pageContext.request.contextPath}/controller">
             <input type="hidden" name="command" value="ban_message">
-            <input type="hidden" name="userId" value="${userId}">
+            <input type="hidden" name="banId" value="${ban.banId}">
             <c:if test="${not empty ban}">
                 <h4><fmt:message key="label.ban" bundle="${ rb }" /></h4>
                 <h4><fmt:message key="label.timeLeft" bundle="${ rb }" /></h4>
-                <c:forTokens items="${timeLeft}" delims=",." var="item">
+                <c:forTokens items="${timeLeft}" delims=",.;" var="item">
                     <p>${item}</p>
                 </c:forTokens>
                 <h4><fmt:message key="label.reason" bundle="${ rb }" /></h4>
                 <p>${ban.reason}</p>
             </c:if>
-            <div class="form-group">
-                <label class="control-label" for="review"><fmt:message key="label.messageToAdmin" bundle="${ rb }" /></label>
-                <textarea class="form-control" name="review" rows="3" maxlength="512" id="review"></textarea>
-            </div>
-            <input class="btn btn-primary btn-block" type="submit" value=<fmt:message key="button.leaveMessage" bundle="${ rb }" /> />
+            <c:if test="${empty banMessage or empty banMessage.message}">
+                <div class="form-group">
+                    <label class="control-label" for="banMessage"><fmt:message key="label.messageToAdmin" bundle="${ rb }" /></label>
+                    <textarea required class="form-control" name="banMessage" rows="3" maxlength="512" id="banMessage"></textarea>
+                </div>
+                <input class="btn btn-primary btn-block" type="submit" value=<fmt:message key="button.leaveMessage" bundle="${ rb }" /> />
+            </c:if>
+            <c:if test="${not empty banMessage and not empty banMessage.message}">
+                <h4>Your Message:</h4>
+                <p>${banMessage.message}</p>
+            </c:if>
         </form>
     </body>
 </html>

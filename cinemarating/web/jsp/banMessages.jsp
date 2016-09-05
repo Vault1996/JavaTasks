@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: User
-  Date: 29.08.2016
-  Time: 10:23
+  Date: 05.09.2016
+  Time: 23:18
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -22,7 +22,7 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css"/>
 </head>
 <body>
-<c:set var="page" value="/jsp/allUsers.jsp" scope="session"/>
+<c:set var="page" value="/jsp/banMessages.jsp" scope="session"/>
 <%@include file="jspf/navigationBar.jspf"%>
 
 <div class="container-fluid text-center">
@@ -30,33 +30,32 @@
         <div class="col-sm-8 col-sm-offset-2 text-left">
             <ul class="breadcrumb">
                 <li><a href="${pageContext.request.contextPath}/controller?command=show_main_page">Home</a></li>
-                <li><a href="#">Users</a></li>
+                <li><a href="#">Messages</a></li>
             </ul>
 
-            <h1><a name="users"></a>Users</h1>
+            <h1>Ban Messages</h1>
 
-            <c:set var="numberOfElementsOnPage" value="5" scope="page"/>
-            <c:forEach var="user" items="${users}" begin="${pageNumber * numberOfElementsOnPage}" end="${pageNumber * numberOfElementsOnPage + numberOfElementsOnPage - 1}">
+            <c:set var="numberOfElementsOnPage" value="2" scope="page"/>
+
+            <c:forEach var="message" items="${banMessages}" begin="${pageNumber * numberOfElementsOnPage}" end="${pageNumber * numberOfElementsOnPage + numberOfElementsOnPage - 1}">
                 <div class="container-fluid">
                     <div class="picture col-sm-2 col-sm-offset-2">
-                        <img src="${pageContext.request.contextPath}/${user.photo}" class="img-rounded img-thumbnail mini" alt="user">
+                        <img src="${pageContext.request.contextPath}/${message.user.photo}" class="img-rounded img-thumbnail mini" alt="user"/>
                     </div>
                     <div class="col-sm-6 text-container">
-                        <a href="${pageContext.request.contextPath}/controller?command=show_user&user_id=${user.userId}">
-                            <h2><c:out value="${user.login}"/></h2>
+                        <a href="${pageContext.request.contextPath}/controller?command=show_user&user_id=${message.user.userId}">
+                            <h2><c:out value="${message.user.login}"/></h2>
                         </a>
-                        <div class="justify"><c:out value="${user.createDate}"/></div>
-                        <h4 class="sub-text">
-                            <fmt:message key="label.status" bundle="${rb}"/>: ${user.status}
-                        </h4>
+                        <p>${message.banMessage.message}</p>
                     </div>
                 </div>
                 <hr>
             </c:forEach>
-            <ctg:pagination numberOfElements="${users.size()}" numberOfElementsOnPage="${numberOfElementsOnPage}"/>
+            <ctg:pagination numberOfElements="${banMessages.size()}" numberOfElementsOnPage="${numberOfElementsOnPage}"/>
         </div>
     </div>
 </div>
 <%@include file="jspf/footer.jspf"%>
 </body>
 </html>
+

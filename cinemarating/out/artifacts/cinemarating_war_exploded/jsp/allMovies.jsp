@@ -45,7 +45,7 @@
                 <h1><a name="movies"></a>Top Movies</h1>
             </c:if>
 
-            <c:set var="numberOfElementsOnPage" value="3" scope="page"/>
+            <c:set var="numberOfElementsOnPage" value="5" scope="page"/>
 
             <c:forEach var="movie" items="${movies}" begin="${pageNumber * numberOfElementsOnPage}" end="${pageNumber * numberOfElementsOnPage + numberOfElementsOnPage - 1}">
                 <div class="container-fluid">

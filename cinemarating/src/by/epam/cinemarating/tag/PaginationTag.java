@@ -35,7 +35,7 @@ public class PaginationTag extends TagSupport{
 		int pageNumber = Integer.parseInt(pageContext.getSession().getAttribute(PAGE_NUMBER).toString());
 		try {
 			out.write(PAGINATION_START);
-			for(int i = 0; i <= numberOfElements / numberOfElementsOnPage; i++) {
+			for(int i = 0; i <= (numberOfElements - 1) / numberOfElementsOnPage; i++) {
 				out.write(LIST_ITEM_START);
 				if (i == pageNumber) {
 					out.write(CLASS);

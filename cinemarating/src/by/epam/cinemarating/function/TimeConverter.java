@@ -3,10 +3,10 @@ package by.epam.cinemarating.function;
 import java.sql.Timestamp;
 
 public class TimeConverter {
-	private static final String DAYS = " days, ";
-	private static final String HOURS = " hours, ";
-	private static final String MINUTES = " minutes, ";
-	private static final String SECONDS = " seconds.";
+	private static final String DAYS = " days; ";
+	private static final String HOURS = " hours; ";
+	private static final String MINUTES = " minutes; ";
+	private static final String SECONDS = " seconds;";
 
 	public static String findDifference(Timestamp firstTimestamp, Timestamp secondTimestamp) {
 		long diff = firstTimestamp.getTime() - secondTimestamp.getTime();
@@ -16,9 +16,19 @@ public class TimeConverter {
 		long diffHours = diff / (60 * 60 * 1000) % 24;
 		long diffDays = diff / (24 * 60 * 60 * 1000);
 
-		return diffDays + DAYS +
-				diffHours + HOURS +
-				diffMinutes + MINUTES +
-				diffSeconds + SECONDS;
+		String result = "";
+		if (diffDays != 0) {
+			result += diffDays + DAYS;
+		}
+		if (diffHours != 0) {
+			result += diffHours + HOURS;
+		}
+		if (diffMinutes != 0) {
+			result += diffMinutes + MINUTES;
+		}
+		if (diffSeconds != 0) {
+			result += diffSeconds + SECONDS;
+		}
+		return result;
 	}
 }

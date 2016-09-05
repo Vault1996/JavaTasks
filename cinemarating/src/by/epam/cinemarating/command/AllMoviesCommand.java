@@ -13,7 +13,6 @@ public class AllMoviesCommand implements ActionCommand {
 	private static final String MOVIES = "movies";
 	private static final String SORT_BY = "sortBy";
 	private static final String PAGE_NUMBER = "pageNumber";
-	private static final String MEMENTO = "memento";
 	private static final String PAGE_ALL_MOVIES = "path.page.allMovies";
 	private static final String ERROR_MESSAGE = "Problem in All Movies Command";
 

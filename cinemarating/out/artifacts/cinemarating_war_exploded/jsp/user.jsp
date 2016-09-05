@@ -33,6 +33,12 @@
                 <li><a href="${pageContext.request.contextPath}/controller?command=show_main_page">Home</a></li>
                 <li><a href="#">${user.login}</a></li>
             </ul>
+            <c:if test="${deleteUserStatus == true}">
+                <div class="alert alert-info">
+                    <span class="close" data-dismiss="alert">&times;</span>
+                    <fmt:message key="message.userDeleted" bundle="${ rb }" />
+                </div>
+            </c:if>
             <h1>${user.login}</h1>
             <hr>
             <div class="clearfix">
@@ -42,7 +48,13 @@
                 <h3>Name: <small>${user.name}</small></h3>
                 <h3>Surname: <small>${user.surname}</small></h3>
             </div>
-
+            <ctg:admin>
+                <form method="POST" class="form-horizontal" action="${pageContext.request.contextPath}/controller">
+                    <input type="hidden" name="command" value="delete_user"/>
+                    <input type="hidden" name="user_id" value="${user.userId}"/>
+                    <input class="btn btn-primary" type="submit" value="<fmt:message key="button.deleteUser" bundle="${ rb }" />" />
+                </form>
+            </ctg:admin>
             <hr>
         </div>
     </div>

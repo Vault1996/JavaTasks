@@ -43,4 +43,19 @@ public class UserLogic {
 			}
 		}
 	}
+
+	public void deleteUser(long userId) throws LogicException{
+		ConnectionPool connectionPool = ConnectionPool.getInstance();
+		WrapperConnection connection = connectionPool.takeConnection().orElseThrow(LogicException::new);
+		UserDAO userDAO = new UserDAO(connection);
+		try {
+			userDAO.delete(userId);
+		} catch (DAOException e) {
+			throw new LogicException(ERROR_MESSAGE, e);
+		} finally {
+			if (connection != null) {
+				connectionPool.returnConnection(connection);
+			}
+		}
+	}
 }

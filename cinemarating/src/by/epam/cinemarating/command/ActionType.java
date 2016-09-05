@@ -18,7 +18,10 @@ public enum ActionType {
 	EDIT_REVIEW(new EditReviewCommand()),
 	DELETE_REVIEW(new DeleteReviewCommand()),
 	SHOW_EDIT_REVIEW(new ShowEditReviewCommand()),
-	SHOW_EDIT_PROFILE(new ShowEditProfileCommand());
+	SHOW_EDIT_PROFILE(new ShowEditProfileCommand()),
+	DELETE_USER(new DeleteUserCommand()),
+	BAN_MESSAGE(new BanMessageCommand()),
+	SHOW_BAN_MESSAGES(new ShowBanMessagesCommand());
 
 	private ActionCommand actionCommand;
 
