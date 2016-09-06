@@ -1,28 +1,28 @@
 package by.epam.cinemarating.command;
 
+import by.epam.cinemarating.entity.User;
 import by.epam.cinemarating.logic.LogicException;
 import by.epam.cinemarating.logic.UserLogic;
+import by.epam.cinemarating.resource.ConfigurationManager;
 
 import javax.servlet.http.HttpServletRequest;
 
-public class DeleteUserCommand implements ActionCommand {
+public class ShowBanUserCommand implements ActionCommand {
+	private static final String PAGE_BAN_USER = "path.page.banUser";
 	private static final String USER_ID = "user_id";
+	private static final String ERROR_MESSAGE = "Problem in Show Ban User Command";
+	private static final String BAN_USER = "banUser";
 
-	private static final String DELETE_USER_STATUS = "deleteUserStatus";
-
-	private static final String SHOW_USER_PAGE = "/controller?command=show_main_page";
-
-	private static final String ERROR_MESSAGE = "Problem in Delete User Command";
 	@Override
 	public String execute(HttpServletRequest request) throws CommandException {
 		long userId = Long.valueOf(request.getParameter(USER_ID));
 		UserLogic userLogic = new UserLogic();
 		try {
-			userLogic.deleteUser(userId);
-			request.setAttribute(DELETE_USER_STATUS, true);
+			User user = userLogic.findUserById(userId);
+			request.setAttribute(BAN_USER, user);
 		} catch (LogicException e) {
 			throw new CommandException(ERROR_MESSAGE, e);
 		}
-		return SHOW_USER_PAGE + userId;
+		return ConfigurationManager.getProperty(PAGE_BAN_USER);
 	}
 }

@@ -72,4 +72,49 @@ public class MovieLogic {
 			}
 		}
 	}
+
+	public void addMovie(Movie movie) throws LogicException {
+		ConnectionPool connectionPool = ConnectionPool.getInstance();
+		WrapperConnection connection = connectionPool.takeConnection().orElseThrow(LogicException::new);
+		MovieDAO movieDAO = new MovieDAO(connection);
+		try {
+			movieDAO.insert(movie);
+		} catch (DAOException e) {
+			throw new LogicException(ERROR_MESSAGE, e);
+		} finally {
+			if (connection != null) {
+				connectionPool.returnConnection(connection);
+			}
+		}
+	}
+
+	public void deleteMovie(long movieId) throws LogicException {
+		ConnectionPool connectionPool = ConnectionPool.getInstance();
+		WrapperConnection connection = connectionPool.takeConnection().orElseThrow(LogicException::new);
+		MovieDAO movieDAO = new MovieDAO(connection);
+		try {
+			movieDAO.delete(movieId);
+		} catch (DAOException e) {
+			throw new LogicException(ERROR_MESSAGE, e);
+		} finally {
+			if (connection != null) {
+				connectionPool.returnConnection(connection);
+			}
+		}
+	}
+
+	public void editMovie(Movie movie) throws LogicException {
+		ConnectionPool connectionPool = ConnectionPool.getInstance();
+		WrapperConnection connection = connectionPool.takeConnection().orElseThrow(LogicException::new);
+		MovieDAO movieDAO = new MovieDAO(connection);
+		try {
+			movieDAO.update(movie);
+		} catch (DAOException e) {
+			throw new LogicException(ERROR_MESSAGE, e);
+		} finally {
+			if (connection != null) {
+				connectionPool.returnConnection(connection);
+			}
+		}
+	}
 }

@@ -69,7 +69,7 @@ public class Controller extends HttpServlet {
 		} catch (UnsupportedCommandException | CommandException e) {
 			// TODO: НЕ РАБОТАЕТ
 			LOGGER.error(e);
-			request.getSession().setAttribute(EXCEPTION, e.getMessage());
+			request.getSession().setAttribute(EXCEPTION, e);
 			response.sendError(500, e.getMessage());
 		}
 	}

@@ -17,4 +17,5 @@ private static final Logger LOGGER = LogManager.getLogger(класс.class);
 + 15) Тесты;
 + 16) Пользовательские теги .tld;
 17) Фильтр на проверку бана
-18) Поменять переменные в локализации на boolean и уже локализация из jsp
++ 18) Поменять переменные в локализации на boolean и уже локализация из jsp
+19) Validation EditProfile AddMovie EditMovie

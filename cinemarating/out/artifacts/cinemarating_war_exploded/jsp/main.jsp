@@ -38,6 +38,19 @@
                     <ul class="breadcrumb">
                         <li><a href="${pageContext.request.contextPath}/controller?command=show_main_page">Home</a></li>
                     </ul>
+                    <c:if test="${movieDeletedStatus == true}">
+                        <div class="alert alert-info">
+                            <span class="close" data-dismiss="alert">&times;</span>
+                            <fmt:message key="message.movieDeleted" bundle="${ rb }" />
+                        </div>
+                    </c:if>
+                    <c:if test="${deleteUserStatus == true}">
+                        <div class="alert alert-info">
+                            <span class="close" data-dismiss="alert">&times;</span>
+                            <fmt:message key="message.userDeleted" bundle="${ rb }" />
+                        </div>
+                    </c:if>
+
                     <h1><a name="welcome"></a>Welcome</h1>
                     <p>Welcome to our website. Here you can see new movies, rate them and get status to be the best and cleverest reviewer ever.</p>
                     <hr>
@@ -88,8 +101,18 @@
                 </div>
                     <ctg:admin>
                         <div class="col-sm-2 sidenav">
-                            <div class="well">
-                                <a href="${pageContext.request.contextPath}/controller?command=show_ban_messages">Ban Messages</a>
+                            <div class="well text-center">
+                                <form method="GET" class="form-horizontal" action="${pageContext.request.contextPath}/controller">
+                                    <input type="hidden" name="command" value="redirect"/>
+                                    <input type="hidden" name="next" value="path.page.addMovie"/>
+                                    <input class="btn btn-primary" type="submit" value="<fmt:message key="button.addMovie" bundle="${ rb }" />" />
+                                </form>
+                            </div>
+                            <div class="well text-center">
+                                <form method="GET" class="form-horizontal" action="${pageContext.request.contextPath}/controller">
+                                    <input type="hidden" name="command" value="show_ban_messages"/>
+                                    <input class="btn btn-primary" type="submit" value="<fmt:message key="button.showBanMessages" bundle="${ rb }" />" />
+                                </form>
                             </div>
                         </div>
                     </ctg:admin>

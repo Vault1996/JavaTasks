@@ -17,7 +17,6 @@
             <taglib-location>/WEB-INF/tld/custom.tld</taglib-location>
         </taglib>
     </jsp-config>
-<!--
     <error-page>
         <error-code>500</error-code>
         <location>/jsp/error/error.jsp</location>
@@ -27,5 +26,4 @@
         <exception-type>java.lang.Exception</exception-type>
         <location>/jsp/error/error.jsp</location>
     </error-page>
--->
 </web-app>

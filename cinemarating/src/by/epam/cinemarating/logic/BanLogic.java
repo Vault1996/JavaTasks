@@ -130,4 +130,34 @@ public class BanLogic {
 			}
 		}
 	}
+
+	public void deleteAllBanMessages() throws LogicException{
+		ConnectionPool connectionPool = ConnectionPool.getInstance();
+		WrapperConnection connection = connectionPool.takeConnection().orElseThrow(LogicException::new);
+		BanMessageDAO banMessageDAO = new BanMessageDAO(connection);
+		try {
+			banMessageDAO.deleteAllBanMessages();
+		} catch (DAOException e) {
+			throw new LogicException(ERROR_MESSAGE, e);
+		} finally {
+			if (connection != null) {
+				connectionPool.returnConnection(connection);
+			}
+		}
+	}
+
+	public void banUser(Ban ban) throws LogicException{
+		ConnectionPool connectionPool = ConnectionPool.getInstance();
+		WrapperConnection connection = connectionPool.takeConnection().orElseThrow(LogicException::new);
+		BanDAO banDAO = new BanDAO(connection);
+		try {
+			banDAO.insert(ban);
+		} catch (DAOException e) {
+			throw new LogicException(ERROR_MESSAGE, e);
+		} finally {
+			if (connection != null) {
+				connectionPool.returnConnection(connection);
+			}
+		}
+	}
 }

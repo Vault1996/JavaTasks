@@ -33,10 +33,10 @@
                 <li><a href="${pageContext.request.contextPath}/controller?command=show_main_page">Home</a></li>
                 <li><a href="#">${user.login}</a></li>
             </ul>
-            <c:if test="${deleteUserStatus == true}">
+            <c:if test="${userBannedStatus == true}">
                 <div class="alert alert-info">
                     <span class="close" data-dismiss="alert">&times;</span>
-                    <fmt:message key="message.userDeleted" bundle="${ rb }" />
+                    <fmt:message key="message.userBanned" bundle="${ rb }" />
                 </div>
             </c:if>
             <h1>${user.login}</h1>
@@ -49,11 +49,20 @@
                 <h3>Surname: <small>${user.surname}</small></h3>
             </div>
             <ctg:admin>
-                <form method="POST" class="form-horizontal" action="${pageContext.request.contextPath}/controller">
-                    <input type="hidden" name="command" value="delete_user"/>
-                    <input type="hidden" name="user_id" value="${user.userId}"/>
-                    <input class="btn btn-primary" type="submit" value="<fmt:message key="button.deleteUser" bundle="${ rb }" />" />
-                </form>
+                <div class="clearfix">
+                    <c:if test="${not isBanned}">
+                        <form style="float: left;" method="POST" class="form-horizontal" action="${pageContext.request.contextPath}/controller">
+                            <input type="hidden" name="command" value="show_ban_user"/>
+                            <input type="hidden" name="user_id" value="${user.userId}"/>
+                            <input class="btn btn-primary" type="submit" value="<fmt:message key="button.banUser" bundle="${ rb }" />" />
+                        </form>
+                    </c:if>
+                    <form style="float: right;" method="POST" class="form-horizontal" action="${pageContext.request.contextPath}/controller">
+                        <input type="hidden" name="command" value="delete_user"/>
+                        <input type="hidden" name="user_id" value="${user.userId}"/>
+                        <input class="btn btn-primary" type="submit" value="<fmt:message key="button.deleteUser" bundle="${ rb }" />" />
+                    </form>
+                </div>
             </ctg:admin>
             <hr>
         </div>

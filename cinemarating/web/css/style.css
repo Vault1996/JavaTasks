@@ -4,7 +4,7 @@
     display: block;
     width: 280px;
     padding: 20px 40px;
-    margin: 0 auto;
+    margin: 10px auto;
     transform: translateY(10%);
 }
 .login-form > {
@@ -52,6 +52,7 @@ body {
     left: 0;
     bottom: 0;
     width: 100%;
+    margin-top: 100px;
     height: 230px;
 }
 

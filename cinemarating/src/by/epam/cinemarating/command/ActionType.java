@@ -21,7 +21,14 @@ public enum ActionType {
 	SHOW_EDIT_PROFILE(new ShowEditProfileCommand()),
 	DELETE_USER(new DeleteUserCommand()),
 	BAN_MESSAGE(new BanMessageCommand()),
-	SHOW_BAN_MESSAGES(new ShowBanMessagesCommand());
+	SHOW_BAN_MESSAGES(new ShowBanMessagesCommand()),
+	DELETE_ALL_BAN_MESSAGES(new DeleteAllBanMessagesCommand()),
+	ADD_MOVIE(new AddMovieCommand()),
+	DELETE_MOVIE(new DeleteMovieCommand()),
+	SHOW_EDIT_MOVIE(new ShowEditMovieCommand()),
+	EDIT_MOVIE(new EditMovieCommand()),
+	SHOW_BAN_USER(new ShowBanUserCommand()),
+	BAN_USER(new BanUserCommand());
 
 	private ActionCommand actionCommand;
 

@@ -52,13 +52,29 @@
                     </c:if>
                     <h1>${movie.name}</h1>
                     <hr>
-                    <div class="clearfix">
-                        <img class = "main img-rounded img-thumbnail" src = "${pageContext.request.contextPath}/${movie.poster}" alt="${movie.name}"/>
-                        <h3>Rating: <small>${movie.rating}</small></h3>
-                        <h3>Country: <small>${movie.country}</small></h3>
-                        <h3>Year: <small>${movie.year}</small></h3>
-                        <h3><a name="discription"></a>Description</h3>
-                        <p>${movie.description}</p>
+                    <div>
+                        <div class="clearfix">
+                            <img class = "main img-rounded img-thumbnail" src = "${pageContext.request.contextPath}/${movie.poster}" alt="${movie.name}"/>
+                            <h3>Rating: <small>${movie.rating}</small></h3>
+                            <h3>Country: <small>${movie.country}</small></h3>
+                            <h3>Year: <small>${movie.year}</small></h3>
+                            <h3><a name="discription"></a>Description</h3>
+                            <p>${movie.description}</p>
+                        </div>
+                        <ctg:admin>
+                            <div class="clearfix">
+                                <form style="float: left;" method="POST" class="form-horizontal" action="${pageContext.request.contextPath}/controller">
+                                    <input type="hidden" name="command" value="show_edit_movie"/>
+                                    <input type="hidden" name="movie_id" value="${movie.movieId}"/>
+                                    <input class="btn btn-primary" type="submit" value="<fmt:message key="button.editMovie" bundle="${ rb }" />" />
+                                </form>
+                                <form style="float: right;" method="POST" class="form-horizontal" action="${pageContext.request.contextPath}/controller">
+                                    <input type="hidden" name="command" value="delete_movie"/>
+                                    <input type="hidden" name="movie_id" value="${movie.movieId}"/>
+                                    <input class="btn btn-primary" type="submit" value="<fmt:message key="button.deleteMovie" bundle="${ rb }" />" />
+                                </form>
+                            </div>
+                        </ctg:admin>
                     </div>
                     <hr>
                     <div>
@@ -133,6 +149,9 @@
                         </c:if>
                         <div>
                             <h3>Reviews</h3>
+                            <c:if test="${reviews.isEmpty()}">
+                                <h4>No reviews found</h4>
+                            </c:if>
                             <c:forEach var="review" items="${reviews}">
                                 <div class="well">
                                     <div class="container-fluid">

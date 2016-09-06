@@ -35,6 +35,10 @@
 
             <h1><a name="users"></a>Users</h1>
 
+            <c:if test="${users.isEmpty()}">
+                <h3>Users not found</h3>
+            </c:if>
+
             <c:set var="numberOfElementsOnPage" value="5" scope="page"/>
             <c:forEach var="user" items="${users}" begin="${pageNumber * numberOfElementsOnPage}" end="${pageNumber * numberOfElementsOnPage + numberOfElementsOnPage - 1}">
                 <div class="container-fluid">
@@ -53,7 +57,9 @@
                 </div>
                 <hr>
             </c:forEach>
-            <ctg:pagination numberOfElements="${users.size()}" numberOfElementsOnPage="${numberOfElementsOnPage}"/>
+            <c:if test="${not users.isEmpty()}">
+                <ctg:pagination numberOfElements="${users.size()}" numberOfElementsOnPage="${numberOfElementsOnPage}"/>
+            </c:if>
         </div>
     </div>
 </div>

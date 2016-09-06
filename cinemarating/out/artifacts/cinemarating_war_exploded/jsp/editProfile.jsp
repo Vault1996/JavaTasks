@@ -43,35 +43,35 @@
                                 <fmt:message key="label.photo" bundle="${ rb }" />
                             </label>
                             <input type="file" name="photo" class="form-control" id="photo" accept="image/png,image/jpeg"
-                                   placeholder=<fmt:message key="label.photo" bundle="${ rb }" /> />
+                                   placeholder="<fmt:message key="label.photo" bundle="${ rb }" />" />
                         </div>
                         <div class="form-group">
                             <label for="name" class="control-label compulsory">
                                 <fmt:message key="label.name" bundle="${ rb }" />
                             </label>
                             <input id="name" type="text" name="name" value="${userEdited.name}" class="form-control" autofocus
-                                    maxlength="30" placeholder=<fmt:message key="label.name" bundle="${ rb }" /> />
+                                    maxlength="30" placeholder="<fmt:message key="label.name" bundle="${ rb }" />" />
                         </div>
                         <div class="form-group">
                             <label for="surname" class="control-label compulsory">
                                 <fmt:message key="label.surname" bundle="${ rb }" />
                             </label>
                             <input id="surname" type="text" name="surname" value="${userEdited.surname}" class="form-control"
-                                    maxlength="30" placeholder=<fmt:message key="label.surname" bundle="${ rb }" /> />
+                                    maxlength="30" placeholder="<fmt:message key="label.surname" bundle="${ rb }" />" />
                         </div>
                         <div class="form-group">
                             <label for="newPassword" class="control-label compulsory">
                                 <fmt:message key="label.newPassword" bundle="${ rb }" />
                             </label>
                             <input id="newPassword" type="password" name="newPassword" class="form-control"
-                                   minlength="4" maxlength="20" placeholder=<fmt:message key="label.newPassword" bundle="${ rb }" /> />
+                                   minlength="4" maxlength="20" placeholder="<fmt:message key="label.newPassword" bundle="${ rb }" />" />
                         </div>
                         <div class="form-group">
                             <label for="repeatPassword" class="control-label compulsory">
                                 <fmt:message key="label.repeatPassword" bundle="${ rb }" />
                             </label>
                             <input id="repeatPassword" type="password" name="repeatPassword" class="form-control"
-                                   minlength="4" maxlength="20" placeholder=<fmt:message key="label.repeatPassword" bundle="${ rb }" /> />
+                                   minlength="4" maxlength="20" placeholder="<fmt:message key="label.repeatPassword" bundle="${ rb }" />" />
                         </div>
                         <input class="btn btn-primary btn-block" type="submit" value="<fmt:message key="button.submit" bundle="${ rb }" />" />
                         <br/>

@@ -35,7 +35,20 @@
 
             <h1>Ban Messages</h1>
 
-            <c:set var="numberOfElementsOnPage" value="2" scope="page"/>
+            <c:if test="${banMessages.isEmpty()}">
+                <h3>No messages found</h3>
+            </c:if>
+
+            <c:if test="${not banMessages.isEmpty()}">
+                <div class="text-center">
+                    <form method="POST" class="form-horizontal" action="${pageContext.request.contextPath}/controller">
+                        <input type="hidden" name="command" value="delete_all_ban_messages"/>
+                        <input class="btn btn-primary" type="submit" value="<fmt:message key="button.deleteMessages" bundle="${ rb }" />" />
+                    </form>
+                </div>
+            </c:if>
+
+            <c:set var="numberOfElementsOnPage" value="5" scope="page"/>
 
             <c:forEach var="message" items="${banMessages}" begin="${pageNumber * numberOfElementsOnPage}" end="${pageNumber * numberOfElementsOnPage + numberOfElementsOnPage - 1}">
                 <div class="container-fluid">
@@ -51,7 +64,9 @@
                 </div>
                 <hr>
             </c:forEach>
-            <ctg:pagination numberOfElements="${banMessages.size()}" numberOfElementsOnPage="${numberOfElementsOnPage}"/>
+            <c:if test="${not banMessages.isEmpty()}">
+                <ctg:pagination numberOfElements="${banMessages.size()}" numberOfElementsOnPage="${numberOfElementsOnPage}"/>
+            </c:if>
         </div>
     </div>
 </div>
