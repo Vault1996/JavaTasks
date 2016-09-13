@@ -4,6 +4,7 @@ import by.epam.cinemarating.command.*;
 import by.epam.cinemarating.database.ConnectionPool;
 import by.epam.cinemarating.memento.Caretaker;
 import by.epam.cinemarating.memento.MementoRequestAttributes;
+import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -44,12 +45,10 @@ public class Controller extends HttpServlet {
 	}
 	private void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-		//TODO: ЗАЩИТА ОТ F5; session.lastCommand
 		try {
 			String command = request.getParameter(COMMAND);
 			ActionCommand actionCommand = ActionFactory.defineCommand(command);
-			String page = actionCommand.execute(request);
+			String page = actionCommand.execute(request, response);
 
 			//***Saving changes after every command***
 			MementoRequestAttributes memento = (MementoRequestAttributes) request.getSession().getAttribute(MEMENTO);
@@ -67,9 +66,8 @@ public class Controller extends HttpServlet {
 			//*
 			request.getRequestDispatcher(page).forward(request, response);
 		} catch (UnsupportedCommandException | CommandException e) {
-			// TODO: НЕ РАБОТАЕТ
 			LOGGER.error(e);
-			request.getSession().setAttribute(EXCEPTION, e);
+			request.getSession().setAttribute(EXCEPTION, ExceptionUtils.getStackTrace(e));
 			response.sendError(500, e.getMessage());
 		}
 	}

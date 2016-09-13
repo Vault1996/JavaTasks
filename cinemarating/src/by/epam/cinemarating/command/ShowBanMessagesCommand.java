@@ -6,6 +6,7 @@ import by.epam.cinemarating.logic.LogicException;
 import by.epam.cinemarating.resource.ConfigurationManager;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 public class ShowBanMessagesCommand implements ActionCommand {
@@ -15,7 +16,7 @@ public class ShowBanMessagesCommand implements ActionCommand {
 	private static final String PAGE_BAN_MESSAGES = "path.page.banMessages";
 
 	@Override
-	public String execute(HttpServletRequest request) throws CommandException {
+	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
 		BanLogic banLogic = new BanLogic();
 		try {
 			List<BanMessageInfo> banMessageInfoList = banLogic.findAllBanMessages();

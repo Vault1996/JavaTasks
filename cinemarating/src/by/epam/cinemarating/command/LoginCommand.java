@@ -11,6 +11,7 @@ import by.epam.cinemarating.resource.ConfigurationManager;
 import by.epam.cinemarating.validation.AuthenticationValidator;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.sql.Timestamp;
 import java.util.Optional;
 
@@ -31,7 +32,7 @@ public class LoginCommand implements ActionCommand {
 
 
 	@Override
-	public String execute(HttpServletRequest request) throws CommandException{
+	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException{
 		String login = request.getParameter(LOGIN);
 		String password = request.getParameter(PASSWORD);
 		AuthenticationValidator validator = new AuthenticationValidator();

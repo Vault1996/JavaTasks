@@ -10,6 +10,7 @@ import by.epam.cinemarating.validation.EditProfileValidator;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import java.io.IOException;
 import java.nio.file.Paths;
@@ -32,7 +33,7 @@ public class EditProfileCommand implements ActionCommand {
 	private static final String USER_EDITED = "userEdited";
 
 	@Override
-	public String execute(HttpServletRequest request) throws CommandException {
+	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
 		long userId = Long.valueOf(request.getParameter(USER_ID));
 		String name = request.getParameter(NAME);
 		String surname = request.getParameter(SURNAME);

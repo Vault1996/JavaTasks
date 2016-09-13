@@ -3,6 +3,7 @@ package by.epam.cinemarating.command;
 import by.epam.cinemarating.resource.ConfigurationManager;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 public class ShowBanCommand implements ActionCommand {
 	private static final String USER_ID = "userId";
@@ -10,11 +11,8 @@ public class ShowBanCommand implements ActionCommand {
 	private static final String ACTIVE_USER = "activeUser";
 
 	@Override
-	public String execute(HttpServletRequest request) throws CommandException {
-		//User activeUser = (User) request.getSession().getAttribute(ACTIVE_USER);
-		//long userId = activeUser.getUserId();
+	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
 		request.getSession().invalidate();
-		//request.setAttribute(USER_ID, userId);
 		return ConfigurationManager.getProperty(PAGE_BAN);
 	}
 }

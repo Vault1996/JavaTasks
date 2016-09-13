@@ -6,6 +6,7 @@ import by.epam.cinemarating.logic.UserLogic;
 import by.epam.cinemarating.resource.ConfigurationManager;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 public class AllUsersCommand implements ActionCommand {
@@ -15,7 +16,7 @@ public class AllUsersCommand implements ActionCommand {
 	private static final String ERROR_MESSAGE = "Problem in All Users Command: ";
 
 	@Override
-	public String execute(HttpServletRequest request) throws CommandException {
+	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
 		try {
 			UserLogic userLogic = new UserLogic();
 			List<User> users = userLogic.getAllUsers();

@@ -6,6 +6,7 @@ import by.epam.cinemarating.logic.MovieLogic;
 import by.epam.cinemarating.resource.ConfigurationManager;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 
@@ -17,7 +18,7 @@ public class AllMoviesCommand implements ActionCommand {
 	private static final String ERROR_MESSAGE = "Problem in All Movies Command";
 
 	@Override
-	public String execute(HttpServletRequest request) throws CommandException{
+	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException{
 		try {
 			String sortBy = request.getParameter(SORT_BY);
 			MovieLogic movieLogic = new MovieLogic();

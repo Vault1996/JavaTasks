@@ -39,6 +39,12 @@
                     <fmt:message key="message.userBanned" bundle="${ rb }" />
                 </div>
             </c:if>
+            <c:if test="${unbanUserStatus == true}">
+                <div class="alert alert-info">
+                    <span class="close" data-dismiss="alert">&times;</span>
+                    <fmt:message key="message.userUnbanned" bundle="${ rb }" />
+                </div>
+            </c:if>
             <h1>${user.login}</h1>
             <hr>
             <div class="clearfix">
@@ -50,6 +56,13 @@
             </div>
             <ctg:admin>
                 <div class="clearfix">
+                    <c:if test="${isBanned}">
+                        <form style="float: left;" method="POST" class="form-horizontal" action="${pageContext.request.contextPath}/controller">
+                            <input type="hidden" name="command" value="unban_user"/>
+                            <input type="hidden" name="user_id" value="${user.userId}"/>
+                            <input class="btn btn-primary" type="submit" value="<fmt:message key="button.unbanUser" bundle="${ rb }" />" />
+                        </form>
+                    </c:if>
                     <c:if test="${not isBanned}">
                         <form style="float: left;" method="POST" class="form-horizontal" action="${pageContext.request.contextPath}/controller">
                             <input type="hidden" name="command" value="show_ban_user"/>

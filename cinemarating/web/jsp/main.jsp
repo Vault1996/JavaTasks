@@ -27,14 +27,19 @@
 
         <div class="container-fluid text-center">
             <div class="row content">
-                <%--
-                <div class="col-sm-2 sidenav">
-                    <!-- EMPTY -->
-                    <p><a href="#welcome">Welcome</a></p>
-                    <p><a href="#top3">Top 3 Movies</a></p>
+                <div class="col-sm-2 text-center">
+                    <c:if test="${not empty lastMovie}">
+                        <h3>Last Movie</h3>
+                        <hr>
+                        <h3>
+                            <a href="${pageContext.request.contextPath}/controller?command=show_movie&movie_id=${lastMovie.movieId}">
+                                    ${lastMovie.name}
+                            </a>
+                        </h3>
+                        <img class = "mini img-rounded img-thumbnail" src = "${pageContext.request.contextPath}/${lastMovie.poster}" alt="${lastMovie.name}"/>
+                    </c:if>
                 </div>
-                --%>
-                <div class="col-sm-8 col-sm-offset-2 text-left">
+                <div class="col-sm-8 text-left">
                     <ul class="breadcrumb">
                         <li><a href="${pageContext.request.contextPath}/controller?command=show_main_page">Home</a></li>
                     </ul>
@@ -51,10 +56,10 @@
                         </div>
                     </c:if>
 
-                    <h1><a name="welcome"></a>Welcome</h1>
+                    <h1>Welcome</h1>
                     <p>Welcome to our website. Here you can see new movies, rate them and get status to be the best and cleverest reviewer ever.</p>
                     <hr>
-                    <h3> <a name="top3"></a> Top 3 Movies</h3>
+                    <h3> Top 3 Movies</h3>
                     <div id="myCarousel" class="carousel slide" data-ride="carousel">
                         <!-- Indicators -->
                         <ol class="carousel-indicators">

@@ -4,6 +4,7 @@ import by.epam.cinemarating.memento.Caretaker;
 import by.epam.cinemarating.memento.MementoRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 public class ChangePageCommand implements ActionCommand {
 	private static final String NEXT = "next";
@@ -12,7 +13,7 @@ public class ChangePageCommand implements ActionCommand {
 	private static final String PAGE_NUMBER = "pageNumber";
 
 	@Override
-	public String execute(HttpServletRequest request) throws CommandException {
+	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
 		String nextPage = request.getParameter(NEXT);
 
 		MementoRequestAttributes memento = (MementoRequestAttributes) request.getSession().getAttribute(MEMENTO);

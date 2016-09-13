@@ -6,6 +6,7 @@ import by.epam.cinemarating.logic.MovieLogic;
 import by.epam.cinemarating.resource.ConfigurationManager;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 public class ShowEditMovieCommand implements ActionCommand {
 	private static final String PAGE_EDIT_MOVIE = "path.page.editMovie";
@@ -14,7 +15,7 @@ public class ShowEditMovieCommand implements ActionCommand {
 	private static final String MOVIE_EDITED = "movieEdited";
 
 	@Override
-	public String execute(HttpServletRequest request) throws CommandException {
+	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
 		long movieId = Long.valueOf(request.getParameter(MOVIE_ID));
 		MovieLogic movieLogic = new MovieLogic();
 		try{

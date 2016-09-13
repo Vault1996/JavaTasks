@@ -6,6 +6,7 @@ import by.epam.cinemarating.logic.BanLogic;
 import by.epam.cinemarating.logic.LogicException;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.sql.Timestamp;
 
 public class BanUserCommand implements ActionCommand {
@@ -17,7 +18,7 @@ public class BanUserCommand implements ActionCommand {
 	private static final String USER_BANNED_STATUS = "userBannedStatus";
 
 	@Override
-	public String execute(HttpServletRequest request) throws CommandException {
+	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
 		long userId = Long.valueOf(request.getParameter(USER_ID));
 		Timestamp till = DateConverter.stringToTimestamp(request.getParameter(TILL));
 		String reason = request.getParameter(REASON);

@@ -117,4 +117,19 @@ public class MovieLogic {
 			}
 		}
 	}
+
+	public long getLastMovieId(Movie movie) throws LogicException {
+		ConnectionPool connectionPool = ConnectionPool.getInstance();
+		WrapperConnection connection = connectionPool.takeConnection().orElseThrow(LogicException::new);
+		MovieDAO movieDAO = new MovieDAO(connection);
+		try {
+			return movieDAO.getLastMovieId();
+		} catch (DAOException e) {
+			throw new LogicException(ERROR_MESSAGE, e);
+		} finally {
+			if (connection != null) {
+				connectionPool.returnConnection(connection);
+			}
+		}
+	}
 }

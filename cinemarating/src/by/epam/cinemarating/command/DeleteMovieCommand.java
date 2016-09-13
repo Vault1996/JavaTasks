@@ -4,6 +4,7 @@ import by.epam.cinemarating.logic.LogicException;
 import by.epam.cinemarating.logic.MovieLogic;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 public class DeleteMovieCommand implements ActionCommand {
 	private static final String SHOW_MAIN_PAGE_COMMAND = "/controller?command=show_main_page";
@@ -12,7 +13,7 @@ public class DeleteMovieCommand implements ActionCommand {
 	private static final String MOVIE_DELETED_STATUS = "movieDeletedStatus";
 
 	@Override
-	public String execute(HttpServletRequest request) throws CommandException {
+	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
 		long movieId = Long.valueOf(request.getParameter(MOVIE_ID));
 		MovieLogic movieLogic = new MovieLogic();
 		try {

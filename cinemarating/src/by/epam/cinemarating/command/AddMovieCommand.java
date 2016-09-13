@@ -7,6 +7,7 @@ import by.epam.cinemarating.resource.ConfigurationManager;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import java.io.IOException;
 import java.nio.file.Paths;
@@ -26,7 +27,7 @@ public class AddMovieCommand implements ActionCommand {
 	private static final String PAGE_ADD_MOVIE = "path.page.addMovie";
 
 	@Override
-	public String execute(HttpServletRequest request) throws CommandException {
+	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
 		String name = request.getParameter(NAME);
 		String year = request.getParameter(YEAR);
 		String country = request.getParameter(COUNTRY);

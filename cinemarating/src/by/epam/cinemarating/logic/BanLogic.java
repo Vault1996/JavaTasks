@@ -160,4 +160,19 @@ public class BanLogic {
 			}
 		}
 	}
+
+	public void unbanUser(long userId) throws LogicException {
+		ConnectionPool connectionPool = ConnectionPool.getInstance();
+		WrapperConnection connection = connectionPool.takeConnection().orElseThrow(LogicException::new);
+		BanDAO banDAO = new BanDAO(connection);
+		try {
+			banDAO.deleteByUserId(userId);
+		} catch (DAOException e) {
+			throw new LogicException(ERROR_MESSAGE, e);
+		} finally {
+			if (connection != null) {
+				connectionPool.returnConnection(connection);
+			}
+		}
+	}
 }

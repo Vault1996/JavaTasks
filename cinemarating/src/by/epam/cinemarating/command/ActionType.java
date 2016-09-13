@@ -28,7 +28,8 @@ public enum ActionType {
 	SHOW_EDIT_MOVIE(new ShowEditMovieCommand()),
 	EDIT_MOVIE(new EditMovieCommand()),
 	SHOW_BAN_USER(new ShowBanUserCommand()),
-	BAN_USER(new BanUserCommand());
+	BAN_USER(new BanUserCommand()),
+	UNBAN_USER(new UnbanUserCommand());
 
 	private ActionCommand actionCommand;
 

@@ -39,10 +39,6 @@ public class RatingDAO extends AbstractDAO<Rating> {
 	@Override
 	public List<Rating> findAll() throws DAOException {
 		List<Rating> ratings = new ArrayList<>();
-		/*
-		ConnectionPool connectionPool = ConnectionPool.getInstance();
-		WrapperConnection connection = connectionPool.takeConnection().orElseThrow(DAOException::new);
-		*/
 		try (
 				Statement statement = connection.createStatement();
 		) {
@@ -55,7 +51,7 @@ public class RatingDAO extends AbstractDAO<Rating> {
 				ratings.add(new Rating(movieId, userId, rating, time));
 			}
 		} catch (SQLException e) {
-			throw new DAOException();
+			throw new DAOException(e);
 		}
 		return ratings;
 	}
@@ -80,7 +76,7 @@ public class RatingDAO extends AbstractDAO<Rating> {
 				ratingList.add(new Rating(movieIdField, userId, ratingField, time));
 			}
 		} catch (SQLException e) {
-			throw new DAOException();
+			throw new DAOException(e);
 		}
 		return ratingList;
 	}
@@ -100,7 +96,7 @@ public class RatingDAO extends AbstractDAO<Rating> {
 				ratingList.add(new Rating(movieId, userIdField, ratingField, time));
 			}
 		} catch (SQLException e) {
-			throw new DAOException();
+			throw new DAOException(e);
 		}
 		return ratingList;
 	}
@@ -121,7 +117,7 @@ public class RatingDAO extends AbstractDAO<Rating> {
 				rating = new Rating(movieIdField, userIdField, ratingField, time);
 			}
 		} catch (SQLException e) {
-			throw new DAOException();
+			throw new DAOException(e);
 		}
 		return Optional.ofNullable(rating);
 	}
@@ -137,7 +133,7 @@ public class RatingDAO extends AbstractDAO<Rating> {
 			statement.setInt(3, entity.getRating());
 			result = statement.executeUpdate();
 		} catch (SQLException e) {
-			throw new DAOException();
+			throw new DAOException(e);
 		}
 		return result > 0;
 	}
@@ -155,7 +151,7 @@ public class RatingDAO extends AbstractDAO<Rating> {
 			statement.setLong(1, movieId);
 			result = statement.executeUpdate();
 		} catch (SQLException e) {
-			throw new DAOException();
+			throw new DAOException(e);
 		}
 		return result > 0;
 	}
@@ -168,7 +164,7 @@ public class RatingDAO extends AbstractDAO<Rating> {
 			statement.setLong(1, userId);
 			result = statement.executeUpdate();
 		} catch (SQLException e) {
-			throw new DAOException();
+			throw new DAOException(e);
 		}
 		return result > 0;
 	}
@@ -182,7 +178,7 @@ public class RatingDAO extends AbstractDAO<Rating> {
 			statement.setLong(2, userId);
 			result = statement.executeUpdate();
 		} catch (SQLException e) {
-			throw new DAOException();
+			throw new DAOException(e);
 		}
 		return result > 0;
 	}
@@ -198,7 +194,7 @@ public class RatingDAO extends AbstractDAO<Rating> {
 			statement.setLong(3, entity.getUserId());
 			result = statement.executeUpdate();
 		} catch (SQLException e) {
-			throw new DAOException();
+			throw new DAOException(e);
 		}
 		return result > 0;
 	}

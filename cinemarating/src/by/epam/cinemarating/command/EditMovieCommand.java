@@ -6,6 +6,7 @@ import by.epam.cinemarating.logic.MovieLogic;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import java.io.IOException;
 import java.nio.file.Paths;
@@ -22,7 +23,7 @@ public class EditMovieCommand implements ActionCommand {
 	private static final String MOVIE_IMAGES_LOCATION = "images/movies/";
 
 	@Override
-	public String execute(HttpServletRequest request) throws CommandException {
+	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
 		long movieId = Long.valueOf(request.getParameter(MOVIE_ID));
 		String name = request.getParameter(NAME);
 		String year = request.getParameter(YEAR);

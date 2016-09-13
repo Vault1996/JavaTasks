@@ -43,11 +43,6 @@
         </div>
     </div>
 </div>
-<footer class="container-fluid text-center">
-    <div>
-        <p>Contact info:</p>
-    </div>
-    <p>Email: cinema@gmail.com</p>
-</footer>
+<%@include file="/jsp/jspf/footer.jspf"%>
 </body>
 </html>

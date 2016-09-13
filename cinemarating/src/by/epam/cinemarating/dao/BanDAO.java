@@ -23,6 +23,7 @@ public class BanDAO extends AbstractDAO<Ban> {
 	private static final String INSERT_BAN = "INSERT INTO ban(user_id,till,reason) VALUES(?,?,?)";
 	private static final String UPDATE_BAN_BY_ID = "UPDATE ban SET user_id=?,till=?,reason=? WHERE ban_id=?";
 	private static final String DELETE_BAN_BY_ID = "DELETE FROM ban WHERE ban_id=?";
+	private static final String DELETE_BAN_BY_USER_ID = "DELETE FROM ban WHERE user_id=?";
 
 	public BanDAO(WrapperConnection connection) {
 		super(connection);
@@ -43,7 +44,7 @@ public class BanDAO extends AbstractDAO<Ban> {
 				bans.add(new Ban(banId, userId, till, reason));
 			}
 		} catch (SQLException e) {
-			throw new DAOException();
+			throw new DAOException(e);
 		}
 		return bans;
 	}
@@ -63,7 +64,7 @@ public class BanDAO extends AbstractDAO<Ban> {
 				ban = new Ban(id, userId, till, reason);
 			}
 		} catch (SQLException e) {
-			throw new DAOException();
+			throw new DAOException(e);
 		}
 		return Optional.ofNullable(ban);
 	}
@@ -82,7 +83,7 @@ public class BanDAO extends AbstractDAO<Ban> {
 				ban = new Ban(banId, userId, till, reason);
 			}
 		} catch (SQLException e) {
-			throw new DAOException();
+			throw new DAOException(e);
 		}
 		return Optional.ofNullable(ban);
 	}
@@ -98,7 +99,7 @@ public class BanDAO extends AbstractDAO<Ban> {
 			statement.setString(3, entity.getReason());
 			result = statement.executeUpdate();
 		} catch (SQLException e) {
-			throw new DAOException();
+			throw new DAOException(e);
 		}
 		return result > 0;
 	}
@@ -112,7 +113,7 @@ public class BanDAO extends AbstractDAO<Ban> {
 			statement.setLong(1, id);
 			result = statement.executeUpdate();
 		} catch (SQLException e) {
-			throw new DAOException();
+			throw new DAOException(e);
 		}
 		return result > 0;
 	}
@@ -129,7 +130,20 @@ public class BanDAO extends AbstractDAO<Ban> {
 			statement.setLong(4, entity.getBanId());
 			result = statement.executeUpdate();
 		} catch (SQLException e) {
-			throw new DAOException();
+			throw new DAOException(e);
+		}
+		return result > 0;
+	}
+
+	public boolean deleteByUserId(long userId) throws DAOException {
+		int result;
+		try(
+				PreparedStatement statement = connection.prepareStatement(DELETE_BAN_BY_USER_ID);
+		) {
+			statement.setLong(1, userId);
+			result = statement.executeUpdate();
+		} catch (SQLException e) {
+			throw new DAOException(e);
 		}
 		return result > 0;
 	}

@@ -6,6 +6,7 @@ import by.epam.cinemarating.logic.UserLogic;
 import by.epam.cinemarating.resource.ConfigurationManager;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 public class ShowEditProfileCommand implements ActionCommand {
 	private static final String PAGE_EDIT_REVIEW = "path.page.editProfile";
@@ -14,7 +15,7 @@ public class ShowEditProfileCommand implements ActionCommand {
 	private static final String ERROR_MESSAGE = "Problem in Show Edit Profile Command";
 
 	@Override
-	public String execute(HttpServletRequest request) throws CommandException {
+	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
 		long userId = Long.valueOf(request.getParameter(USER_ID));
 		UserLogic userLogic = new UserLogic();
 		try {

@@ -31,6 +31,7 @@ public class MovieDAO extends AbstractDAO<Movie> {
 	private static final String UPDATE_MOVIE_BY_ID = "UPDATE movie SET `name`=?,`year`=?,description=?,country=?," +
 			"rating=?,poster=? WHERE movie_id=?";
 	private static final String DELETE_MOVIE_BY_ID = "DELETE FROM movie WHERE movie_id=?";
+	private static final String GET_LAST_MOVIE_ID = "SELECT LAST(movie_id) FROM movie";
 
 
 	public MovieDAO(WrapperConnection connection) {
@@ -40,10 +41,6 @@ public class MovieDAO extends AbstractDAO<Movie> {
 	@Override
 	public List<Movie> findAll() throws DAOException {
 		List<Movie> movies = new ArrayList<>();
-		/*
-		ConnectionPool connectionPool = ConnectionPool.getInstance();
-		WrapperConnection connection = connectionPool.takeConnection().orElseThrow(DAOException::new);
-		*/
 		try (
 				Statement statement = connection.createStatement();
 		) {
@@ -60,7 +57,7 @@ public class MovieDAO extends AbstractDAO<Movie> {
 						country, rating, poster));
 			}
 		} catch (SQLException e) {
-			throw new DAOException();
+			throw new DAOException(e);
 		}
 		return movies;
 	}
@@ -84,7 +81,7 @@ public class MovieDAO extends AbstractDAO<Movie> {
 						country, rating, poster);
 			}
 		} catch (SQLException e) {
-			throw new DAOException();
+			throw new DAOException(e);
 		}
 		return Optional.ofNullable(movie);
 	}
@@ -103,7 +100,7 @@ public class MovieDAO extends AbstractDAO<Movie> {
 			statement.setString(6, entity.getPoster());
 			result = statement.executeUpdate();
 		} catch (SQLException e) {
-			throw new DAOException();
+			throw new DAOException(e);
 		}
 		return result > 0;
 	}
@@ -117,7 +114,7 @@ public class MovieDAO extends AbstractDAO<Movie> {
 			statement.setLong(1, id);
 			result = statement.executeUpdate();
 		} catch (SQLException e) {
-			throw new DAOException();
+			throw new DAOException(e);
 		}
 		return result > 0;
 	}
@@ -137,8 +134,23 @@ public class MovieDAO extends AbstractDAO<Movie> {
 			statement.setLong(7, entity.getMovieId());
 			result = statement.executeUpdate();
 		} catch (SQLException e) {
-			throw new DAOException();
+			throw new DAOException(e);
 		}
 		return result > 0;
+	}
+
+	public long getLastMovieId() throws DAOException {
+		try(
+				Statement statement = connection.createStatement();
+		) {
+			ResultSet resultSet = statement.executeQuery(GET_LAST_MOVIE_ID);
+			long result = -1;
+			if (resultSet.next()) {
+				result = resultSet.getLong(MOVIE_ID);
+			}
+			return result;
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		}
 	}
 }

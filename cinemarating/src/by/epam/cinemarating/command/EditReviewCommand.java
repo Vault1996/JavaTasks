@@ -4,6 +4,7 @@ import by.epam.cinemarating.logic.LogicException;
 import by.epam.cinemarating.logic.ReviewLogic;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 public class EditReviewCommand implements ActionCommand {
 	private static final String SHOW_MOVIE_COMMAND = "/controller?command=show_movie&movie_id=";
@@ -15,7 +16,7 @@ public class EditReviewCommand implements ActionCommand {
 	private static final String REVIEW_EDITED_STATUS = "reviewEditedStatus";
 
 	@Override
-	public String execute(HttpServletRequest request) throws CommandException {
+	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
 		long movieId = Long.valueOf(request.getParameter(MOVIE_ID));
 		long userId = Long.valueOf(request.getParameter(USER_ID));
 		int rating = Integer.valueOf(request.getParameter(RATING));

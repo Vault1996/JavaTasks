@@ -39,7 +39,7 @@ public class UserDAO extends AbstractDAO<User> {
 	private static final String UPDATE_USER_BY_ID = "UPDATE `user` SET role=?,login=?,`password`=?,email=?," +
 			"create_date=?,`name`=?,surname=?,`status`=?,photo=? WHERE user_id=?";
 	private static final String DELETE_USER_BY_ID = "DELETE FROM `user` WHERE user_id=?";
-
+	private static final String GET_LAST_USER_ID = "SELECT LAST(user_id) FROM `user`";
 
 
 	public UserDAO(WrapperConnection connection) {
@@ -49,10 +49,6 @@ public class UserDAO extends AbstractDAO<User> {
 	@Override
 	public List<User> findAll() throws DAOException {
 		List<User> users = new ArrayList<>();
-		/*
-		ConnectionPool connectionPool = ConnectionPool.getInstance();
-		WrapperConnection connection = connectionPool.takeConnection().orElseThrow(DAOException::new);
-		*/
 		try (
 				Statement statement = connection.createStatement();
 		) {
@@ -231,7 +227,7 @@ public class UserDAO extends AbstractDAO<User> {
 			statement.setString(8, entity.getPhoto());
 			result = statement.executeUpdate();
 		} catch (SQLException e) {
-			throw new DAOException();
+			throw new DAOException(e);
 		}
 		return result > 0;
 	}
@@ -245,7 +241,7 @@ public class UserDAO extends AbstractDAO<User> {
 			statement.setLong(1, id);
 			result = statement.executeUpdate();
 		} catch (SQLException e) {
-			throw new DAOException();
+			throw new DAOException(e);
 		}
 		return result > 0;
 	}
@@ -268,10 +264,24 @@ public class UserDAO extends AbstractDAO<User> {
 			statement.setLong(10, entity.getUserId());
 			result = statement.executeUpdate();
 		} catch (SQLException e) {
-			throw new DAOException();
+			throw new DAOException(e);
 		}
 		return result > 0;
 	}
 
+	public long getLastUserId() throws DAOException {
+		try(
+				Statement statement = connection.createStatement();
+		) {
+			ResultSet resultSet = statement.executeQuery(GET_LAST_USER_ID);
+			long result = -1;
+			if (resultSet.next()) {
+				result = resultSet.getLong(USER_ID);
+			}
+			return result;
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		}
+	}
 
 }

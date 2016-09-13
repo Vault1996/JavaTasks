@@ -51,7 +51,7 @@ public class ReviewDAO extends AbstractDAO<Review> {
 				reviews.add(new Review(movieId, userId, review, time));
 			}
 		} catch (SQLException e) {
-			throw new DAOException();
+			throw new DAOException(e);
 		}
 		return reviews;
 	}
@@ -76,7 +76,7 @@ public class ReviewDAO extends AbstractDAO<Review> {
 				reviews.add(new Review(movieIdField, userId, reviewField, time));
 			}
 		} catch (SQLException e) {
-			throw new DAOException();
+			throw new DAOException(e);
 		}
 		return reviews;
 	}
@@ -96,7 +96,7 @@ public class ReviewDAO extends AbstractDAO<Review> {
 				reviews.add(new Review(movieId, userIdField, reviewField, time));
 			}
 		} catch (SQLException e) {
-			throw new DAOException();
+			throw new DAOException(e);
 		}
 		return reviews;
 	}
@@ -117,7 +117,7 @@ public class ReviewDAO extends AbstractDAO<Review> {
 				review = new Review(movieIdField, userIdField, reviewField, time);
 			}
 		} catch (SQLException e) {
-			throw new DAOException();
+			throw new DAOException(e);
 		}
 		return Optional.ofNullable(review);
 	}
@@ -133,7 +133,7 @@ public class ReviewDAO extends AbstractDAO<Review> {
 			statement.setString(3, entity.getReview());
 			result = statement.executeUpdate();
 		} catch (SQLException e) {
-			throw new DAOException();
+			throw new DAOException(e);
 		}
 		return result > 0;
 	}
@@ -151,7 +151,7 @@ public class ReviewDAO extends AbstractDAO<Review> {
 			statement.setLong(1, movieId);
 			result = statement.executeUpdate();
 		} catch (SQLException e) {
-			throw new DAOException();
+			throw new DAOException(e);
 		}
 		return result > 0;
 	}
@@ -164,7 +164,7 @@ public class ReviewDAO extends AbstractDAO<Review> {
 			statement.setLong(1, userId);
 			result = statement.executeUpdate();
 		} catch (SQLException e) {
-			throw new DAOException();
+			throw new DAOException(e);
 		}
 		return result > 0;
 	}
@@ -178,7 +178,7 @@ public class ReviewDAO extends AbstractDAO<Review> {
 			statement.setLong(2, userId);
 			result = statement.executeUpdate();
 		} catch (SQLException e) {
-			throw new DAOException();
+			throw new DAOException(e);
 		}
 		return result > 0;
 	}
@@ -194,7 +194,7 @@ public class ReviewDAO extends AbstractDAO<Review> {
 			statement.setLong(3, entity.getUserId());
 			result = statement.executeUpdate();
 		} catch (SQLException e) {
-			throw new DAOException();
+			throw new DAOException(e);
 		}
 		return result > 0;
 	}

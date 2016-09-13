@@ -6,6 +6,7 @@ import by.epam.cinemarating.resource.ConfigurationManager;
 import by.epam.cinemarating.validation.RegistrationValidator;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 public class RegistrationCommand implements ActionCommand {
 	private static final String LOGIN = "login";
@@ -20,14 +21,11 @@ public class RegistrationCommand implements ActionCommand {
 	private static final String ERROR_REGISTRATION_MESSAGE = "errorRegistrationMessage";
 	private static final String PAGE_REGISTRATION = "path.page.registration";
 	private static final String PAGE_LOGIN = "path.page.login";
-	private static final String MESSAGE_REGISTRATION_ERROR = "message.registrationError";
 	private static final String REGISTRATION_STATUS = "registrationStatus";
-	private static final String MESSAGE_REGISTRATION_SUCCESSFUL = "message.registrationSuccessful";
-	private static final String MESSAGE_USER_OR_EMAIL_EXISTS = "message.userOrEmailExists";
 	private static final String ERROR_REGISTRATION_VALIDATION = "errorRegistrationValidation";
 
 	@Override
-	public String execute(HttpServletRequest request) throws CommandException {
+	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
 		String login = request.getParameter(LOGIN);
 		String email = request.getParameter(EMAIL);
 		String name = request.getParameter(NAME);

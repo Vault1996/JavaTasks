@@ -41,7 +41,7 @@ public class BanMessageDAO extends AbstractDAO<BanMessage>{
 				banMessages.add(new BanMessage(banId, message));
 			}
 		} catch (SQLException e) {
-			throw new DAOException();
+			throw new DAOException(e);
 		}
 		return banMessages;
 	}
@@ -59,7 +59,7 @@ public class BanMessageDAO extends AbstractDAO<BanMessage>{
 				banMessage = new BanMessage(id, message);
 			}
 		} catch (SQLException e) {
-			throw new DAOException();
+			throw new DAOException(e);
 		}
 		return Optional.ofNullable(banMessage);
 	}
@@ -74,7 +74,7 @@ public class BanMessageDAO extends AbstractDAO<BanMessage>{
 			statement.setString(2, entity.getMessage());
 			result = statement.executeUpdate();
 		} catch (SQLException e) {
-			throw new DAOException();
+			throw new DAOException(e);
 		}
 		return result > 0;
 	}
@@ -88,7 +88,7 @@ public class BanMessageDAO extends AbstractDAO<BanMessage>{
 			statement.setLong(1, id);
 			result = statement.executeUpdate();
 		} catch (SQLException e) {
-			throw new DAOException();
+			throw new DAOException(e);
 		}
 		return result > 0;
 	}
@@ -100,7 +100,7 @@ public class BanMessageDAO extends AbstractDAO<BanMessage>{
 		) {
 			result = statement.executeUpdate(DELETE_ALL_BAN_MESSAGES);
 		} catch (SQLException e) {
-			throw new DAOException();
+			throw new DAOException(e);
 		}
 		return result > 0;
 	}
@@ -115,7 +115,7 @@ public class BanMessageDAO extends AbstractDAO<BanMessage>{
 			statement.setLong(2, entity.getBanId());
 			result = statement.executeUpdate();
 		} catch (SQLException e) {
-			throw new DAOException();
+			throw new DAOException(e);
 		}
 		return result > 0;
 	}

@@ -35,7 +35,7 @@
                     </ul>
                     <h1>${userEdited.login}</h1>
                     <hr>
-                    <form method="POST" class="form-horizontal login-form" enctype="multipart/form-data" action="${pageContext.request.contextPath}/controller">
+                    <form method="POST" class="form-horizontal login-form clearfix" enctype="multipart/form-data" action="${pageContext.request.contextPath}/controller">
                         <input type="hidden" name="command" value="edit_profile"/>
                         <input type="hidden" name="user_id" value="${userEdited.userId}"/>
                         <div class="form-group">
@@ -73,21 +73,18 @@
                             <input id="repeatPassword" type="password" name="repeatPassword" class="form-control"
                                    minlength="4" maxlength="20" placeholder="<fmt:message key="label.repeatPassword" bundle="${ rb }" />" />
                         </div>
-                        <input class="btn btn-primary btn-block" type="submit" value="<fmt:message key="button.submit" bundle="${ rb }" />" />
-                        <br/>
                         <c:if test="${invalidDataMessage == true}">
                             <div class="alert alert-danger">
                                 <span class="close" data-dismiss="alert">&times;</span>
                                 <fmt:message key="message.invalidData" bundle="${ rb }" />
                             </div>
                         </c:if>
+                        <input class="btn btn-primary btn-block" type="submit" value="<fmt:message key="button.submit" bundle="${ rb }" />" />
+
                     </form>
                 </div>
             </div>
         </div>
-
-        <%@include file="jspf/footer.jspf"%>
-
     </body>
 </html>
 

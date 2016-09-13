@@ -8,6 +8,7 @@ import by.epam.cinemarating.logic.UserLogic;
 import by.epam.cinemarating.resource.ConfigurationManager;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.Optional;
 
 public class ShowUserCommand implements ActionCommand {
@@ -22,7 +23,7 @@ public class ShowUserCommand implements ActionCommand {
 	private static final String IS_BANNED = "isBanned";
 
 	@Override
-	public String execute(HttpServletRequest request) throws CommandException {
+	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
 		long userId = Integer.valueOf(request.getParameter(USER_ID));
 		User activeUser = (User) request.getSession().getAttribute(ACTIVE_USER);
 		UserLogic userLogic = new UserLogic();
@@ -33,10 +34,10 @@ public class ShowUserCommand implements ActionCommand {
 			Optional<Ban> ban = banLogic.findBanByUserId(userId);
 			if (user != null) {
 				request.setAttribute(USER, user);
-				request.setAttribute(IS_BANNED, ban.isPresent());
 				if (user.getUserId() == activeUser.getUserId()) {
 					page = PAGE_PROFILE;
 				} else {
+					request.setAttribute(IS_BANNED, ban.isPresent());
 					page = PAGE_USER;
 				}
 			} else {

@@ -7,6 +7,7 @@ import by.epam.cinemarating.logic.BanLogic;
 import by.epam.cinemarating.logic.LogicException;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.sql.Timestamp;
 import java.util.Optional;
 
@@ -21,7 +22,7 @@ public class BanMessageCommand implements ActionCommand {
 	private static final String TIME_LEFT = "timeLeft";
 
 	@Override
-	public String execute(HttpServletRequest request) throws CommandException {
+	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
 		long banId = Long.valueOf(request.getParameter(BAN_ID));
 		String banMessage = request.getParameter(BAN_MESSAGE);
 		BanLogic banLogic = new BanLogic();
