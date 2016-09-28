@@ -76,7 +76,7 @@
                 <input class="btn btn-primary btn-block" type="submit" value=<fmt:message key="button.leaveMessage" bundle="${ rb }" /> />
             </c:if>
             <c:if test="${not empty banMessage and not empty banMessage.message}">
-                <h4>Your Message:</h4>
+                <h4><fmt:message key="label.yourMessage" bundle="${rb}"/></h4>
                 <p>${banMessage.message}</p>
             </c:if>
         </form>

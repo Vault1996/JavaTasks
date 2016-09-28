@@ -19,6 +19,4 @@ private static final Logger LOGGER = LogManager.getLogger(класс.class);
 + 18) Поменять переменные в локализации на boolean и уже локализация из jsp
 19) Validation EditProfile AddMovie EditMovie
 20) Добавление картинок с именем id.
-21) Logger и i18n
-22) Ajax, если получится
-17) Фильтр на проверку бана. ServletConfig
++ 21) i18n

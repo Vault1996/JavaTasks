@@ -15,7 +15,7 @@
 
 <html>
     <head>
-        <title>Home</title>
+        <title><fmt:message key="title.home" bundle="${rb}"/></title>
 
         <%@include file="jspf/bootstrap.jspf"%>
 
@@ -29,7 +29,7 @@
             <div class="row content">
                 <div class="col-sm-2 text-center">
                     <c:if test="${not empty lastMovie}">
-                        <h3>Last Movie</h3>
+                        <h3><fmt:message key="label.lastMovie" bundle="${rb}"/></h3>
                         <hr>
                         <h3>
                             <a href="${pageContext.request.contextPath}/controller?command=show_movie&movie_id=${lastMovie.movieId}">
@@ -41,7 +41,7 @@
                 </div>
                 <div class="col-sm-8 text-left">
                     <ul class="breadcrumb">
-                        <li><a href="${pageContext.request.contextPath}/controller?command=show_main_page">Home</a></li>
+                        <li><a href="${pageContext.request.contextPath}/controller?command=show_main_page"><fmt:message key="title.home" bundle="${rb}"/></a></li>
                     </ul>
                     <c:if test="${movieDeletedStatus == true}">
                         <div class="alert alert-info">
@@ -56,10 +56,10 @@
                         </div>
                     </c:if>
 
-                    <h1>Welcome</h1>
-                    <p>Welcome to our website. Here you can see new movies, rate them and get status to be the best and cleverest reviewer ever.</p>
+                    <h1><fmt:message key="label.welcome" bundle="${rb}"/></h1>
+                    <p><fmt:message key="label.welcomeMessage" bundle="${rb}"/></p>
                     <hr>
-                    <h3> Top 3 Movies</h3>
+                    <h3><fmt:message key="label.topThree" bundle="${rb}"/></h3>
                     <div id="myCarousel" class="carousel slide" data-ride="carousel">
                         <!-- Indicators -->
                         <ol class="carousel-indicators">
@@ -96,11 +96,11 @@
                         <!-- Left and right controls -->
                         <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
                             <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
+                            <span class="sr-only"><fmt:message key="label.previous" bundle="${rb}"/></span>
                         </a>
                         <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
                             <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
+                            <span class="sr-only"><fmt:message key="label.next" bundle="${rb}"/></span>
                         </a>
                     </div>
                 </div>

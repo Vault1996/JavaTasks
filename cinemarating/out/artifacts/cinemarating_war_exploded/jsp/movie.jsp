@@ -15,7 +15,7 @@
 
 <html>
     <head>
-        <title>Movie</title>
+        <title><fmt:message key="title.movie" bundle="${rb}"/></title>
 
         <%@include file="jspf/bootstrap.jspf"%>
 
@@ -29,7 +29,7 @@
             <div class="row content">
                 <div class="col-sm-8 col-sm-offset-2 text-left">
                     <ul class="breadcrumb">
-                        <li><a href="${pageContext.request.contextPath}/controller?command=show_main_page">Home</a></li>
+                        <li><a href="${pageContext.request.contextPath}/controller?command=show_main_page"><fmt:message key="title.home" bundle="${rb}"/></a></li>
                         <li><a href="#">${movie.name}</a></li>
                     </ul>
                     <c:if test="${reviewEditedStatus == true}">
@@ -55,10 +55,10 @@
                     <div>
                         <div class="clearfix">
                             <img class = "main img-rounded img-thumbnail" src = "${pageContext.request.contextPath}/${movie.poster}" alt="${movie.name}"/>
-                            <h3>Rating: <small>${movie.rating}</small></h3>
-                            <h3>Country: <small>${movie.country}</small></h3>
-                            <h3>Year: <small>${movie.year}</small></h3>
-                            <h3><a name="discription"></a>Description</h3>
+                            <h3><fmt:message key="label.rating" bundle="${rb}"/>: <small>${movie.rating}</small></h3>
+                            <h3><fmt:message key="label.country" bundle="${rb}"/>: <small>${movie.country}</small></h3>
+                            <h3><fmt:message key="label.year" bundle="${rb}"/>: <small>${movie.year}</small></h3>
+                            <h3><fmt:message key="label.description" bundle="${rb}"/>:</h3>
                             <p>${movie.description}</p>
                         </div>
                         <ctg:admin>
@@ -87,7 +87,7 @@
                                         <input type="hidden" name="movie_id" value="${movie.movieId}"/>
                                         <input type="hidden" name="user_id" value="${activeUser.userId}"/>
                                         <div class="form-group">
-                                            <label class="control-label">Rating:</label>
+                                            <label class="control-label"><fmt:message key="label.rating" bundle="${rb}"/>:</label>
                                             <c:forEach var="i" begin="1" end="10">
                                                 <c:if test="${i == 6}">
                                                     <label class="radio-inline"><input type="radio" name="rating" value="${i}" checked>${i}</label>
@@ -98,7 +98,7 @@
                                             </c:forEach>
                                         </div>
                                         <div class="form-group">
-                                            <label class="control-label" for="review">Review:</label>
+                                            <label class="control-label" for="review"><fmt:message key="label.review" bundle="${rb}"/>:</label>
                                             <textarea class="form-control" name="review" rows="3" maxlength="512" id="review"></textarea>
                                         </div>
                                         <input class="btn btn-primary btn-block" type="submit" value="Leave Review" />
@@ -108,7 +108,7 @@
                             </c:if>
                         </ctg:not-guest>
                         <c:if test="${not empty activeUserReview.review}">
-                            <h3>My Review</h3>
+                            <h3><fmt:message key="label.myReview" bundle="${rb}"/></h3>
                             <div class="well">
                                 <div class="container-fluid">
                                     <div class="picture col-sm-3">
@@ -148,9 +148,9 @@
                             <hr>
                         </c:if>
                         <div>
-                            <h3>Reviews</h3>
+                            <h3><fmt:message key="label.reviews" bundle="${rb}"/></h3>
                             <c:if test="${reviews.isEmpty()}">
-                                <h4>No reviews found</h4>
+                                <h4><fmt:message key="message.noReviews" bundle="${rb}"/></h4>
                             </c:if>
                             <c:forEach var="review" items="${reviews}">
                                 <div class="well">

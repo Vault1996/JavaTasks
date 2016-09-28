@@ -15,7 +15,7 @@
 
 <html>
     <head>
-        <title>Movie</title>
+        <title><fmt:message key="title.addMovie" bundle="${ rb }" /></title>
 
         <%@include file="jspf/bootstrap.jspf"%>
 
@@ -29,8 +29,8 @@
         <div class="row content">
             <div class="col-sm-8 col-sm-offset-2 text-left">
                 <ul class="breadcrumb">
-                    <li><a href="${pageContext.request.contextPath}/controller?command=show_main_page">Home</a></li>
-                    <li><a href="#">Edit Profile</a></li>
+                    <li><a href="${pageContext.request.contextPath}/controller?command=show_main_page"><fmt:message key="title.home" bundle="${ rb }" /></a></li>
+                    <li><a href="#"><fmt:message key="title.addMovie" bundle="${ rb }" /></a></li>
                 </ul>
                 <c:if test="${movieAddedStatus == true}">
                     <div class="alert alert-info">
@@ -38,7 +38,7 @@
                         <fmt:message key="message.movieAdded" bundle="${ rb }" />
                     </div>
                 </c:if>
-                <h1>Add Movie</h1>
+                <h1><fmt:message key="title.addMovie" bundle="${ rb }" /></h1>
                 <hr>
                 <form method="POST" class="form-horizontal login-form" enctype="multipart/form-data" action="${pageContext.request.contextPath}/controller">
                     <input type="hidden" name="command" value="add_movie"/>
@@ -47,21 +47,21 @@
                             <fmt:message key="label.movieName" bundle="${ rb }" />
                         </label>
                         <input id="movieName" type="text" name="name" class="form-control" required autofocus
-                               maxlength="30" placeholder=<fmt:message key="label.movieName" bundle="${ rb }" /> />
+                               maxlength="30" placeholder="<fmt:message key="label.movieName" bundle="${ rb }" />" />
                     </div>
                     <div class="form-group">
                         <label for="year" class="control-label compulsory">
                             <fmt:message key="label.year" bundle="${ rb }" />
                         </label>
                         <input id="year" type="text" name="year" class="form-control" required  pattern="[12](\d){3}"
-                               maxlength="30" placeholder=<fmt:message key="label.year" bundle="${ rb }" /> />
+                               maxlength="30" placeholder="<fmt:message key="label.year" bundle="${ rb }" />" />
                     </div>
                     <div class="form-group">
                         <label for="country" class="control-label compulsory">
                             <fmt:message key="label.country" bundle="${ rb }" />
                         </label>
                         <input id="country" type="text" name="country" class="form-control" required
-                               maxlength="30" placeholder=<fmt:message key="label.country" bundle="${ rb }" /> />
+                               maxlength="30" placeholder="<fmt:message key="label.country" bundle="${ rb }" />" />
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="description"><fmt:message key="label.description" bundle="${ rb }" /></label>
@@ -72,7 +72,7 @@
                             <fmt:message key="label.poster" bundle="${ rb }" />
                         </label>
                         <input type="file" name="poster" class="form-control" id="poster" accept="image/png,image/jpeg"
-                               placeholder=<fmt:message key="label.photo" bundle="${ rb }" /> />
+                               placeholder="<fmt:message key="label.photo" bundle="${ rb }" />" />
                     </div>
                     <input class="btn btn-primary btn-block" type="submit" value="<fmt:message key="button.submit" bundle="${ rb }" />" />
                     <br/>

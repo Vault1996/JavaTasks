@@ -17,7 +17,6 @@ import java.nio.file.Paths;
 
 
 public class EditProfileCommand implements ActionCommand {
-	//private static final String PAGE_PROFILE = "path.page.profile";
 	private static final String SHOW_USER_COMMAND = "/controller?command=show_user&user_id=";
 	private static final String PAGE_EDIT_PROFILE = "path.page.editProfile";
 	private static final String NAME = "name";
@@ -68,9 +67,7 @@ public class EditProfileCommand implements ActionCommand {
 				}
 				EditProfileLogic editProfileLogic = new EditProfileLogic();
 				editProfileLogic.updateProfile(user);
-				//request.setAttribute(USER, user);
 				request.getSession().setAttribute(ACTIVE_USER, activeUser);
-				//return ConfigurationManager.getProperty(PAGE_PROFILE);
 				return SHOW_USER_COMMAND + userId;
 			} catch (LogicException|IOException|ServletException e) {
 				throw new CommandException(ERROR_MESSAGE, e);

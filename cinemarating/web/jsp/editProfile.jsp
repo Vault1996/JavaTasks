@@ -16,7 +16,7 @@
 
 <html>
     <head>
-        <title>Movie</title>
+        <title><fmt:message key="title.editProfile" bundle="${rb}"/></title>
 
         <%@include file="jspf/bootstrap.jspf"%>
 
@@ -30,8 +30,8 @@
             <div class="row content">
                 <div class="col-sm-8 col-sm-offset-2 text-left">
                     <ul class="breadcrumb">
-                        <li><a href="${pageContext.request.contextPath}/controller?command=show_main_page">Home</a></li>
-                        <li><a href="#">Edit Profile</a></li>
+                        <li><a href="${pageContext.request.contextPath}/controller?command=show_main_page"><fmt:message key="title.home" bundle="${rb}"/></a></li>
+                        <li><a href="#"><fmt:message key="title.editProfile" bundle="${rb}"/></a></li>
                     </ul>
                     <h1>${userEdited.login}</h1>
                     <hr>
@@ -80,7 +80,6 @@
                             </div>
                         </c:if>
                         <input class="btn btn-primary btn-block" type="submit" value="<fmt:message key="button.submit" bundle="${ rb }" />" />
-
                     </form>
                 </div>
             </div>

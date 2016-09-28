@@ -4,6 +4,7 @@ import by.epam.cinemarating.entity.Movie;
 import by.epam.cinemarating.logic.LogicException;
 import by.epam.cinemarating.logic.MovieLogic;
 import by.epam.cinemarating.resource.ConfigurationManager;
+import by.epam.cinemarating.validation.AddMovieValidator;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -32,17 +33,21 @@ public class AddMovieCommand implements ActionCommand {
 		String year = request.getParameter(YEAR);
 		String country = request.getParameter(COUNTRY);
 		String description = request.getParameter(DESCRIPTION);
-		try {
-			Part posterPart = request.getPart(POSTER);
-			String fileName = Paths.get(posterPart.getSubmittedFileName()).getFileName().toString(); // MSIE fix.
-			posterPart.write(request.getServletContext().getRealPath("") + MOVIE_POSTERS_LOCATION + fileName);
-			Movie movie = new Movie(0, name, Integer.valueOf(year), description, country, DEFAULT_RATING, MOVIE_POSTERS_LOCATION + fileName);
-			MovieLogic movieLogic = new MovieLogic();
-			movieLogic.addMovie(movie);
-			request.setAttribute(MOVIE_ADDED_STATUS, true);
-			return ConfigurationManager.getProperty(PAGE_ADD_MOVIE);
-		} catch (IOException | ServletException | LogicException e) {
-			throw new CommandException(ERROR_MESSAGE, e);
+		AddMovieValidator addMovieValidator = new AddMovieValidator();
+		if (addMovieValidator.validate(name, year, country, description)) {
+			try {
+				Part posterPart = request.getPart(POSTER);
+				String fileName = Paths.get(posterPart.getSubmittedFileName()).getFileName().toString(); // MSIE fix.
+				posterPart.write(request.getServletContext().getRealPath("") + MOVIE_POSTERS_LOCATION + fileName);
+				Movie movie = new Movie(0, name, Integer.valueOf(year), description, country, DEFAULT_RATING, MOVIE_POSTERS_LOCATION + fileName);
+				MovieLogic movieLogic = new MovieLogic();
+				movieLogic.addMovie(movie);
+				request.setAttribute(MOVIE_ADDED_STATUS, true);
+
+			} catch (IOException | ServletException | LogicException e) {
+				throw new CommandException(ERROR_MESSAGE, e);
+			}
 		}
+		return ConfigurationManager.getProperty(PAGE_ADD_MOVIE);
 	}
 }

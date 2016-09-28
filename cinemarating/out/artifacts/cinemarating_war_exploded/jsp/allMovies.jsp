@@ -15,7 +15,7 @@
 
 <html>
     <head>
-        <title>Home</title>
+        <title><fmt:message key="title.movies" bundle="${ rb }" /></title>
 
         <%@include file="jspf/bootstrap.jspf" %>
 
@@ -29,24 +29,24 @@
             <div class="row content">
                 <div class="col-sm-8 col-sm-offset-2 text-left">
                     <ul class="breadcrumb">
-                        <li><a href="${pageContext.request.contextPath}/controller?command=show_main_page">Home</a></li>
+                        <li><a href="${pageContext.request.contextPath}/controller?command=show_main_page"><fmt:message key="title.home" bundle="${ rb }" /></a></li>
                         <c:if test="${sortBy eq 'name'}">
-                            <li><a href="#">All Movies</a></li>
+                            <li><a href="#"><fmt:message key="title.allMovies" bundle="${ rb }" /></a></li>
                         </c:if>
                         <c:if test="${sortBy eq 'rating'}">
-                            <li><a href="#">Top Movies</a></li>
+                            <li><a href="#"><fmt:message key="title.topMovies" bundle="${ rb }" /></a></li>
                         </c:if>
                     </ul>
 
                     <c:if test="${sortBy eq 'name'}">
-                        <h1><a name="movies"></a>All Movies</h1>
+                        <h1><a name="movies"></a><fmt:message key="title.allMovies" bundle="${ rb }" /></h1>
                     </c:if>
                     <c:if test="${sortBy eq 'rating'}">
-                        <h1><a name="movies"></a>Top Movies</h1>
+                        <h1><a name="movies"></a><fmt:message key="title.topMovies" bundle="${ rb }" /></h1>
                     </c:if>
 
                     <c:if test="${movies.isEmpty()}">
-                        <h3>Movies not found</h3>
+                        <h3><fmt:message key="message.moviesNotFound" bundle="${ rb }" /></h3>
                     </c:if>
 
                     <c:set var="numberOfElementsOnPage" value="5" scope="page"/>

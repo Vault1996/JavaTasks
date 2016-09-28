@@ -15,7 +15,7 @@
 
 <html>
 <head>
-    <title>Home</title>
+    <title><fmt:message key="title.banMessages" bundle="${rb}"/></title>
 
     <%@include file="jspf/bootstrap.jspf"%>
 
@@ -29,14 +29,14 @@
     <div class="row content">
         <div class="col-sm-8 col-sm-offset-2 text-left">
             <ul class="breadcrumb">
-                <li><a href="${pageContext.request.contextPath}/controller?command=show_main_page">Home</a></li>
-                <li><a href="#">Messages</a></li>
+                <li><a href="${pageContext.request.contextPath}/controller?command=show_main_page"><fmt:message key="title.home" bundle="${rb}"/></a></li>
+                <li><a href="#"><fmt:message key="title.banMessages" bundle="${rb}"/>s</a></li>
             </ul>
 
-            <h1>Ban Messages</h1>
+            <h1><fmt:message key="title.banMessages" bundle="${rb}"/></h1>
 
             <c:if test="${banMessages.isEmpty()}">
-                <h3>No messages found</h3>
+                <h3><fmt:message key="message.noBanMessages" bundle="${rb}"/></h3>
             </c:if>
 
             <c:if test="${not banMessages.isEmpty()}">

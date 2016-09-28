@@ -15,7 +15,7 @@
 
 <html>
 <head>
-    <title>Edit Review</title>
+    <title><fmt:message key="title.editReview" bundle="${rb}"/></title>
 
     <%@include file="jspf/bootstrap.jspf"%>
 
@@ -29,8 +29,8 @@
     <div class="row content">
         <div class="col-sm-8 col-sm-offset-2 text-left">
             <ul class="breadcrumb">
-                <li><a href="${pageContext.request.contextPath}/controller?command=show_main_page">Home</a></li>
-                <li><a href="#">Edit Review</a></li>
+                <li><a href="${pageContext.request.contextPath}/controller?command=show_main_page"><fmt:message key="title.home" bundle="${rb}"/></a></li>
+                <li><a href="#"><fmt:message key="title.editReview" bundle="${rb}"/></a></li>
             </ul>
             <h1>${review.user.login}</h1>
             <hr>
@@ -39,7 +39,7 @@
                 <input type="hidden" name="movie_id" value="${review.rating.movieId}">
                 <input type="hidden" name="user_id" value="${review.user.userId}">
                 <div class="form-group">
-                    <label class="control-label">Rating:</label>
+                    <label class="control-label"><fmt:message key="label.rating" bundle="${rb}"/>:</label>
                     <c:forEach var="i" begin="1" end="10">
                         <c:if test="${i == review.rating.rating}">
                             <label class="radio-inline"><input type="radio" name="rating" value="${i}" checked>${i}</label>
@@ -50,7 +50,7 @@
                     </c:forEach>
                 </div>
                 <div class="form-group">
-                    <label class="control-label" for="review">Review:</label>
+                    <label class="control-label" for="review"><fmt:message key="label.review" bundle="${rb}"/>:</label>
                     <textarea class="form-control" name="review" rows="3" maxlength="512" id="review" autofocus>${review.review.review}</textarea>
                 </div>
                 <input class="btn btn-primary btn-block" type="submit" value="<fmt:message key="button.submit" bundle="${ rb }" />" />

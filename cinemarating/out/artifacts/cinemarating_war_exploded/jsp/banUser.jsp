@@ -15,7 +15,7 @@
 
 <html>
 <head>
-    <title>Edit Review</title>
+    <title><fmt:message key="title.banUser" bundle="${rb}"/></title>
 
     <%@include file="jspf/bootstrap.jspf"%>
 
@@ -29,8 +29,8 @@
     <div class="row content">
         <div class="col-sm-8 col-sm-offset-2 text-left">
             <ul class="breadcrumb">
-                <li><a href="${pageContext.request.contextPath}/controller?command=show_main_page">Home</a></li>
-                <li><a href="#">Edit Review</a></li>
+                <li><a href="${pageContext.request.contextPath}/controller?command=show_main_page"><fmt:message key="title.home" bundle="${rb}"/></a></li>
+                <li><a href="#"><fmt:message key="title.banUser" bundle="${rb}"/></a></li>
             </ul>
             <h1>Ban ${banUser.login}</h1>
             <hr>
@@ -44,7 +44,7 @@
                     <input id="till" type="datetime-local" name="till" class="form-control" required/>
                 </div>
                 <div class="form-group">
-                    <label class="control-label" for="reason">Reason:</label>
+                    <label class="control-label" for="reason"><fmt:message key="label.reason" bundle="${rb}"/></label>
                     <textarea class="form-control" name="reason" rows="3" required maxlength="512" id="reason"></textarea>
                 </div>
                 <input class="btn btn-primary btn-block" type="submit" value="<fmt:message key="button.submit" bundle="${ rb }" />" />

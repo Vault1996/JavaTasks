@@ -15,7 +15,7 @@
 
 <html>
     <head>
-        <title>Movie</title>
+        <title><fmt:message key="title.editMovie" bundle="${rb}"/></title>
 
         <%@include file="jspf/bootstrap.jspf"%>
 
@@ -29,8 +29,8 @@
         <div class="row content">
             <div class="col-sm-8 col-sm-offset-2 text-left">
                 <ul class="breadcrumb">
-                    <li><a href="${pageContext.request.contextPath}/controller?command=show_main_page">Home</a></li>
-                    <li><a href="#">Edit Profile</a></li>
+                    <li><a href="${pageContext.request.contextPath}/controller?command=show_main_page"><fmt:message key="title.home" bundle="${rb}"/></a></li>
+                    <li><a href="#"><fmt:message key="title.editMovie" bundle="${rb}"/></a></li>
                 </ul>
                 <c:if test="${movieAddedStatus == true}">
                     <div class="alert alert-info">
@@ -38,7 +38,7 @@
                         <fmt:message key="message.movieAdded" bundle="${ rb }" />
                     </div>
                 </c:if>
-                <h1>Edit Movie</h1>
+                <h1><fmt:message key="title.editMovie" bundle="${rb}"/></h1>
                 <hr>
                 <form method="POST" class="form-horizontal login-form" enctype="multipart/form-data" action="${pageContext.request.contextPath}/controller">
                     <input type="hidden" name="command" value="edit_movie"/>
@@ -75,6 +75,12 @@
                         <input type="file" name="poster" class="form-control" id="poster" accept="image/png,image/jpeg"
                                placeholder=<fmt:message key="label.photo" bundle="${ rb }" /> />
                     </div>
+                    <c:if test="${invalidDataMessage == true}">
+                        <div class="alert alert-danger">
+                            <span class="close" data-dismiss="alert">&times;</span>
+                            <fmt:message key="message.invalidData" bundle="${ rb }" />
+                        </div>
+                    </c:if>
                     <input class="btn btn-primary btn-block" type="submit" value="<fmt:message key="button.submit" bundle="${ rb }" />" />
                     <br/>
                 </form>

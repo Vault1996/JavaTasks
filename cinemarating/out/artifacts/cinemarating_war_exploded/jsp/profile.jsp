@@ -15,7 +15,7 @@
 
 <html>
 <head>
-    <title>Movie</title>
+    <title><fmt:message key="title.profile" bundle="${rb}"/></title>
 
     <%@include file="jspf/bootstrap.jspf"%>
 
@@ -29,18 +29,18 @@
     <div class="row content">
         <div class="col-sm-8 col-sm-offset-2 text-left">
             <ul class="breadcrumb">
-                <li><a href="${pageContext.request.contextPath}/controller?command=show_main_page">Home</a></li>
+                <li><a href="${pageContext.request.contextPath}/controller?command=show_main_page"><fmt:message key="title.home" bundle="${rb}"/></a></li>
                 <li><a href="#">${user.login}</a></li>
             </ul>
             <h1>${user.login}</h1>
             <hr>
             <div class="clearfix">
                 <img class = "main img-rounded img-thumbnail" src = "${pageContext.request.contextPath}/${user.photo}" alt="${user.login}"/>
-                <h3>Registration Date: <small><fmt:formatDate value="${user.createDate}" type="date"/> </small></h3>
-                <h3>Status: <small>${user.status}</small></h3>
-                <h3>Name: <small>${user.name}</small></h3>
-                <h3>Surname: <small>${user.surname}</small></h3>
-                <h3>Email: <small>${user.email}</small></h3>
+                <h3><fmt:message key="label.registrationDate" bundle="${rb}"/>: <small><fmt:formatDate value="${user.createDate}" type="date"/> </small></h3>
+                <h3><fmt:message key="label.status" bundle="${rb}"/>: <small>${user.status}</small></h3>
+                <h3><fmt:message key="label.name" bundle="${rb}"/>: <small>${user.name}</small></h3>
+                <h3><fmt:message key="label.surname" bundle="${rb}"/>: <small>${user.surname}</small></h3>
+                <h3><fmt:message key="label.email" bundle="${rb}"/>: <small>${user.email}</small></h3>
             </div>
             <hr>
             <form method="POST" class="form-horizontal" action="${pageContext.request.contextPath}/controller">

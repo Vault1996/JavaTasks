@@ -15,7 +15,7 @@
 
 <html>
 <head>
-    <title>Home</title>
+    <title><fmt:message key="title.allUsers" bundle="${rb}"/></title>
 
     <%@include file="jspf/bootstrap.jspf"%>
 
@@ -29,14 +29,14 @@
     <div class="row content">
         <div class="col-sm-8 col-sm-offset-2 text-left">
             <ul class="breadcrumb">
-                <li><a href="${pageContext.request.contextPath}/controller?command=show_main_page">Home</a></li>
-                <li><a href="#">Users</a></li>
+                <li><a href="${pageContext.request.contextPath}/controller?command=show_main_page"><fmt:message key="title.home" bundle="${rb}"/></a></li>
+                <li><a href="#"><fmt:message key="title.allUsers" bundle="${rb}"/></a></li>
             </ul>
 
-            <h1><a name="users"></a>Users</h1>
+            <h1><a name="users"></a><fmt:message key="title.allUsers" bundle="${rb}"/></h1>
 
             <c:if test="${users.isEmpty()}">
-                <h3>Users not found</h3>
+                <h3><fmt:message key="message.userNotFound" bundle="${rb}"/></h3>
             </c:if>
 
             <c:set var="numberOfElementsOnPage" value="5" scope="page"/>
