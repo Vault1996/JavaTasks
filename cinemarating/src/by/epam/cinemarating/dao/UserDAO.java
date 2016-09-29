@@ -3,6 +3,7 @@ package by.epam.cinemarating.dao;
 import by.epam.cinemarating.database.WrapperConnection;
 import by.epam.cinemarating.entity.Role;
 import by.epam.cinemarating.entity.User;
+import by.epam.cinemarating.exception.DAOException;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -100,6 +101,13 @@ public class UserDAO extends AbstractDAO<User> {
 		return Optional.ofNullable(user);
 	}
 
+	/**
+	 * Retrieves user by name and surname.
+	 * @param name name of the user
+	 * @param surname surname of the user
+	 * @return an entity with the given id
+	 * @throws DAOException if any exceptions occurred on the SQL layer
+	 */
 	public Optional<User> findUserByNameAndSurname(String name, String surname) throws DAOException {
 		User user = null;
 		try (
@@ -129,6 +137,12 @@ public class UserDAO extends AbstractDAO<User> {
 		return Optional.ofNullable(user);
 	}
 
+	/**
+	 * Retrieves user by login.
+	 * @param login login of the user
+	 * @return an entity with the given id
+	 * @throws DAOException if any exceptions occurred on the SQL layer
+	 */
 	public Optional<User> findUserByLogin(String login) throws DAOException {
 		User user = null;
 		try (
@@ -156,6 +170,12 @@ public class UserDAO extends AbstractDAO<User> {
 		return Optional.ofNullable(user);
 	}
 
+	/**
+	 * Retrieves user by email.
+	 * @param email email of the user
+	 * @return an entity with the given id
+	 * @throws DAOException if any exceptions occurred on the SQL layer
+	 */
 	public Optional<User> findUserByEmail(String email) throws DAOException {
 		User user = null;
 		try (
@@ -183,6 +203,13 @@ public class UserDAO extends AbstractDAO<User> {
 		return Optional.ofNullable(user);
 	}
 
+	/**
+	 * Retrieves user by login and password.
+	 * @param login login of the user
+	 * @param password password of the user
+	 * @return an entity with the given id
+	 * @throws DAOException if any exceptions occurred on the SQL layer
+	 */
 	public Optional<User> findUserByLoginAndPassword(String login, String password) throws DAOException {
 		User user = null;
 		try (
@@ -215,7 +242,7 @@ public class UserDAO extends AbstractDAO<User> {
 	public boolean insert(User entity) throws DAOException {
 		int result;
 		try(
-				PreparedStatement statement = connection.prepareStatement(INSERT_USER);
+				PreparedStatement statement = connection.prepareStatement(INSERT_USER)
 		) {
 			statement.setString(1, entity.getRole().toString());
 			statement.setString(2, entity.getLogin());
@@ -236,7 +263,7 @@ public class UserDAO extends AbstractDAO<User> {
 	public boolean delete(long id) throws DAOException {
 		int result;
 		try(
-				PreparedStatement statement = connection.prepareStatement(DELETE_USER_BY_ID);
+				PreparedStatement statement = connection.prepareStatement(DELETE_USER_BY_ID)
 		) {
 			statement.setLong(1, id);
 			result = statement.executeUpdate();
@@ -250,7 +277,7 @@ public class UserDAO extends AbstractDAO<User> {
 	public boolean update(User entity) throws DAOException {
 		int result;
 		try(
-				PreparedStatement statement = connection.prepareStatement(UPDATE_USER_BY_ID);
+				PreparedStatement statement = connection.prepareStatement(UPDATE_USER_BY_ID)
 		) {
 			statement.setString(1, entity.getRole().toString());
 			statement.setString(2, entity.getLogin());
@@ -269,9 +296,14 @@ public class UserDAO extends AbstractDAO<User> {
 		return result > 0;
 	}
 
+	/**
+	 * Gets the last user id in system.
+	 * @return last user id if user exists or -1 otherwise
+	 * @throws DAOException if any exceptions occurred on the SQL layer
+	 */
 	public long getLastUserId() throws DAOException {
 		try(
-				Statement statement = connection.createStatement();
+				Statement statement = connection.createStatement()
 		) {
 			ResultSet resultSet = statement.executeQuery(GET_LAST_USER_ID);
 			long result = -1;

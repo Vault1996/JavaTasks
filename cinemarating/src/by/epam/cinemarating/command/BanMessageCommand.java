@@ -2,16 +2,17 @@ package by.epam.cinemarating.command;
 
 import by.epam.cinemarating.entity.Ban;
 import by.epam.cinemarating.entity.BanMessage;
+import by.epam.cinemarating.exception.CommandException;
 import by.epam.cinemarating.function.TimeConverter;
 import by.epam.cinemarating.logic.BanLogic;
-import by.epam.cinemarating.logic.LogicException;
+import by.epam.cinemarating.exception.LogicException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.sql.Timestamp;
 import java.util.Optional;
 
-public class BanMessageCommand implements ActionCommand {
+class BanMessageCommand implements ActionCommand {
 	private static final String BAN_ID = "banId";
 	private static final String BAN_MESSAGE = "banMessage";
 	private static final String BAN_MESSAGE_ADDED_STATUS = "banMessageAddedStatus";

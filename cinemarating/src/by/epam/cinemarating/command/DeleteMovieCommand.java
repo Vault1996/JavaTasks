@@ -1,12 +1,13 @@
 package by.epam.cinemarating.command;
 
-import by.epam.cinemarating.logic.LogicException;
+import by.epam.cinemarating.exception.CommandException;
+import by.epam.cinemarating.exception.LogicException;
 import by.epam.cinemarating.logic.MovieLogic;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class DeleteMovieCommand implements ActionCommand {
+class DeleteMovieCommand implements ActionCommand {
 	private static final String SHOW_MAIN_PAGE_COMMAND = "/controller?command=show_main_page";
 	private static final String MOVIE_ID = "movie_id";
 	private static final String ERROR_MESSAGE = "Problem in Delete Movie Command";

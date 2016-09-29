@@ -5,7 +5,7 @@ import by.epam.cinemarating.resource.ConfigurationManager;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class RedirectCommand implements ActionCommand {
+class RedirectCommand implements ActionCommand {
 	private static final String NEXT_PAGE = "next";
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {

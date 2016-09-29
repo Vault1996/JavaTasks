@@ -14,6 +14,8 @@ import java.io.IOException;
 		servletNames = { "Controller" })
 public class ServletSecurityFilter implements Filter {
 	private static final String ACTIVE_USER = "activeUser";
+	public void init(FilterConfig fConfig) throws ServletException {
+	}
 	public void destroy() {
 	}
 	public void doFilter(ServletRequest request, ServletResponse response,
@@ -29,7 +31,5 @@ public class ServletSecurityFilter implements Filter {
 		}
 		session.setAttribute(ACTIVE_USER, user);
 		chain.doFilter(request, response);
-	}
-	public void init(FilterConfig fConfig) throws ServletException {
 	}
 }

@@ -1,12 +1,13 @@
 package by.epam.cinemarating.command;
 
+import by.epam.cinemarating.exception.CommandException;
 import by.epam.cinemarating.logic.BanLogic;
-import by.epam.cinemarating.logic.LogicException;
+import by.epam.cinemarating.exception.LogicException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class UnbanUserCommand implements ActionCommand {
+class UnbanUserCommand implements ActionCommand {
 	private static final String USER_ID = "user_id";
 
 	private static final String UNBAN_USER_STATUS = "unbanUserStatus";

@@ -1,12 +1,13 @@
 package by.epam.cinemarating.command;
 
-import by.epam.cinemarating.logic.LogicException;
+import by.epam.cinemarating.exception.CommandException;
+import by.epam.cinemarating.exception.LogicException;
 import by.epam.cinemarating.logic.UserLogic;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class DeleteUserCommand implements ActionCommand {
+class DeleteUserCommand implements ActionCommand {
 	private static final String USER_ID = "user_id";
 
 	private static final String DELETE_USER_STATUS = "deleteUserStatus";

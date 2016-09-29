@@ -4,6 +4,8 @@ import by.epam.cinemarating.dao.*;
 import by.epam.cinemarating.database.ConnectionPool;
 import by.epam.cinemarating.database.WrapperConnection;
 import by.epam.cinemarating.entity.*;
+import by.epam.cinemarating.exception.DAOException;
+import by.epam.cinemarating.exception.LogicException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -18,8 +20,16 @@ public class ReviewLogic {
 
 	private static final Logger LOGGER = LogManager.getLogger(ReviewLogic.class);
 
+	/**
+	 * Get all reviews to movie
+	 * @param movieId id of movie
+	 * @param activeUser user in system
+	 * @param reviews write reviews to this list
+	 * @param activeUserReview write user review
+	 * @throws LogicException
+	 */
 	public void getReviewsOfMovie(long movieId, User activeUser,
-								  List<ReviewAndRatingInfo> reviews, ReviewAndRatingInfo activeUserReview) throws LogicException{
+								  List<ReviewAndRatingInfo> reviews, ReviewAndRatingInfo activeUserReview) throws LogicException {
 		ConnectionPool connectionPool = ConnectionPool.getInstance();
 		WrapperConnection connection = connectionPool.takeConnection().orElseThrow(LogicException::new);
 		try {
@@ -49,6 +59,16 @@ public class ReviewLogic {
 			}
 		}
 	}
+
+	/**
+	 * Leave review to movie
+	 * @param movieId id of movie
+	 * @param userId id of user
+	 * @param rating rating to movie
+	 * @param review review to movie
+	 * @return true if leaved and false otherwise
+	 * @throws LogicException
+	 */
 	public boolean leaveReview(long movieId, long userId, int rating, String review) throws LogicException{
 		ConnectionPool connectionPool = ConnectionPool.getInstance();
 		WrapperConnection connection = connectionPool.takeConnection().orElseThrow(LogicException::new);
@@ -74,7 +94,12 @@ public class ReviewLogic {
 		}
 	}
 
-
+	/**
+	 * Delete review
+	 * @param movieId id of movie
+	 * @param userId id of user
+	 * @throws LogicException
+	 */
 	public void deleteReview(long movieId, long userId) throws LogicException {
 		ConnectionPool connectionPool = ConnectionPool.getInstance();
 		WrapperConnection connection = connectionPool.takeConnection().orElseThrow(LogicException::new);
@@ -93,6 +118,13 @@ public class ReviewLogic {
 		}
 	}
 
+	/**
+	 * Gets review and rating of movie
+	 * @param movieId id of movie
+	 * @param userId id of user
+	 * @return info about rating and review
+	 * @throws LogicException
+	 */
 	public ReviewAndRatingInfo getReviewAndRating(long movieId, long userId) throws LogicException{
 		ConnectionPool connectionPool = ConnectionPool.getInstance();
 		WrapperConnection connection = connectionPool.takeConnection().orElseThrow(LogicException::new);
@@ -119,6 +151,14 @@ public class ReviewLogic {
 		}
 	}
 
+	/**
+	 * Edits existing review
+	 * @param movieId id of movie
+	 * @param userId id of user
+	 * @param rating new rating to film
+	 * @param review new review to film
+	 * @throws LogicException
+	 */
 	public void editReview(long movieId, long userId, int rating, String review) throws LogicException{
 		ConnectionPool connectionPool = ConnectionPool.getInstance();
 		WrapperConnection connection = connectionPool.takeConnection().orElseThrow(LogicException::new);

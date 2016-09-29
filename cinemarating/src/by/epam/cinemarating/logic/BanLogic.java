@@ -2,7 +2,7 @@ package by.epam.cinemarating.logic;
 
 import by.epam.cinemarating.dao.BanDAO;
 import by.epam.cinemarating.dao.BanMessageDAO;
-import by.epam.cinemarating.dao.DAOException;
+import by.epam.cinemarating.exception.DAOException;
 import by.epam.cinemarating.dao.UserDAO;
 import by.epam.cinemarating.database.ConnectionPool;
 import by.epam.cinemarating.database.WrapperConnection;
@@ -10,6 +10,7 @@ import by.epam.cinemarating.entity.Ban;
 import by.epam.cinemarating.entity.BanMessage;
 import by.epam.cinemarating.entity.BanMessageInfo;
 import by.epam.cinemarating.entity.User;
+import by.epam.cinemarating.exception.LogicException;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -19,6 +20,12 @@ import java.util.Optional;
 public class BanLogic {
 	private static final String ERROR_MESSAGE = "Problem in Ban Logic";
 
+	/**
+	 * Finds Ban by user id
+	 * @param userId id of user to watch bans
+	 * @return Ban of user if exists and empty optional otherwise
+	 * @throws LogicException
+	 */
 	public Optional<Ban> findBanByUserId(long userId) throws LogicException {
 		ConnectionPool connectionPool = ConnectionPool.getInstance();
 		WrapperConnection connection = connectionPool.takeConnection().orElseThrow(LogicException::new);
@@ -44,6 +51,13 @@ public class BanLogic {
 		}
 	}
 
+	/**
+	 * Leave message to administrator about your ban
+	 * @param banId id of the ban to user
+	 * @param banMessage message to admin
+	 * @return true if message leaved and false otherwise
+	 * @throws LogicException
+	 */
 	public boolean leaveMessage(long banId, String banMessage) throws LogicException{
 		ConnectionPool connectionPool = ConnectionPool.getInstance();
 		WrapperConnection connection = connectionPool.takeConnection().orElseThrow(LogicException::new);
@@ -65,6 +79,12 @@ public class BanLogic {
 		}
 	}
 
+	/**
+	 * Finds ban by ban id
+	 * @param banId id of ban to find
+	 * @return Ban if exists of empty optional otherwise
+	 * @throws LogicException
+	 */
 	public Optional<Ban> findBanByBanId(long banId) throws LogicException {
 		ConnectionPool connectionPool = ConnectionPool.getInstance();
 		WrapperConnection connection = connectionPool.takeConnection().orElseThrow(LogicException::new);
@@ -90,6 +110,12 @@ public class BanLogic {
 		}
 	}
 
+	/**
+	 * Finds ban message by id
+	 * @param banId id of ban
+	 * @return Ban Message found
+	 * @throws LogicException
+	 */
 	public BanMessage findBanMessageById(long banId) throws LogicException {
 		ConnectionPool connectionPool = ConnectionPool.getInstance();
 		WrapperConnection connection = connectionPool.takeConnection().orElseThrow(LogicException::new);
@@ -107,6 +133,11 @@ public class BanLogic {
 		}
 	}
 
+	/**
+	 * Finds all Ban messages
+	 * @return All ban messages
+	 * @throws LogicException
+	 */
 	public List<BanMessageInfo> findAllBanMessages() throws LogicException {
 		ConnectionPool connectionPool = ConnectionPool.getInstance();
 		WrapperConnection connection = connectionPool.takeConnection().orElseThrow(LogicException::new);
@@ -131,6 +162,10 @@ public class BanLogic {
 		}
 	}
 
+	/**
+	 * Deletes all ban messages
+	 * @throws LogicException
+	 */
 	public void deleteAllBanMessages() throws LogicException{
 		ConnectionPool connectionPool = ConnectionPool.getInstance();
 		WrapperConnection connection = connectionPool.takeConnection().orElseThrow(LogicException::new);
@@ -146,6 +181,11 @@ public class BanLogic {
 		}
 	}
 
+	/**
+	 * Give a ban to user
+	 * @param ban ban information
+	 * @throws LogicException
+	 */
 	public void banUser(Ban ban) throws LogicException{
 		ConnectionPool connectionPool = ConnectionPool.getInstance();
 		WrapperConnection connection = connectionPool.takeConnection().orElseThrow(LogicException::new);
@@ -161,6 +201,11 @@ public class BanLogic {
 		}
 	}
 
+	/**
+	 * Unban user
+	 * @param userId id of user to unban
+	 * @throws LogicException
+	 */
 	public void unbanUser(long userId) throws LogicException {
 		ConnectionPool connectionPool = ConnectionPool.getInstance();
 		WrapperConnection connection = connectionPool.takeConnection().orElseThrow(LogicException::new);

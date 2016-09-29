@@ -8,6 +8,15 @@ public class TimeConverter {
 	private static final String MINUTES = " minutes; ";
 	private static final String SECONDS = " seconds;";
 
+	/**
+	 * Finds difference between two Timestamps
+	 * @param firstTimestamp first Timestamp
+	 * @param secondTimestamp second Timestamp
+	 * @return difference in such format:
+	 * <p>
+	 *     %d days; %d hours; %d minutes; %d seconds;
+	 * </p>
+	 */
 	public static String findDifference(Timestamp firstTimestamp, Timestamp secondTimestamp) {
 		long diff = firstTimestamp.getTime() - secondTimestamp.getTime();
 

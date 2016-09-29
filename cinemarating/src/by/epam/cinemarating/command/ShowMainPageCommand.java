@@ -1,7 +1,8 @@
 package by.epam.cinemarating.command;
 
 import by.epam.cinemarating.entity.Movie;
-import by.epam.cinemarating.logic.LogicException;
+import by.epam.cinemarating.exception.CommandException;
+import by.epam.cinemarating.exception.LogicException;
 import by.epam.cinemarating.logic.MovieLogic;
 import by.epam.cinemarating.resource.ConfigurationManager;
 
@@ -10,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
-public class ShowMainPageCommand implements ActionCommand {
+class ShowMainPageCommand implements ActionCommand {
 	private static final int NUMBER_OF_TOP_MOVIES = 3;
 	private static final String PAGE_MAIN = "path.page.main";
 	private static final String ERROR_MESSAGE = "Problem in Show Main Page Command";

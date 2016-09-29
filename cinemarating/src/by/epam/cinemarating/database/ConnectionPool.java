@@ -79,6 +79,10 @@ public class ConnectionPool {
 		}
 	}
 
+	/**
+	 * Gets the single object of this type
+	 * @return new ConnectionPool if not exists and existing one otherwise
+	 */
 	public static ConnectionPool getInstance() {
 		if (!instanceCreated.get()) {
 			lock.lock(); // blocking
@@ -94,6 +98,10 @@ public class ConnectionPool {
 		return instance;
 	}
 
+	/**
+	 * Take connection from Connection Pool
+	 * @return connection from connection pool if there is any connection or null empty optional otherwise
+	 */
 	public Optional<WrapperConnection> takeConnection() {
 		WrapperConnection connection = null;
 		try {
@@ -104,12 +112,19 @@ public class ConnectionPool {
 		return Optional.ofNullable(connection);
 	}
 
+	/**
+	 * Returns connection to Connection Pool
+	 * @param connection connection to return to connection pool
+	 */
 	public void returnConnection(WrapperConnection connection) {
 		if (connection != null) {
 			connectionQueue.offer(connection);
 		}
 	}
 
+	/**
+	 * Close connection pool by closing all connections
+	 */
 	public void closePool() {
 		try {
 			while (!connectionQueue.isEmpty()) {
@@ -123,8 +138,16 @@ public class ConnectionPool {
 
 	}
 
+	/**
+	 * Gets the size of connection pool
+	 * @return size of the connection pool
+	 */
 	public int getSize(){
-		return connectionQueue.size();
+		if (connectionQueue != null) {
+			return connectionQueue.size();
+		} else {
+			return 0;
+		}
 	}
 
 	private void initializeConnectionPool(final int POOL_SIZE, String url, Properties properties) {

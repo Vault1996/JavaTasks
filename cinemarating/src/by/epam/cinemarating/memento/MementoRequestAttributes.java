@@ -6,11 +6,11 @@ import java.util.Map;
 public class MementoRequestAttributes {
 	private Map<String, Object> attributes = new HashMap<>();
 
-	public Map<String, Object> getAttributes() {
+	Map<String, Object> getAttributes() {
 		return attributes;
 	}
 
-	public void setAttributes(Map<String, Object> attributes) {
+	void setAttributes(Map<String, Object> attributes) {
 		this.attributes = attributes;
 	}
 }

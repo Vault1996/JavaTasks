@@ -1,7 +1,8 @@
 package by.epam.cinemarating.command;
 
 import by.epam.cinemarating.entity.Movie;
-import by.epam.cinemarating.logic.LogicException;
+import by.epam.cinemarating.exception.CommandException;
+import by.epam.cinemarating.exception.LogicException;
 import by.epam.cinemarating.logic.MovieLogic;
 import by.epam.cinemarating.resource.ConfigurationManager;
 import by.epam.cinemarating.validation.AddMovieValidator;
@@ -14,7 +15,7 @@ import java.io.IOException;
 import java.nio.file.Paths;
 
 
-public class AddMovieCommand implements ActionCommand {
+class AddMovieCommand implements ActionCommand {
 
 	private static final String NAME = "name";
 	private static final String YEAR = "year";
@@ -37,7 +38,7 @@ public class AddMovieCommand implements ActionCommand {
 		if (addMovieValidator.validate(name, year, country, description)) {
 			try {
 				Part posterPart = request.getPart(POSTER);
-				String fileName = Paths.get(posterPart.getSubmittedFileName()).getFileName().toString(); // MSIE fix.
+				String fileName = Paths.get(posterPart.getSubmittedFileName()).getFileName().toString(); // MS IE fix.
 				posterPart.write(request.getServletContext().getRealPath("") + MOVIE_POSTERS_LOCATION + fileName);
 				Movie movie = new Movie(0, name, Integer.valueOf(year), description, country, DEFAULT_RATING, MOVIE_POSTERS_LOCATION + fileName);
 				MovieLogic movieLogic = new MovieLogic();

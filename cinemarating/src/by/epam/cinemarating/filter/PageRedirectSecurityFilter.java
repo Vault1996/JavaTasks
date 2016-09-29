@@ -18,7 +18,7 @@ public class PageRedirectSecurityFilter implements Filter {
 						 FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		HttpServletResponse httpResponse = (HttpServletResponse) response;
-// переход на заданную страницу
+// redirecting to the next page
 		httpResponse.sendRedirect(httpRequest.getContextPath() + indexPath);
 		chain.doFilter(request, response);
 	}

@@ -12,6 +12,10 @@ public class Caretaker {
 		this.memento = memento;
 	}
 
+	/**
+	 * Sets the data from request to memento
+	 * @param request HttpServletRequest object to retrieve data
+	 */
 	public void extractToMemento(HttpServletRequest request) {
 		Map<String, Object> attributes = new HashMap<>();
 		Enumeration<String> attrs = request.getAttributeNames();
@@ -23,6 +27,10 @@ public class Caretaker {
 		memento.setAttributes(attributes);
 	}
 
+	/**
+	 * Fills the request from memento
+	 * @param request HttpServletRequest object to set data
+	 */
 	public void fillRequest(HttpServletRequest request) {
 		for (Map.Entry<String, Object> entry : memento.getAttributes().entrySet()) {
 			request.setAttribute(entry.getKey(), entry.getValue());

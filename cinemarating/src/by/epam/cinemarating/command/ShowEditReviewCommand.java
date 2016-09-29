@@ -1,14 +1,15 @@
 package by.epam.cinemarating.command;
 
 import by.epam.cinemarating.entity.ReviewAndRatingInfo;
-import by.epam.cinemarating.logic.LogicException;
+import by.epam.cinemarating.exception.CommandException;
+import by.epam.cinemarating.exception.LogicException;
 import by.epam.cinemarating.logic.ReviewLogic;
 import by.epam.cinemarating.resource.ConfigurationManager;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class ShowEditReviewCommand implements ActionCommand{
+class ShowEditReviewCommand implements ActionCommand{
 	private static final String PAGE_EDIT_REVIEW = "path.page.editReview";
 	private static final String MOVIE_ID = "movie_id";
 	private static final String USER_ID = "user_id";

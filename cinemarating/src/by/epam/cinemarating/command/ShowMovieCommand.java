@@ -3,7 +3,8 @@ package by.epam.cinemarating.command;
 import by.epam.cinemarating.entity.Movie;
 import by.epam.cinemarating.entity.ReviewAndRatingInfo;
 import by.epam.cinemarating.entity.User;
-import by.epam.cinemarating.logic.LogicException;
+import by.epam.cinemarating.exception.CommandException;
+import by.epam.cinemarating.exception.LogicException;
 import by.epam.cinemarating.logic.MovieLogic;
 import by.epam.cinemarating.logic.ReviewLogic;
 import by.epam.cinemarating.resource.ConfigurationManager;
@@ -14,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ShowMovieCommand implements ActionCommand {
+class ShowMovieCommand implements ActionCommand {
 	private static final String MOVIE_ID = "movie_id";
 	private static final String MOVIE = "movie";
 

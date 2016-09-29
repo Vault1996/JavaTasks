@@ -8,6 +8,14 @@ public class EditProfileValidator {
 	private static final int MIN_NAME_LENGTH = 1;
 	private static final int MIN_SURNAME_LENGTH = 1;
 
+	/**
+	 * Validates the data to edit profile
+	 * @param name name of user
+	 * @param surname surname of user
+	 * @param newPassword new password
+	 * @param repeatPassword repeated password
+	 * @return true if data is valid and false otherwise
+	 */
 	public boolean validate(String name, String surname, String newPassword, String repeatPassword) {
 		boolean isValid = true;
 		if (name != null && !name.isEmpty()) {

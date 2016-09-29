@@ -1,12 +1,13 @@
 package by.epam.cinemarating.command;
 
+import by.epam.cinemarating.exception.CommandException;
 import by.epam.cinemarating.memento.Caretaker;
 import by.epam.cinemarating.memento.MementoRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class ChangePageCommand implements ActionCommand {
+class ChangePageCommand implements ActionCommand {
 	private static final String NEXT = "next";
 	private static final String CURRENT_PAGE = "page";
 	private static final String MEMENTO = "memento";

@@ -2,6 +2,7 @@ package by.epam.cinemarating.dao;
 
 import by.epam.cinemarating.database.WrapperConnection;
 import by.epam.cinemarating.entity.Review;
+import by.epam.cinemarating.exception.DAOException;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -40,14 +41,14 @@ public class ReviewDAO extends AbstractDAO<Review> {
 	public List<Review> findAll() throws DAOException {
 		List<Review> reviews = new ArrayList<>();
 		try (
-				Statement statement = connection.createStatement();
+				Statement statement = connection.createStatement()
 		) {
 			ResultSet resultSet = statement.executeQuery(FIND_ALL_REVIEWS);
 			while (resultSet.next()) {
 				long movieId = resultSet.getLong(MOVIE_ID);
+				Timestamp time = resultSet.getTimestamp(TIME);
 				long userId = resultSet.getLong(USER_ID);
 				String review = resultSet.getString(REVIEW);
-				Timestamp time = resultSet.getTimestamp(TIME);
 				reviews.add(new Review(movieId, userId, review, time));
 			}
 		} catch (SQLException e) {
@@ -61,6 +62,12 @@ public class ReviewDAO extends AbstractDAO<Review> {
 		return Optional.empty();
 	}
 
+	/**
+	 * Retrieves all reviews to the specific movie by movie id
+	 * @param movieId id of the movie to find
+	 * @return all reviews to the specific movie
+	 * @throws DAOException if any exceptions occurred on the SQL layer
+	 */
 	public List<Review> findReviewsByMovieId(long movieId) throws DAOException {
 		List<Review> reviews = new ArrayList<>();
 		try (
@@ -69,10 +76,10 @@ public class ReviewDAO extends AbstractDAO<Review> {
 			statement.setLong(1, movieId);
 			ResultSet resultSet = statement.executeQuery();
 			while (resultSet.next()) {
+				Timestamp time = resultSet.getTimestamp(TIME);
 				long movieIdField = resultSet.getLong(MOVIE_ID);
 				long userId = resultSet.getLong(USER_ID);
 				String reviewField = resultSet.getString(REVIEW);
-				Timestamp time = resultSet.getTimestamp(TIME);
 				reviews.add(new Review(movieIdField, userId, reviewField, time));
 			}
 		} catch (SQLException e) {
@@ -81,6 +88,12 @@ public class ReviewDAO extends AbstractDAO<Review> {
 		return reviews;
 	}
 
+	/**
+	 * Retrieves all reviews of the specific user by user id
+	 * @param userId id of the user to find
+	 * @return all reviews of the specific user
+	 * @throws DAOException if any exceptions occurred on the SQL layer
+	 */
 	public List<Review> findReviewsByUserId(long userId) throws DAOException {
 		List<Review> reviews = new ArrayList<>();
 		try (
@@ -101,6 +114,13 @@ public class ReviewDAO extends AbstractDAO<Review> {
 		return reviews;
 	}
 
+	/**
+	 * Retrieves review to the specific movie rated by specific user
+	 * @param movieId id of the movie to find
+	 * @param userId id of the user to find
+	 * @return review to the specific movie rated by specific user
+	 * @throws DAOException if any exceptions occurred on the SQL layer
+	 */
 	public Optional<Review> findReview(long movieId, long userId) throws DAOException {
 		Review review = null;
 		try (
@@ -126,7 +146,7 @@ public class ReviewDAO extends AbstractDAO<Review> {
 	public boolean insert(Review entity) throws DAOException {
 		int result;
 		try (
-				PreparedStatement statement = connection.prepareStatement(INSERT_REVIEW);
+				PreparedStatement statement = connection.prepareStatement(INSERT_REVIEW)
 		) {
 			statement.setLong(1, entity.getMovieId());
 			statement.setLong(2, entity.getUserId());
@@ -143,10 +163,16 @@ public class ReviewDAO extends AbstractDAO<Review> {
 		return false;
 	}
 
+	/**
+	 * Deletes all reviews to movie.
+	 * @param movieId id of the movie to delete
+	 * @return true if the entity was deleted, false otherwise
+	 * @throws DAOException if any exceptions occurred on the SQL layer
+	 */
 	public boolean deleteReviewsByMovieId(long movieId) throws DAOException {
 		int result;
 		try(
-				PreparedStatement statement = connection.prepareStatement(DELETE_REVIEW_BY_MOVIE_ID);
+				PreparedStatement statement = connection.prepareStatement(DELETE_REVIEW_BY_MOVIE_ID)
 		) {
 			statement.setLong(1, movieId);
 			result = statement.executeUpdate();
@@ -156,10 +182,16 @@ public class ReviewDAO extends AbstractDAO<Review> {
 		return result > 0;
 	}
 
+	/**
+	 * Deletes all reviews of user.
+	 * @param userId id of the user to delete
+	 * @return true if the entity was deleted, false otherwise
+	 * @throws DAOException if any exceptions occurred on the SQL layer
+	 */
 	public boolean deleteReviewsByUserId(long userId) throws DAOException {
 		int result;
 		try(
-				PreparedStatement statement = connection.prepareStatement(DELETE_REVIEW_BY_USER_ID);
+				PreparedStatement statement = connection.prepareStatement(DELETE_REVIEW_BY_USER_ID)
 		) {
 			statement.setLong(1, userId);
 			result = statement.executeUpdate();
@@ -168,14 +200,20 @@ public class ReviewDAO extends AbstractDAO<Review> {
 		}
 		return result > 0;
 	}
-
+	/**
+	 * Deletes review to movie rated by user.
+	 * @param movieId id of the movie to delete
+	 * @param userId id of the user to delete
+	 * @return true if the entity was deleted, false otherwise
+	 * @throws DAOException if any exceptions occurred on the SQL layer
+	 */
 	public boolean deleteReview(long movieId, long userId) throws DAOException {
 		int result;
 		try(
-				PreparedStatement statement = connection.prepareStatement(DELETE_REVIEW);
+				PreparedStatement statement = connection.prepareStatement(DELETE_REVIEW)
 		) {
-			statement.setLong(1, movieId);
 			statement.setLong(2, userId);
+			statement.setLong(1, movieId);
 			result = statement.executeUpdate();
 		} catch (SQLException e) {
 			throw new DAOException(e);
@@ -187,7 +225,7 @@ public class ReviewDAO extends AbstractDAO<Review> {
 	public boolean update(Review entity) throws DAOException {
 		int result;
 		try(
-				PreparedStatement statement = connection.prepareStatement(UPDATE_REVIEW);
+				PreparedStatement statement = connection.prepareStatement(UPDATE_REVIEW)
 		) {
 			statement.setString(1, entity.getReview());
 			statement.setLong(2, entity.getMovieId());

@@ -1,15 +1,16 @@
 package by.epam.cinemarating.command;
 
 import by.epam.cinemarating.entity.Ban;
+import by.epam.cinemarating.exception.CommandException;
 import by.epam.cinemarating.function.DateConverter;
 import by.epam.cinemarating.logic.BanLogic;
-import by.epam.cinemarating.logic.LogicException;
+import by.epam.cinemarating.exception.LogicException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.sql.Timestamp;
 
-public class BanUserCommand implements ActionCommand {
+class BanUserCommand implements ActionCommand {
 	private static final String SHOW_USER_COMMAND = "/controller?command=show_user&user_id=";
 	private static final String USER_ID = "user_id";
 	private static final String TILL = "till";

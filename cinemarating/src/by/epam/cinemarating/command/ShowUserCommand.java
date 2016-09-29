@@ -2,8 +2,9 @@ package by.epam.cinemarating.command;
 
 import by.epam.cinemarating.entity.Ban;
 import by.epam.cinemarating.entity.User;
+import by.epam.cinemarating.exception.CommandException;
 import by.epam.cinemarating.logic.BanLogic;
-import by.epam.cinemarating.logic.LogicException;
+import by.epam.cinemarating.exception.LogicException;
 import by.epam.cinemarating.logic.UserLogic;
 import by.epam.cinemarating.resource.ConfigurationManager;
 
@@ -11,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Optional;
 
-public class ShowUserCommand implements ActionCommand {
+class ShowUserCommand implements ActionCommand {
 	private static final String USER_ID = "user_id";
 	private static final String USER = "user";
 	private static final String ACTIVE_USER = "activeUser";

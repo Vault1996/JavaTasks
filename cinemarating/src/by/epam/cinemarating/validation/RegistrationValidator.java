@@ -8,6 +8,13 @@ public class RegistrationValidator {
 	private static final int MIN_PASSWORD_LENGTH = 4;
 	private static final int MIN_LOGIN_LENGTH = 1;
 
+	/**
+	 * Validates the data to register
+	 * @param login login of user
+	 * @param email email of user
+	 * @param password password of user
+	 * @return true if data is valid and false otherwise
+	 */
 	public boolean validate(String login, String email, String password) {
 		EmailValidator emailValidator =  EmailValidator.getInstance();
 		return (login != null && password != null &&

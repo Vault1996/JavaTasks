@@ -1,14 +1,15 @@
 package by.epam.cinemarating.command;
 
 import by.epam.cinemarating.entity.User;
-import by.epam.cinemarating.logic.LogicException;
+import by.epam.cinemarating.exception.CommandException;
+import by.epam.cinemarating.exception.LogicException;
 import by.epam.cinemarating.logic.UserLogic;
 import by.epam.cinemarating.resource.ConfigurationManager;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class ShowEditProfileCommand implements ActionCommand {
+class ShowEditProfileCommand implements ActionCommand {
 	private static final String PAGE_EDIT_REVIEW = "path.page.editProfile";
 	private static final String USER_ID = "user_id";
 	private static final String USER_EDITED = "userEdited";

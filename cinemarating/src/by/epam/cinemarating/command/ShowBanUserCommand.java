@@ -1,14 +1,15 @@
 package by.epam.cinemarating.command;
 
 import by.epam.cinemarating.entity.User;
-import by.epam.cinemarating.logic.LogicException;
+import by.epam.cinemarating.exception.CommandException;
+import by.epam.cinemarating.exception.LogicException;
 import by.epam.cinemarating.logic.UserLogic;
 import by.epam.cinemarating.resource.ConfigurationManager;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class ShowBanUserCommand implements ActionCommand {
+class ShowBanUserCommand implements ActionCommand {
 	private static final String PAGE_BAN_USER = "path.page.banUser";
 	private static final String USER_ID = "user_id";
 	private static final String ERROR_MESSAGE = "Problem in Show Ban User Command";

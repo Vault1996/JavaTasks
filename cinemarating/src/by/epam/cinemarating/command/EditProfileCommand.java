@@ -1,9 +1,10 @@
 package by.epam.cinemarating.command;
 
 import by.epam.cinemarating.entity.User;
+import by.epam.cinemarating.exception.CommandException;
 import by.epam.cinemarating.hash.MD5Hash;
 import by.epam.cinemarating.logic.EditProfileLogic;
-import by.epam.cinemarating.logic.LogicException;
+import by.epam.cinemarating.exception.LogicException;
 import by.epam.cinemarating.logic.UserLogic;
 import by.epam.cinemarating.resource.ConfigurationManager;
 import by.epam.cinemarating.validation.EditProfileValidator;
@@ -16,7 +17,7 @@ import java.io.IOException;
 import java.nio.file.Paths;
 
 
-public class EditProfileCommand implements ActionCommand {
+class EditProfileCommand implements ActionCommand {
 	private static final String SHOW_USER_COMMAND = "/controller?command=show_user&user_id=";
 	private static final String PAGE_EDIT_PROFILE = "path.page.editProfile";
 	private static final String NAME = "name";
@@ -44,7 +45,7 @@ public class EditProfileCommand implements ActionCommand {
 		if (editProfileValidator.validate(name, surname, newPassword, repeatPassword)) {
 			try {
 				Part photoPart = request.getPart(PHOTO);
-				String fileName = Paths.get(photoPart.getSubmittedFileName()).getFileName().toString(); // MSIE fix.
+				String fileName = Paths.get(photoPart.getSubmittedFileName()).getFileName().toString(); // MS IE fix.
 				UserLogic userLogic = new UserLogic();
 				User user = userLogic.findUserById(userId);
 				User activeUser = (User) request.getSession().getAttribute(ACTIVE_USER);
@@ -74,7 +75,7 @@ public class EditProfileCommand implements ActionCommand {
 			}
 		} else {
 			UserLogic userLogic = new UserLogic();
-			User user = new User();
+			User user;
 			try {
 				user = userLogic.findUserById(userId);
 			} catch (LogicException e) {

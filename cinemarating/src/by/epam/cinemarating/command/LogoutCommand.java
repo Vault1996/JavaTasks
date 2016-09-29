@@ -5,7 +5,7 @@ import by.epam.cinemarating.resource.ConfigurationManager;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class LogoutCommand implements ActionCommand {
+class LogoutCommand implements ActionCommand {
 	private static final String PAGE_INDEX = "path.page.index";
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {

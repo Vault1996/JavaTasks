@@ -2,6 +2,7 @@ package by.epam.cinemarating.dao;
 
 import by.epam.cinemarating.database.WrapperConnection;
 import by.epam.cinemarating.entity.Movie;
+import by.epam.cinemarating.exception.DAOException;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-//TODO:LOGGER
 public class MovieDAO extends AbstractDAO<Movie> {
 	private static final String MOVIE_ID = "movie_id";
 	private static final String NAME = "name";
@@ -42,7 +42,7 @@ public class MovieDAO extends AbstractDAO<Movie> {
 	public List<Movie> findAll() throws DAOException {
 		List<Movie> movies = new ArrayList<>();
 		try (
-				Statement statement = connection.createStatement();
+				Statement statement = connection.createStatement()
 		) {
 			ResultSet resultSet = statement.executeQuery(FIND_ALL_MOVIES);
 			while (resultSet.next()) {
@@ -90,7 +90,7 @@ public class MovieDAO extends AbstractDAO<Movie> {
 	public boolean insert(Movie entity) throws DAOException {
 		int result;
 		try(
-				PreparedStatement statement = connection.prepareStatement(INSERT_MOVIE);
+				PreparedStatement statement = connection.prepareStatement(INSERT_MOVIE)
 		) {
 			statement.setString(1, entity.getName());
 			statement.setInt(2, entity.getYear());
@@ -109,7 +109,7 @@ public class MovieDAO extends AbstractDAO<Movie> {
 	public boolean delete(long id) throws DAOException {
 		int result;
 		try(
-				PreparedStatement statement = connection.prepareStatement(DELETE_MOVIE_BY_ID);
+				PreparedStatement statement = connection.prepareStatement(DELETE_MOVIE_BY_ID)
 		) {
 			statement.setLong(1, id);
 			result = statement.executeUpdate();
@@ -123,7 +123,7 @@ public class MovieDAO extends AbstractDAO<Movie> {
 	public boolean update(Movie entity) throws DAOException {
 		int result;
 		try(
-				PreparedStatement statement = connection.prepareStatement(UPDATE_MOVIE_BY_ID);
+				PreparedStatement statement = connection.prepareStatement(UPDATE_MOVIE_BY_ID)
 		) {
 			statement.setString(1, entity.getName());
 			statement.setInt(2, entity.getYear());
@@ -139,12 +139,17 @@ public class MovieDAO extends AbstractDAO<Movie> {
 		return result > 0;
 	}
 
+	/**
+	 * Method to define the last movie id in the system.
+	 * @return movie id if last movie exists or -1 otherwise
+	 * @throws DAOException if any exceptions occurred on the SQL layer
+	 */
 	public long getLastMovieId() throws DAOException {
 		try(
-				Statement statement = connection.createStatement();
+				Statement statement = connection.createStatement()
 		) {
-			ResultSet resultSet = statement.executeQuery(GET_LAST_MOVIE_ID);
 			long result = -1;
+			ResultSet resultSet = statement.executeQuery(GET_LAST_MOVIE_ID);
 			if (resultSet.next()) {
 				result = resultSet.getLong(MOVIE_ID);
 			}

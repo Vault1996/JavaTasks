@@ -1,7 +1,8 @@
 package by.epam.cinemarating.command;
 
 import by.epam.cinemarating.entity.Movie;
-import by.epam.cinemarating.logic.LogicException;
+import by.epam.cinemarating.exception.CommandException;
+import by.epam.cinemarating.exception.LogicException;
 import by.epam.cinemarating.logic.MovieLogic;
 import by.epam.cinemarating.resource.ConfigurationManager;
 import by.epam.cinemarating.validation.EditMovieValidator;
@@ -13,7 +14,7 @@ import javax.servlet.http.Part;
 import java.io.IOException;
 import java.nio.file.Paths;
 
-public class EditMovieCommand implements ActionCommand {
+class EditMovieCommand implements ActionCommand {
 	private static final String MOVIE_ID = "movie_id";
 	private static final String SHOW_MOVIE_COMMAND = "/controller?command=show_movie&movie_id=";
 	private static final String ERROR_MESSAGE = "Problem in Edit Movie Command";
@@ -40,7 +41,7 @@ public class EditMovieCommand implements ActionCommand {
 				MovieLogic movieLogic = new MovieLogic();
 				Movie currentMovie = movieLogic.findMovieById(movieId);
 				Part posterPart = request.getPart(POSTER);
-				String fileName = Paths.get(posterPart.getSubmittedFileName()).getFileName().toString(); // MSIE fix.
+				String fileName = Paths.get(posterPart.getSubmittedFileName()).getFileName().toString(); // MS IE fix.
 				if (name != null && !name.isEmpty()) {
 					currentMovie.setName(name);
 				}
@@ -64,7 +65,7 @@ public class EditMovieCommand implements ActionCommand {
 			}
 		} else {
 			MovieLogic movieLogic = new MovieLogic();
-			Movie movie = new Movie();
+			Movie movie;
 			try {
 				movie = movieLogic.findMovieById(movieId);
 			} catch (LogicException e) {

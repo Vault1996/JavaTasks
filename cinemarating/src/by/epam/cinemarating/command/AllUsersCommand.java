@@ -1,7 +1,8 @@
 package by.epam.cinemarating.command;
 
 import by.epam.cinemarating.entity.User;
-import by.epam.cinemarating.logic.LogicException;
+import by.epam.cinemarating.exception.CommandException;
+import by.epam.cinemarating.exception.LogicException;
 import by.epam.cinemarating.logic.UserLogic;
 import by.epam.cinemarating.resource.ConfigurationManager;
 
@@ -9,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
-public class AllUsersCommand implements ActionCommand {
+class AllUsersCommand implements ActionCommand {
 	private static final String USERS = "users";
 	private static final String PAGE_NUMBER = "pageNumber";
 	private static final String PAGE_ALL_USERS = "path.page.allUsers";

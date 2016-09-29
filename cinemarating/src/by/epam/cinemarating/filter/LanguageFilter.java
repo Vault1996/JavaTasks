@@ -21,7 +21,7 @@ public class LanguageFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response,
 						 FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
-// установка языка из параметров фильтра, если не установлен
+// setting language to default language from init param if it is not exists
 		if (httpRequest.getSession().getAttribute(LANGUAGE) == null) {
 			httpRequest.getSession().setAttribute(LANGUAGE, language);
 		}

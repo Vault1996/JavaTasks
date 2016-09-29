@@ -20,7 +20,7 @@ public class EncodingFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response,
 						 FilterChain chain) throws IOException, ServletException {
 		String codeRequest = request.getCharacterEncoding();
-// установка кодировки из параметров фильтра, если не установлена
+// setting encoding to default encoding from init param if it is not exists
 		if (code != null && !code.equalsIgnoreCase(codeRequest)) {
 			request.setCharacterEncoding(code);
 			response.setCharacterEncoding(code);

@@ -1,10 +1,11 @@
 package by.epam.cinemarating.logic;
 
-import by.epam.cinemarating.dao.DAOException;
+import by.epam.cinemarating.exception.DAOException;
 import by.epam.cinemarating.dao.UserDAO;
 import by.epam.cinemarating.database.ConnectionPool;
 import by.epam.cinemarating.database.WrapperConnection;
 import by.epam.cinemarating.entity.User;
+import by.epam.cinemarating.exception.LogicException;
 import by.epam.cinemarating.hash.Hasher;
 import by.epam.cinemarating.hash.MD5Hash;
 
@@ -13,7 +14,15 @@ import java.util.Optional;
 public class LoginLogic {
 	private static final String ERROR_MESSAGE = "Problem in Login Logic";
 
-	public boolean logic(String login, String password, User user) throws LogicException {
+	/**
+	 * Checks if user exists
+	 * @param login login of user
+	 * @param password password of user
+	 * @param user user to set info into
+	 * @return true if authentication is valid and false otherwise
+	 * @throws LogicException
+	 */
+	public boolean checkUser(String login, String password, User user) throws LogicException {
 		ConnectionPool connectionPool = ConnectionPool.getInstance();
 		WrapperConnection connection = connectionPool.takeConnection().orElseThrow(LogicException::new);
 		UserDAO userDAO = new UserDAO(connection);

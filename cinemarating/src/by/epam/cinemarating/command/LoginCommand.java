@@ -3,9 +3,10 @@ package by.epam.cinemarating.command;
 import by.epam.cinemarating.entity.Ban;
 import by.epam.cinemarating.entity.BanMessage;
 import by.epam.cinemarating.entity.User;
+import by.epam.cinemarating.exception.CommandException;
 import by.epam.cinemarating.function.TimeConverter;
 import by.epam.cinemarating.logic.BanLogic;
-import by.epam.cinemarating.logic.LogicException;
+import by.epam.cinemarating.exception.LogicException;
 import by.epam.cinemarating.logic.LoginLogic;
 import by.epam.cinemarating.resource.ConfigurationManager;
 import by.epam.cinemarating.validation.AuthenticationValidator;
@@ -15,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.sql.Timestamp;
 import java.util.Optional;
 
-public class LoginCommand implements ActionCommand {
+class LoginCommand implements ActionCommand {
 	private static final String LOGIN = "login";
 	private static final String PASSWORD = "password";
 	private static final String ACTIVE_USER = "activeUser";
@@ -32,7 +33,7 @@ public class LoginCommand implements ActionCommand {
 
 
 	@Override
-	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException{
+	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
 		String login = request.getParameter(LOGIN);
 		String password = request.getParameter(PASSWORD);
 		AuthenticationValidator validator = new AuthenticationValidator();
@@ -46,7 +47,7 @@ public class LoginCommand implements ActionCommand {
 		LoginLogic loginLogic = new LoginLogic();
 		try {
 			User user = new User();
-			boolean flag = loginLogic.logic(login, password, user);
+			boolean flag = loginLogic.checkUser(login, password, user);
 			if (flag) {
 				BanLogic banLogic = new BanLogic();
 				Optional<Ban> banOptional = banLogic.findBanByUserId(user.getUserId());

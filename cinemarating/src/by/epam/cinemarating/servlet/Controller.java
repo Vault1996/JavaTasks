@@ -2,6 +2,8 @@ package by.epam.cinemarating.servlet;
 
 import by.epam.cinemarating.command.*;
 import by.epam.cinemarating.database.ConnectionPool;
+import by.epam.cinemarating.exception.CommandException;
+import by.epam.cinemarating.exception.UnsupportedCommandException;
 import by.epam.cinemarating.memento.Caretaker;
 import by.epam.cinemarating.memento.MementoRequestAttributes;
 import org.apache.commons.lang3.exception.ExceptionUtils;
@@ -63,7 +65,7 @@ public class Controller extends HttpServlet {
 			} else {
 				caretaker.fillRequest(request);
 			}
-			//*
+			//***
 			request.getRequestDispatcher(page).forward(request, response);
 		} catch (UnsupportedCommandException | CommandException e) {
 			LOGGER.error(e);

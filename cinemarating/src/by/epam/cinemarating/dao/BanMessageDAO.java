@@ -2,6 +2,7 @@ package by.epam.cinemarating.dao;
 
 import by.epam.cinemarating.database.WrapperConnection;
 import by.epam.cinemarating.entity.BanMessage;
+import by.epam.cinemarating.exception.DAOException;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -32,7 +33,7 @@ public class BanMessageDAO extends AbstractDAO<BanMessage>{
 	public List<BanMessage> findAll() throws DAOException {
 		List<BanMessage> banMessages = new ArrayList<>();
 		try (
-				Statement statement = connection.createStatement();
+				Statement statement = connection.createStatement()
 		) {
 			ResultSet resultSet = statement.executeQuery(FIND_ALL_BAN_MESSAGES);
 			while (resultSet.next()) {
@@ -68,7 +69,7 @@ public class BanMessageDAO extends AbstractDAO<BanMessage>{
 	public boolean insert(BanMessage entity) throws DAOException {
 		int result;
 		try(
-				PreparedStatement statement = connection.prepareStatement(INSERT_BAN_MESSAGE);
+				PreparedStatement statement = connection.prepareStatement(INSERT_BAN_MESSAGE)
 		) {
 			statement.setLong(1, entity.getBanId());
 			statement.setString(2, entity.getMessage());
@@ -83,7 +84,7 @@ public class BanMessageDAO extends AbstractDAO<BanMessage>{
 	public boolean delete(long id) throws DAOException {
 		int result;
 		try(
-				PreparedStatement statement = connection.prepareStatement(DELETE_BAN_MESSAGE_BY_ID);
+				PreparedStatement statement = connection.prepareStatement(DELETE_BAN_MESSAGE_BY_ID)
 		) {
 			statement.setLong(1, id);
 			result = statement.executeUpdate();
@@ -93,10 +94,15 @@ public class BanMessageDAO extends AbstractDAO<BanMessage>{
 		return result > 0;
 	}
 
+	/**
+	 * Deletes all entities from the system.
+	 * @return true if the entity was deleted, false otherwise
+	 * @throws DAOException if any exceptions occurred on the SQL layer
+	 */
 	public boolean deleteAllBanMessages() throws DAOException {
 		int result;
 		try(
-				Statement statement = connection.createStatement();
+				Statement statement = connection.createStatement()
 		) {
 			result = statement.executeUpdate(DELETE_ALL_BAN_MESSAGES);
 		} catch (SQLException e) {
@@ -109,7 +115,7 @@ public class BanMessageDAO extends AbstractDAO<BanMessage>{
 	public boolean update(BanMessage entity) throws DAOException {
 		int result;
 		try(
-				PreparedStatement statement = connection.prepareStatement(UPDATE_BAN_MESSAGE_BY_ID);
+				PreparedStatement statement = connection.prepareStatement(UPDATE_BAN_MESSAGE_BY_ID)
 		) {
 			statement.setString(1, entity.getMessage());
 			statement.setLong(2, entity.getBanId());

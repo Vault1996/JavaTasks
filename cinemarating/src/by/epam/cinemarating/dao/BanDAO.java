@@ -2,13 +2,12 @@ package by.epam.cinemarating.dao;
 
 import by.epam.cinemarating.database.WrapperConnection;
 import by.epam.cinemarating.entity.Ban;
+import by.epam.cinemarating.exception.DAOException;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
-//TODO: LOGGER
 
 public class BanDAO extends AbstractDAO<Ban> {
 	private static final String BAN_ID = "ban_id";
@@ -33,7 +32,7 @@ public class BanDAO extends AbstractDAO<Ban> {
 	public List<Ban> findAll() throws DAOException {
 		List<Ban> bans = new ArrayList<>();
 		try (
-				Statement statement = connection.createStatement();
+				Statement statement = connection.createStatement()
 		) {
 			ResultSet resultSet = statement.executeQuery(FIND_ALL_BANS);
 			while (resultSet.next()) {
@@ -69,6 +68,12 @@ public class BanDAO extends AbstractDAO<Ban> {
 		return Optional.ofNullable(ban);
 	}
 
+	/**
+	 * Retrieves {@link by.epam.cinemarating.entity.User} with a specific userId.
+	 * @param userId id of the User to find
+	 * @return an entity with the given id
+	 * @throws DAOException if any exceptions occurred on the SQL layer
+	 */
 	public Optional<Ban> findBanByUserId(long userId) throws DAOException {
 		Ban ban = null;
 		try(
@@ -92,7 +97,7 @@ public class BanDAO extends AbstractDAO<Ban> {
 	public boolean insert(Ban entity) throws DAOException {
 		int result;
 		try(
-				PreparedStatement statement = connection.prepareStatement(INSERT_BAN);
+				PreparedStatement statement = connection.prepareStatement(INSERT_BAN)
 		) {
 			statement.setLong(1, entity.getUserId());
 			statement.setTimestamp(2, entity.getTill());
@@ -108,7 +113,7 @@ public class BanDAO extends AbstractDAO<Ban> {
 	public boolean delete(long id) throws DAOException {
 		int result;
 		try(
-				PreparedStatement statement = connection.prepareStatement(DELETE_BAN_BY_ID);
+				PreparedStatement statement = connection.prepareStatement(DELETE_BAN_BY_ID)
 		) {
 			statement.setLong(1, id);
 			result = statement.executeUpdate();
@@ -122,7 +127,7 @@ public class BanDAO extends AbstractDAO<Ban> {
 	public boolean update(Ban entity) throws DAOException {
 		int result;
 		try(
-				PreparedStatement statement = connection.prepareStatement(UPDATE_BAN_BY_ID);
+				PreparedStatement statement = connection.prepareStatement(UPDATE_BAN_BY_ID)
 		) {
 			statement.setLong(1, entity.getUserId());
 			statement.setTimestamp(2, entity.getTill());
@@ -135,10 +140,16 @@ public class BanDAO extends AbstractDAO<Ban> {
 		return result > 0;
 	}
 
+	/**
+	 * Deletes {@link by.epam.cinemarating.entity.User} with a specific user id from the system.
+	 * @param userId id of the User to delete
+	 * @return true if the entity was deleted, false otherwise
+	 * @throws DAOException if any exceptions occurred on the SQL layer
+	 */
 	public boolean deleteByUserId(long userId) throws DAOException {
 		int result;
 		try(
-				PreparedStatement statement = connection.prepareStatement(DELETE_BAN_BY_USER_ID);
+				PreparedStatement statement = connection.prepareStatement(DELETE_BAN_BY_USER_ID)
 		) {
 			statement.setLong(1, userId);
 			result = statement.executeUpdate();

@@ -1,6 +1,7 @@
 package by.epam.cinemarating.command;
 
-import by.epam.cinemarating.logic.LogicException;
+import by.epam.cinemarating.exception.CommandException;
+import by.epam.cinemarating.exception.LogicException;
 import by.epam.cinemarating.logic.RegistrationLogic;
 import by.epam.cinemarating.resource.ConfigurationManager;
 import by.epam.cinemarating.validation.RegistrationValidator;
@@ -8,14 +9,12 @@ import by.epam.cinemarating.validation.RegistrationValidator;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class RegistrationCommand implements ActionCommand {
+class RegistrationCommand implements ActionCommand {
 	private static final String LOGIN = "login";
 	private static final String NAME = "name";
 	private static final String SURNAME = "surname";
 	private static final String EMAIL = "email";
 	private static final String PASSWORD = "password";
-	private static final String LANGUAGE = "language";
-	private static final String RUSSIAN_LANGUAGE = "ru_ru";
 
 	private static final String ERROR_MESSAGE = "Problem in Registration Command";
 	private static final String ERROR_REGISTRATION_MESSAGE = "errorRegistrationMessage";
@@ -43,7 +42,7 @@ public class RegistrationCommand implements ActionCommand {
 		}
 		RegistrationLogic registrationLogic = new RegistrationLogic();
 		try {
-			boolean flag = registrationLogic.logic(login, name, surname, email, password);
+			boolean flag = registrationLogic.registerUser(login, name, surname, email, password);
 			if (flag) {
 				request.setAttribute(LOGIN, login);
 				request.setAttribute(PASSWORD, password);
